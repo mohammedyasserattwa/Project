@@ -75,7 +75,7 @@ public class Company implements Serializable, Files{
         return null;
     }
     public static void main(String[] args) throws IOException, ClassNotFoundException{
-        Frame frame=new Frame();
+       Frame frame=new Frame();
 
         //Data for Employees
         int id,age,academicYear;
@@ -83,33 +83,33 @@ public class Company implements Serializable, Files{
         String name,facultyName;
         int payRate;
         double taxRate, WorkingHours;
-////        //PROTOTYPE DATA//
-//        ArrayList<Trainee> TraineeList=new ArrayList();
-//        TraineeList.add(new Trainee(496,"Ahmed",19,"CS",2020,2.69,"yasser","mohamed"));
-//        TraineeList.add(new Trainee(400,"Yasser",19,"CS",2021,3.02,"marawan","3atef"));
-//        TraineeList.add(new Trainee(200,"Lara",19,"CS",2022,4.5,"farah","lara"));
-//        File.writeTrainee(TraineeList);
-//        ArrayList<TeamMember> member=new ArrayList();
-//        member.add(new TeamMember("Hanien",800,20,"hanien","hanien"));
-//        member.add(new TeamMember("Hanien2",801,21,"hanien2","hanien2"));
-//        ArrayList<TeamMember> member2=new ArrayList();
-//        member.add(new TeamMember("Hanien3",802,22,"atef","atef"));
-//        member.add(new TeamMember("Hanien4",803,23,"spiderman","thor"));
-//        ArrayList<TeamLeader> leader=new ArrayList();
-//        leader.add(new TeamLeader("Farah",455,20,member.size(),member,"lara","laraa"));
-//        leader.add(new TeamLeader("Farah2",456,21,member2.size(),member2,"farah","farahhh"));
-//        File.writeTeamLeader(leader);
-//        Manager m=new Manager(TraineeList,leader,"ahmed","bassem");
-//        ArrayList<Manager> ManagerList = new ArrayList();
-//        ManagerList.add(m);
-//        File.writeManager(ManagerList);
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Enter Username: ");
-//        String Username = scanner.nextLine();
-//        System.out.println("Enter Password: ");
-//        String Password = scanner.nextLine();
-//        ArrayList<Manager> ManagerYasser = new ArrayList();
-//        Manager Chosen=new Manager();
+      //PROTOTYPE DATA//
+//    ArrayList<Trainee> TraineeList=new ArrayList();
+//    TraineeList.add(new Trainee(496,"Ahmed",19,"CS",2020,2.69,"yasser","mohamed"));
+//    TraineeList.add(new Trainee(400,"Yasser",19,"CS",2021,3.02,"marawan","3atef"));
+//    TraineeList.add(new Trainee(200,"Lara",19,"CS",2022,4.5,"farah","lara"));
+//    Files.writeTrainee(TraineeList);
+//    ArrayList<TeamMember> member=new ArrayList();
+//    member.add(new TeamMember("Hanien",800,20,"hanien","hanien"));
+//    member.add(new TeamMember("Hanien2",801,21,"hanien2","hanien2"));
+//    ArrayList<TeamMember> member2=new ArrayList();
+//    member.add(new TeamMember("Hanien3",802,22,"atef","atef"));
+//    member.add(new TeamMember("Hanien4",803,23,"spiderman","thor"));
+//    ArrayList<TeamLeader> leader=new ArrayList();
+//    leader.add(new TeamLeader("Farah",455,20,member.size(),member,"lara","laraa"));
+//    leader.add(new TeamLeader("Farah2",456,21,member2.size(),member2,"farah","farahhh"));
+//    Files.writeTeamLeader(leader);
+//    Manager m=new Manager(TraineeList,leader,"ahmed","bassem");
+//    ArrayList<Manager> ManagerList = new ArrayList();
+//    ManagerList.add(m);
+//    Files.writeManager(ManagerList);
+//    Scanner scanner = new Scanner(System.in);
+//    System.out.println("Enter Username: ");
+//    String Username = scanner.nextLine();
+//    System.out.println("Enter Password: ");
+//    String Password = scanner.nextLine();
+//    ArrayList<Manager> ManagerYasser = new ArrayList();
+//    Manager Chosen=new Manager();
 
 //        //~//
 //
