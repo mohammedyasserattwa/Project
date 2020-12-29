@@ -15,6 +15,7 @@ public class Company implements Serializable, Files{
         id = 0;
         name = null;
         age = 0;
+        //Ahmed Bassem
     }
     public Company(int id, String name, int age){
         this.id = id;
