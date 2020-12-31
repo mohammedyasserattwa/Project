@@ -366,6 +366,7 @@ public class Frame extends JFrame implements Files {
     JTextField getTLeaderId = new JTextField(20);
     JButton SubButton = new JButton("Submit");
 
+
 public void F8(){
 
     TmName.setBounds(150,30,460,100);
@@ -506,6 +507,22 @@ public void F9(){
     add(TraineeSubmit);
 }
 
+    JButton LeaderSubmit=new JButton("Submit");
+    //LeaderSubmit.setBounds()
+
+    JTextField getTlName = new JTextField(20);
+    JTextField getTlAge = new JTextField(20);
+    JTextField getTlid = new JTextField(20);
+    JTextField getTlUser= new JTextField(20);
+    JTextField getTlPass = new JTextField(20);
+
+    //His Team Members
+    ArrayList<JTextField>getTlmembersName=new ArrayList<>();
+    //JTextField getTlmembersName = new JTextField(20);
+    JTextField getTlmembersId = new JTextField(20);
+    JTextField getTlmembersAge = new JTextField(20);
+    JTextField getTlmembersUser = new JTextField(20);
+    JTextField getTlmembersPass = new JTextField(20);
 public void F10(){
     JLabel TeamLeader = new JLabel("Add Team Leader  ");
     TeamLeader.setBounds(400,30,430,100);
@@ -516,7 +533,7 @@ public void F10(){
     Tlname.setFont(new Font("Serif",Font.BOLD,20));
     Tlname.setBounds(50,200,80,30);
     add(Tlname);
-    JTextField getTlName = new JTextField(20);
+//
     getTlName.setBounds(195,200,100,30);
     add(getTlName);
 
@@ -524,7 +541,7 @@ public void F10(){
     Tlage.setFont(new Font("Serif",Font.BOLD,20));
     Tlage.setBounds(50,250,80,30);
     add(Tlage);
-    JTextField getTlAge = new JTextField(20);
+
     getTlAge.setBounds(195,250,100,30);
     add(getTlAge);
 
@@ -532,7 +549,7 @@ public void F10(){
     Tlid.setFont(new Font("Serif",Font.BOLD,20));
     Tlid.setBounds(50,300,80,30);
     add(Tlid);
-    JTextField getTlid = new JTextField(20);
+
     getTlid.setBounds(195,300,100,30);
     add(getTlid);
 
@@ -540,7 +557,7 @@ public void F10(){
     TlUser.setFont(new Font("Serif",Font.BOLD,20));
     TlUser.setBounds(350,200,100,30);
     add(TlUser);
-    JTextField getTlUser= new JTextField(20);
+
     getTlUser.setBounds(460,200,100,30);
     add(getTlUser);
 
@@ -548,7 +565,7 @@ public void F10(){
     TlPass.setFont(new Font("Serif",Font.BOLD,20));
     TlPass.setBounds(350,300,100,30);
     add(TlPass);
-    JTextField getTlPass = new JTextField(20);
+
     getTlPass.setBounds(460,300,100,30);
     add(getTlPass);
 
@@ -562,7 +579,7 @@ public void F10(){
         TlmembersName.setFont(new Font("Serif",Font.BOLD,20));
         TlmembersName.setBounds(50,400+j,80,30);
         add(TlmembersName);
-        JTextField getTlmembersName = new JTextField(20);
+
         getTlmembersName.setBounds(135,400+j,100,30);
         add(getTlmembersName);
 
@@ -570,7 +587,7 @@ public void F10(){
         TlmembersId.setFont(new Font("Serif",Font.BOLD,20));
         TlmembersId.setBounds(265,400+j,40,30);
         add(TlmembersId);
-        JTextField getTlmembersId = new JTextField(20);
+
         getTlmembersId.setBounds(315,400+j,100,30);
         add(getTlmembersId);
 
@@ -578,7 +595,7 @@ public void F10(){
         TlmembersAge.setFont(new Font("Serif",Font.BOLD,20));
         TlmembersAge.setBounds(445,400+j,50,30);
         add(TlmembersAge);
-        JTextField getTlmembersAge = new JTextField(20);
+
         getTlmembersAge.setBounds(505,400+j,100,30);
         add(getTlmembersAge);
 
@@ -586,7 +603,7 @@ public void F10(){
         TlmembersUser.setFont(new Font("Serif",Font.BOLD,20));
         TlmembersUser.setBounds(635,400+j,110,30);
         add(TlmembersUser);
-        JTextField getTlmembersUser = new JTextField(20);
+
         getTlmembersUser.setBounds(755,400+j,100,30);
         add(getTlmembersUser);
 
@@ -594,12 +611,13 @@ public void F10(){
         TlmembersPass.setFont(new Font("Serif",Font.BOLD,20));
         TlmembersPass.setBounds(885,400+j,110,30);
         add(TlmembersPass);
-        JTextField getTlmembersPass = new JTextField(20);
+
         getTlmembersPass.setBounds(1005,400+j,100,30);
         add(getTlmembersPass);
     }
 
 }
+
     public class Al implements ActionListener  {
         int state=0;
         int select=0;
@@ -716,9 +734,9 @@ public void F10(){
                 num = 2;
                 getContentPane().removeAll();
                 setSize(1150,801);
-
-
+                F10();
             }
+
 
             if(e.getSource() == TeamMember){
                 getContentPane().removeAll();
