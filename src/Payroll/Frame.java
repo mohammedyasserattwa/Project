@@ -517,8 +517,8 @@ public void F9(){
     JTextField getTlPass = new JTextField(20);
 
     //His Team Members
-    ArrayList<JTextField>getTlmembersName=new ArrayList<>();
-    //JTextField getTlmembersName = new JTextField(20);
+    //ArrayList<JTextField>getTlmembersName=new ArrayList<>();
+    JTextField getTlmembersName = new JTextField(20);
     JTextField getTlmembersId = new JTextField(20);
     JTextField getTlmembersAge = new JTextField(20);
     JTextField getTlmembersUser = new JTextField(20);
@@ -533,7 +533,7 @@ public void F10(){
     Tlname.setFont(new Font("Serif",Font.BOLD,20));
     Tlname.setBounds(50,200,80,30);
     add(Tlname);
-//
+
     getTlName.setBounds(195,200,100,30);
     add(getTlName);
 
