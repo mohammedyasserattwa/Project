@@ -600,6 +600,18 @@ public void F10(){
     }
 
 }
+
+//Edit
+    //function for the edit in general
+    //will open another frame to choose from either being a trainee , teamleader,teammember
+    // after choosing one of them
+    //another frame with buttons for which data want to be altered/all
+    //the final frame for the data to be entered
+//Delete
+    //function for the delete in general
+    //will open another frame to choose either being trainee, teamleader, or teammember
+    //after choosing one of them
+    //another frame will be showing a list of the employees to choose which one to be deleted
     public class Al implements ActionListener  {
         int state=0;
         int select=0;
