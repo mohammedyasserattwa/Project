@@ -335,10 +335,21 @@ public class Frame extends JFrame implements Files {
             add(Add);
             add(Edit);
             add(Delete);
-
-
-
     }
+    public void F8(){
+        //Set bounds for left buttons
+        Add.setBounds(0,230,150,100);
+        Add.setFont(new Font("Serif",Font.BOLD,30));
+        Edit.setBounds(0,330,150,100);
+        Edit.setFont(new Font("Serif",Font.BOLD,30));
+        Delete.setBounds(0,430,150,100);
+        Delete.setFont(new Font("Serif",Font.BOLD,30));
+        add(Add);
+        add(Edit);
+        add(Delete);
+    }
+
+
     public void Add(int num){
         if(num ==1){
             JLabel TraineeName = new JLabel("Name: ");
@@ -406,6 +417,13 @@ public class Frame extends JFrame implements Files {
                     F2();
                     state--;
                 }
+                if(state==3){                                   ///////////////Need to be seen again///////////////////////
+                    getContentPane().removeAll();
+                    getContentPane().revalidate();
+                    add(back);
+                    F8();
+                    state=2;
+                }
 
             }
 
@@ -418,56 +436,267 @@ public class Frame extends JFrame implements Files {
                 state = 1;
             }
             if(e.getSource() == Add){
-                JPanel panel = new JPanel();
-             //   Trainee.setBounds(100,100,250,50);
+                setSize(801,801);
+                setSize(800,800);
+                getContentPane().removeAll();
+                getContentPane().revalidate();
+                Trainee.setBounds(100,100,200,50);
                 Trainee.setFont(new Font("Serif",Font.BOLD,20));
-                panel.add(Trainee);
-             //   TeamLeader.setBounds(300,100,250,50);
-                TeamLeader.setFont(new Font("Serif",Font.BOLD,20));
-                panel.add(TeamLeader);
-                //TeamMember.setBounds(500,100,250,50);
-                TeamMember.setFont(new Font("Serif",Font.BOLD,20));
-                panel.setBounds(100,130,750,50);
+                add(Trainee);
 
-                panel.add(TeamMember);
-                panel.setVisible(true);
-                add(panel);
-//                add(TeamLeader);
-//                add(TeamMember);
-//                add(Trainee);
+                TeamLeader.setBounds(310,100,200,50);
+                TeamLeader.setFont(new Font("Serif",Font.BOLD,20));
+                add(TeamLeader);
+
+                TeamMember.setBounds(520,100,200,50);
+                TeamMember.setFont(new Font("Serif",Font.BOLD,20));
+                add(TeamMember);
 
             }
+
             if(e.getSource() == Trainee){
+                getContentPane().removeAll();
+                getContentPane().revalidate();
                 num = 1;
-                JPanel pane = new JPanel();
-                Container c = new Container();
-                JLabel TraineeName = new JLabel("Add Trainee:  ");
-                TraineeName.setBounds(0,0,100,100);
-                TraineeName.setFont(new Font("Serif",Font.BOLD,20));
-                c.add(TraineeName);
+                add(back);
+
+                setSize(801,801);
+                setSize(800,800);
+                JLabel TraineeName = new JLabel("Add Trainee  ");
+                TraineeName.setBounds(300,30,400,100);
+                TraineeName.setFont(new Font("Serif",Font.BOLD,50));
+                add(TraineeName);
 
                 JLabel Tname = new JLabel("Name: ");
-                c.add(Tname);
-                Tname.setBounds(0,225,50,50);
+                Tname.setFont(new Font("Serif",Font.BOLD,20));
+                Tname.setBounds(50,200,80,30);
+                add(Tname);
+                JTextField getTName = new JTextField(20);
+                getTName.setBounds(195,200,100,30);
+                add(getTName);
 
-                JTextField getTName = new JTextField(10);
-                c.add(getTName);
-                getTName.setBounds(250,225,50,50);
+                JLabel Tage = new JLabel("Age: ");
+                Tage.setFont(new Font("Serif",Font.BOLD,20));
+                Tage.setBounds(50,250,80,30);
+                add(Tage);
+                JTextField getTAge = new JTextField(20);
+                getTAge.setBounds(195,250,100,30);
+                add(getTAge);
 
+                JLabel Tid = new JLabel("ID: ");
+                Tid.setFont(new Font("Serif",Font.BOLD,20));
+                Tid.setBounds(50,300,80,30);
+                add(Tid);
+                JTextField getTid = new JTextField(20);
+                getTid.setBounds(195,300,100,30);
+                add(getTid);
 
-                c.setVisible(true);
-                c.setBounds(200,200,120,100);
-                add(c);
-                getContentPane().revalidate();
+                JLabel TfacultyName = new JLabel("Faculty Name: ");
+                TfacultyName.setFont(new Font("Serif",Font.BOLD,20));
+                TfacultyName.setBounds(50,350,140,30);
+                add(TfacultyName);
+                JTextField getTfacultyName = new JTextField(20);
+                getTfacultyName.setBounds(195,350,100,30);
+                add(getTfacultyName);
+
+                JLabel TacademicYear = new JLabel("Academic Year: ");
+                TacademicYear.setFont(new Font("Serif",Font.BOLD,20));
+                TacademicYear.setBounds(50,400,150,30);
+                add(TacademicYear);
+                JTextField getTacademicYear = new JTextField(20);
+                getTacademicYear.setBounds(195,400,100,30);
+                add(getTacademicYear);
+
+                JLabel Tgpa = new JLabel("GPA: ");
+                Tgpa.setFont(new Font("Serif",Font.BOLD,20));
+                Tgpa.setBounds(50,450,140,30);
+                add(Tgpa);
+                JTextField getTgpa = new JTextField(20);
+                getTgpa.setBounds(195,450,100,30);
+                add(getTgpa);
+
+                JLabel TUser = new JLabel("Username: ");
+                TUser.setFont(new Font("Serif",Font.BOLD,20));
+                TUser.setBounds(50,500,100,30);
+                add(TUser);
+                JTextField getTUser= new JTextField(20);
+                getTUser.setBounds(195,500,100,30);
+                add(getTUser);
+
+                JLabel TPass = new JLabel("Password: ");
+                TPass.setFont(new Font("Serif",Font.BOLD,20));
+                TPass.setBounds(50,550,100,30);
+                add(TPass);
+                JTextField getTPass = new JTextField(20);
+                getTPass.setBounds(195,550,100,30);
+                add(getTPass);
+                state=3;
 
 
             }
+
             if(e.getSource() == TeamLeader){
                 num = 2;
+                getContentPane().removeAll();
+                setSize(1150,801);
+
+                JLabel TeamLeader = new JLabel("Add Team Leader  ");
+                TeamLeader.setBounds(400,30,430,100);
+                TeamLeader.setFont(new Font("Serif",Font.BOLD,50));
+                add(TeamLeader);
+
+                JLabel Tlname = new JLabel("Name: ");
+                Tlname.setFont(new Font("Serif",Font.BOLD,20));
+                Tlname.setBounds(50,200,80,30);
+                add(Tlname);
+                JTextField getTlName = new JTextField(20);
+                getTlName.setBounds(195,200,100,30);
+                add(getTlName);
+
+                JLabel Tlage = new JLabel("Age: ");
+                Tlage.setFont(new Font("Serif",Font.BOLD,20));
+                Tlage.setBounds(50,250,80,30);
+                add(Tlage);
+                JTextField getTlAge = new JTextField(20);
+                getTlAge.setBounds(195,250,100,30);
+                add(getTlAge);
+
+                JLabel Tlid = new JLabel("ID: ");
+                Tlid.setFont(new Font("Serif",Font.BOLD,20));
+                Tlid.setBounds(50,300,80,30);
+                add(Tlid);
+                JTextField getTlid = new JTextField(20);
+                getTlid.setBounds(195,300,100,30);
+                add(getTlid);
+
+                JLabel TlUser = new JLabel("Username: ");
+                TlUser.setFont(new Font("Serif",Font.BOLD,20));
+                TlUser.setBounds(350,200,100,30);
+                add(TlUser);
+                JTextField getTlUser= new JTextField(20);
+                getTlUser.setBounds(460,200,100,30);
+                add(getTlUser);
+
+                JLabel TlPass = new JLabel("Password: ");
+                TlPass.setFont(new Font("Serif",Font.BOLD,20));
+                TlPass.setBounds(350,300,100,30);
+                add(TlPass);
+                JTextField getTlPass = new JTextField(20);
+                getTlPass.setBounds(460,300,100,30);
+                add(getTlPass);
+
+
+                JLabel Tlmember = new JLabel("Team Members ");         //id name age
+                Tlmember.setBounds(450,350,200,30);
+                Tlmember.setFont(new Font("Serif",Font.BOLD,23));
+                add(Tlmember);
+                for (int i=0,j=0;i<5;i++,j+=50){
+                    JLabel TlmembersName = new JLabel("Name: ");
+                    TlmembersName.setFont(new Font("Serif",Font.BOLD,20));
+                    TlmembersName.setBounds(50,400+j,80,30);
+                    add(TlmembersName);
+                    JTextField getTlmembersName = new JTextField(20);
+                    getTlmembersName.setBounds(135,400+j,100,30);
+                    add(getTlmembersName);
+
+                    JLabel TlmembersId = new JLabel("ID: ");
+                    TlmembersId.setFont(new Font("Serif",Font.BOLD,20));
+                    TlmembersId.setBounds(265,400+j,40,30);
+                    add(TlmembersId);
+                    JTextField getTlmembersId = new JTextField(20);
+                    getTlmembersId.setBounds(315,400+j,100,30);
+                    add(getTlmembersId);
+
+                    JLabel TlmembersAge = new JLabel("Age: ");
+                    TlmembersAge.setFont(new Font("Serif",Font.BOLD,20));
+                    TlmembersAge.setBounds(445,400+j,50,30);
+                    add(TlmembersAge);
+                    JTextField getTlmembersAge = new JTextField(20);
+                    getTlmembersAge.setBounds(505,400+j,100,30);
+                    add(getTlmembersAge);
+
+                    JLabel TlmembersUser = new JLabel("Username: ");
+                    TlmembersUser.setFont(new Font("Serif",Font.BOLD,20));
+                    TlmembersUser.setBounds(635,400+j,110,30);
+                    add(TlmembersUser);
+                    JTextField getTlmembersUser = new JTextField(20);
+                    getTlmembersUser.setBounds(755,400+j,100,30);
+                    add(getTlmembersUser);
+
+                    JLabel TlmembersPass = new JLabel("Password: ");
+                    TlmembersPass.setFont(new Font("Serif",Font.BOLD,20));
+                    TlmembersPass.setBounds(885,400+j,110,30);
+                    add(TlmembersPass);
+                    JTextField getTlmembersPass = new JTextField(20);
+                    getTlmembersPass.setBounds(1005,400+j,100,30);
+                    add(getTlmembersPass);
+                }
+
             }
+
             if(e.getSource() == TeamMember){
+                getContentPane().removeAll();
+                getContentPane().revalidate();
+
+                setSize(801,801);
+                setSize(800,800);
+                JLabel TmName = new JLabel("Add Team Member  ");
+                TmName.setBounds(150,30,460,100);
+                TmName.setFont(new Font("Serif",Font.BOLD,50));
+                add(TmName);
+
+                JLabel TmemberName = new JLabel("Name: ");
+                TmemberName.setFont(new Font("Serif",Font.BOLD,20));
+                TmemberName.setBounds(50,200,80,30);
+                add(TmemberName);
+                JTextField getTmemberName = new JTextField(20);
+                getTmemberName.setBounds(195,200,100,30);
+                add(getTmemberName);
+
+                JLabel Tmemberage = new JLabel("Age: ");
+                Tmemberage.setFont(new Font("Serif",Font.BOLD,20));
+                Tmemberage.setBounds(50,250,80,30);
+                add(Tmemberage);
+                JTextField getTmemberAge = new JTextField(20);
+                getTmemberAge.setBounds(195,250,100,30);
+                add(getTmemberAge);
+
+                JLabel TmemberId = new JLabel("ID: ");
+                TmemberId.setFont(new Font("Serif",Font.BOLD,20));
+                TmemberId.setBounds(50,300,80,30);
+                add(TmemberId);
+                JTextField getTmemberId = new JTextField(20);
+                getTmemberId.setBounds(195,300,100,30);
+                add(getTmemberId);
+
+                JLabel TmemberUser = new JLabel("Username: ");
+                TmemberUser.setFont(new Font("Serif",Font.BOLD,20));
+                TmemberUser.setBounds(50,350,100,30);
+                add(TmemberUser);
+                JTextField getTmemberUser= new JTextField(20);
+                getTmemberUser.setBounds(195,350,100,30);
+                add(getTmemberUser);
+
+                JLabel TmemberPass = new JLabel("Password: ");
+                TmemberPass.setFont(new Font("Serif",Font.BOLD,20));
+                TmemberPass.setBounds(50,400,100,30);
+                add(TmemberPass);
+                JTextField getTmemberPass = new JTextField(20);
+                getTmemberPass.setBounds(195,400,100,30);
+                add(getTmemberPass);
+
+                JLabel TLeaderId = new JLabel("Team Leader ID: ");
+                TLeaderId.setFont(new Font("Serif",Font.BOLD,20));
+                TLeaderId.setBounds(195,500,160,30);
+                add(TLeaderId);
+                JTextField getTLeaderId = new JTextField(20);
+                getTLeaderId.setBounds(365,500,100,30);
+                add(getTLeaderId);
+                state=3;
+
                 num = 3;
             }
+
             if (e.getSource() == teamleader) {
                 setSize(801, 801);
                 setSize(800, 800);
@@ -483,7 +712,7 @@ public class Frame extends JFrame implements Files {
                 setSize(801, 801);
                 setSize(800, 800);
                 getContentPane().removeAll();
-               add(back);
+                add(back);
                 F3();
                 state = 2;
                 select = 2;
