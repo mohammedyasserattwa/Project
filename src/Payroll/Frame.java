@@ -439,6 +439,28 @@ public class Frame extends JFrame implements Files {
             }
             if(e.getSource() == Trainee){
                 num = 1;
+                JPanel pane = new JPanel();
+                Container c = new Container();
+                JLabel TraineeName = new JLabel("Add Trainee:  ");
+                TraineeName.setBounds(0,0,100,100);
+                TraineeName.setFont(new Font("Serif",Font.BOLD,20));
+                c.add(TraineeName);
+
+                JLabel Tname = new JLabel("Name: ");
+                c.add(Tname);
+                Tname.setBounds(0,225,50,50);
+
+                JTextField getTName = new JTextField(10);
+                c.add(getTName);
+                getTName.setBounds(250,225,50,50);
+
+
+                c.setVisible(true);
+                c.setBounds(200,200,120,100);
+                add(c);
+                getContentPane().revalidate();
+
+
             }
             if(e.getSource() == TeamLeader){
                 num = 2;
