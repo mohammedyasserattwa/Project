@@ -1041,7 +1041,7 @@ public void Role(){
                        index = i;
                        break;
                    }
-               }
+               }//Save
                String Traineename = (!name.getText().equals(""))?name.getText():chosen.getName();
                int TraineeAge = (!age.getText().equals(""))? Integer.parseInt(age.getText()):chosen.getAge();
                int academicyear = (!academicYear.getText().equals(""))?Integer.parseInt(academicYear.getText()):chosen.getAcademicYear();
