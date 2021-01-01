@@ -40,8 +40,7 @@ public class Frame extends JFrame implements Files {
     JPasswordField passin=new JPasswordField(10);
     ////////////////////////////
 
-    public Frame()
-    {
+    public Frame() throws IOException, ClassNotFoundException {
         ///////////////////////////////////////////////////////////
         setTitle("COMPANY");
         setSize(800,800);
@@ -77,6 +76,7 @@ public class Frame extends JFrame implements Files {
         SubButton.addActionListener(al);
         TraineeSubmit.addActionListener(al);
         LeaderSubmit.addActionListener(al);
+        EditSubmit.addActionListener(al);
         /////////////////////
     }
 
@@ -326,16 +326,16 @@ public class Frame extends JFrame implements Files {
 
     }
     public void F7(){
-            //Set bounds for left buttons
-            Add.setBounds(0,230,150,100);
-            Add.setFont(new Font("Serif",Font.BOLD,30));
-            Edit.setBounds(0,330,150,100);
-            Edit.setFont(new Font("Serif",Font.BOLD,30));
-            Delete.setBounds(0,430,150,100);
-            Delete.setFont(new Font("Serif",Font.BOLD,30));
-            add(Add);
-            add(Edit);
-            add(Delete);
+        //Set bounds for left buttons
+        Add.setBounds(0,230,150,100);
+        Add.setFont(new Font("Serif",Font.BOLD,30));
+        Edit.setBounds(0,330,150,100);
+        Edit.setFont(new Font("Serif",Font.BOLD,30));
+        Delete.setBounds(0,430,150,100);
+        Delete.setFont(new Font("Serif",Font.BOLD,30));
+        add(Add);
+        add(Edit);
+        add(Delete);
     }
 
     JLabel TmName = new JLabel("Add Team Member  ");
@@ -353,63 +353,63 @@ public class Frame extends JFrame implements Files {
     JTextField getTLeaderId = new JTextField(20);
     JButton SubButton = new JButton("Submit");
 
-public void F8(){
+    public void F8(){
 
-    TmName.setBounds(150,30,460,100);
-    TmName.setFont(new Font("Serif",Font.BOLD,50));
-    add(TmName);
-
-
-    TmemberName.setFont(new Font("Serif",Font.BOLD,20));
-    TmemberName.setBounds(50,200,80,30);
-    add(TmemberName);
-
-    getTmemberName.setBounds(195,200,100,30);
-    add(getTmemberName);
+        TmName.setBounds(150,30,460,100);
+        TmName.setFont(new Font("Serif",Font.BOLD,50));
+        add(TmName);
 
 
-    Tmemberage.setFont(new Font("Serif",Font.BOLD,20));
-    Tmemberage.setBounds(50,250,80,30);
-    add(Tmemberage);
+        TmemberName.setFont(new Font("Serif",Font.BOLD,20));
+        TmemberName.setBounds(50,200,80,30);
+        add(TmemberName);
 
-    getTmemberAge.setBounds(195,250,100,30);
-    add(getTmemberAge);
-
-
-    TmemberId.setFont(new Font("Serif",Font.BOLD,20));
-    TmemberId.setBounds(50,300,80,30);
-    add(TmemberId);
-
-    getTmemberId.setBounds(195,300,100,30);
-    add(getTmemberId);
+        getTmemberName.setBounds(195,200,100,30);
+        add(getTmemberName);
 
 
-    TmemberUser.setFont(new Font("Serif",Font.BOLD,20));
-    TmemberUser.setBounds(50,350,100,30);
-    add(TmemberUser);
+        Tmemberage.setFont(new Font("Serif",Font.BOLD,20));
+        Tmemberage.setBounds(50,250,80,30);
+        add(Tmemberage);
 
-    getTmemberUser.setBounds(195,350,100,30);
-    add(getTmemberUser);
-
-
-    TmemberPass.setFont(new Font("Serif",Font.BOLD,20));
-    TmemberPass.setBounds(50,400,100,30);
-    add(TmemberPass);
-
-    getTmemberPass.setBounds(195,400,100,30);
-    add(getTmemberPass);
+        getTmemberAge.setBounds(195,250,100,30);
+        add(getTmemberAge);
 
 
-    TLeaderId.setFont(new Font("Serif",Font.BOLD,20));
-    TLeaderId.setBounds(195,500,160,30);
-    add(TLeaderId);
+        TmemberId.setFont(new Font("Serif",Font.BOLD,20));
+        TmemberId.setBounds(50,300,80,30);
+        add(TmemberId);
 
-    getTLeaderId.setBounds(365,500,100,30);
-    add(getTLeaderId);
+        getTmemberId.setBounds(195,300,100,30);
+        add(getTmemberId);
 
-    SubButton.setBounds(350,550,100,50);
-    add(SubButton);
-}
+
+        TmemberUser.setFont(new Font("Serif",Font.BOLD,20));
+        TmemberUser.setBounds(50,350,100,30);
+        add(TmemberUser);
+
+        getTmemberUser.setBounds(195,350,100,30);
+        add(getTmemberUser);
+
+
+        TmemberPass.setFont(new Font("Serif",Font.BOLD,20));
+        TmemberPass.setBounds(50,400,100,30);
+        add(TmemberPass);
+
+        getTmemberPass.setBounds(195,400,100,30);
+        add(getTmemberPass);
+
+
+        TLeaderId.setFont(new Font("Serif",Font.BOLD,20));
+        TLeaderId.setBounds(195,500,160,30);
+        add(TLeaderId);
+
+        getTLeaderId.setBounds(365,500,100,30);
+        add(getTLeaderId);
+
+        SubButton.setBounds(350,550,100,50);
+        add(SubButton);
+    }
 
     JTextField getTacademicYear = new JTextField(20);
     JTextField getTgpa = new JTextField(20);
@@ -420,79 +420,79 @@ public void F8(){
     JTextField getTid = new JTextField(20);
     JTextField getTfacultyName = new JTextField(20);
     JButton TraineeSubmit = new JButton("Submit");
-public void F9(){
-    JLabel TraineeName = new JLabel("Add Trainee  ");
-    TraineeName.setBounds(300,30,400,100);
-    TraineeName.setFont(new Font("Serif",Font.BOLD,50));
-    add(TraineeName);
+    public void F9(){
+        JLabel TraineeName = new JLabel("Add Trainee  ");
+        TraineeName.setBounds(300,30,400,100);
+        TraineeName.setFont(new Font("Serif",Font.BOLD,50));
+        add(TraineeName);
 
-    JLabel Tname = new JLabel("Name: ");
-    Tname.setFont(new Font("Serif",Font.BOLD,20));
-    Tname.setBounds(50,200,80,30);
-    add(Tname);
+        JLabel Tname = new JLabel("Name: ");
+        Tname.setFont(new Font("Serif",Font.BOLD,20));
+        Tname.setBounds(50,200,80,30);
+        add(Tname);
 
-    getTName.setBounds(195,200,100,30);
-    add(getTName);
+        getTName.setBounds(195,200,100,30);
+        add(getTName);
 
-    JLabel Tage = new JLabel("Age: ");
-    Tage.setFont(new Font("Serif",Font.BOLD,20));
-    Tage.setBounds(50,250,80,30);
-    add(Tage);
+        JLabel Tage = new JLabel("Age: ");
+        Tage.setFont(new Font("Serif",Font.BOLD,20));
+        Tage.setBounds(50,250,80,30);
+        add(Tage);
 
-    getTAge.setBounds(195,250,100,30);
-    add(getTAge);
+        getTAge.setBounds(195,250,100,30);
+        add(getTAge);
 
-    JLabel Tid = new JLabel("ID: ");
-    Tid.setFont(new Font("Serif",Font.BOLD,20));
-    Tid.setBounds(50,300,80,30);
-    add(Tid);
+        JLabel Tid = new JLabel("ID: ");
+        Tid.setFont(new Font("Serif",Font.BOLD,20));
+        Tid.setBounds(50,300,80,30);
+        add(Tid);
 
-    getTid.setBounds(195,300,100,30);
-    add(getTid);
+        getTid.setBounds(195,300,100,30);
+        add(getTid);
 
-    JLabel TfacultyName = new JLabel("Faculty Name: ");
-    TfacultyName.setFont(new Font("Serif",Font.BOLD,20));
-    TfacultyName.setBounds(50,350,140,30);
-    add(TfacultyName);
+        JLabel TfacultyName = new JLabel("Faculty Name: ");
+        TfacultyName.setFont(new Font("Serif",Font.BOLD,20));
+        TfacultyName.setBounds(50,350,140,30);
+        add(TfacultyName);
 
-    getTfacultyName.setBounds(195,350,100,30);
-    add(getTfacultyName);
+        getTfacultyName.setBounds(195,350,100,30);
+        add(getTfacultyName);
 
-    JLabel TacademicYear = new JLabel("Academic Year: ");
-    TacademicYear.setFont(new Font("Serif",Font.BOLD,20));
-    TacademicYear.setBounds(50,400,150,30);
-    add(TacademicYear);
+        JLabel TacademicYear = new JLabel("Academic Year: ");
+        TacademicYear.setFont(new Font("Serif",Font.BOLD,20));
+        TacademicYear.setBounds(50,400,150,30);
+        add(TacademicYear);
 
-    getTacademicYear.setBounds(195,400,100,30);
-    add(getTacademicYear);
+        getTacademicYear.setBounds(195,400,100,30);
+        add(getTacademicYear);
 
-    JLabel Tgpa = new JLabel("GPA: ");
-    Tgpa.setFont(new Font("Serif",Font.BOLD,20));
-    Tgpa.setBounds(50,450,140,30);
-    add(Tgpa);
+        JLabel Tgpa = new JLabel("GPA: ");
+        Tgpa.setFont(new Font("Serif",Font.BOLD,20));
+        Tgpa.setBounds(50,450,140,30);
+        add(Tgpa);
 
-    getTgpa.setBounds(195,450,100,30);
-    add(getTgpa);
+        getTgpa.setBounds(195,450,100,30);
+        add(getTgpa);
 
-    JLabel TUser = new JLabel("Username: ");
-    TUser.setFont(new Font("Serif",Font.BOLD,20));
-    TUser.setBounds(50,500,100,30);
-    add(TUser);
+        JLabel TUser = new JLabel("Username: ");
+        TUser.setFont(new Font("Serif",Font.BOLD,20));
+        TUser.setBounds(50,500,100,30);
+        add(TUser);
 
-    getTUser.setBounds(195,500,100,30);
-    add(getTUser);
+        getTUser.setBounds(195,500,100,30);
+        add(getTUser);
 
-    JLabel TPass = new JLabel("Password: ");
-    TPass.setFont(new Font("Serif",Font.BOLD,20));
-    TPass.setBounds(50,550,100,30);
-    add(TPass);
+        JLabel TPass = new JLabel("Password: ");
+        TPass.setFont(new Font("Serif",Font.BOLD,20));
+        TPass.setBounds(50,550,100,30);
+        add(TPass);
 
-    getTPass.setBounds(195,550,100,30);
-    add(getTPass);
+        getTPass.setBounds(195,550,100,30);
+        add(getTPass);
 
-    TraineeSubmit.setBounds(300,600,100,50);
-    add(TraineeSubmit);
-}
+        TraineeSubmit.setBounds(300,600,100,50);
+        add(TraineeSubmit);
+    }
 
     JButton LeaderSubmit=new JButton("Submit");
     JTextField getTlName = new JTextField(20);
@@ -503,141 +503,227 @@ public void F9(){
 
     //His Team Members
     ArrayList<JTextField>fieldList=new ArrayList<>();
-//    JTextField getTlmembersName = new JTextField(20);
-//    JTextField getTlmembersId = new JTextField(20);
-//    JTextField getTlmembersAge = new JTextField(20);
-//    JTextField getTlmembersUser = new JTextField(20);
-//    JTextField getTlmembersPass = new JTextField(20);
-public void F10(){
-    JLabel TeamLeader = new JLabel("Add Team Leader  ");
-    TeamLeader.setBounds(400,30,430,100);
-    TeamLeader.setFont(new Font("Serif",Font.BOLD,50));
-    add(TeamLeader);
+    public void F10(){
+        JLabel TeamLeader = new JLabel("Add Team Leader  ");
+        TeamLeader.setBounds(400,30,430,100);
+        TeamLeader.setFont(new Font("Serif",Font.BOLD,50));
+        add(TeamLeader);
 
-    JLabel Tlname = new JLabel("Name: ");
-    Tlname.setFont(new Font("Serif",Font.BOLD,20));
-    Tlname.setBounds(50,200,80,30);
-    add(Tlname);
+        JLabel Tlname = new JLabel("Name: ");
+        Tlname.setFont(new Font("Serif",Font.BOLD,20));
+        Tlname.setBounds(50,200,80,30);
+        add(Tlname);
 
-    getTlName.setBounds(195,200,100,30);
-    add(getTlName);
+        getTlName.setBounds(195,200,100,30);
+        add(getTlName);
 
-    JLabel Tlage = new JLabel("Age: ");
-    Tlage.setFont(new Font("Serif",Font.BOLD,20));
-    Tlage.setBounds(50,250,80,30);
-    add(Tlage);
+        JLabel Tlage = new JLabel("Age: ");
+        Tlage.setFont(new Font("Serif",Font.BOLD,20));
+        Tlage.setBounds(50,250,80,30);
+        add(Tlage);
 
-    getTlAge.setBounds(195,250,100,30);
-    add(getTlAge);
+        getTlAge.setBounds(195,250,100,30);
+        add(getTlAge);
 
-    JLabel Tlid = new JLabel("ID: ");
-    Tlid.setFont(new Font("Serif",Font.BOLD,20));
-    Tlid.setBounds(50,300,80,30);
-    add(Tlid);
+        JLabel Tlid = new JLabel("ID: ");
+        Tlid.setFont(new Font("Serif",Font.BOLD,20));
+        Tlid.setBounds(50,300,80,30);
+        add(Tlid);
 
-    getTlid.setBounds(195,300,100,30);
-    add(getTlid);
+        getTlid.setBounds(195,300,100,30);
+        add(getTlid);
 
-    JLabel TlUser = new JLabel("Username: ");
-    TlUser.setFont(new Font("Serif",Font.BOLD,20));
-    TlUser.setBounds(350,200,100,30);
-    add(TlUser);
+        JLabel TlUser = new JLabel("Username: ");
+        TlUser.setFont(new Font("Serif",Font.BOLD,20));
+        TlUser.setBounds(350,200,100,30);
+        add(TlUser);
 
-    getTlUser.setBounds(460,200,100,30);
-    add(getTlUser);
+        getTlUser.setBounds(460,200,100,30);
+        add(getTlUser);
 
-    JLabel TlPass = new JLabel("Password: ");
-    TlPass.setFont(new Font("Serif",Font.BOLD,20));
-    TlPass.setBounds(350,300,100,30);
-    add(TlPass);
+        JLabel TlPass = new JLabel("Password: ");
+        TlPass.setFont(new Font("Serif",Font.BOLD,20));
+        TlPass.setBounds(350,300,100,30);
+        add(TlPass);
 
-    getTlPass.setBounds(460,300,100,30);
-    add(getTlPass);
+        getTlPass.setBounds(460,300,100,30);
+        add(getTlPass);
 
-    JLabel Tlmember = new JLabel("Team Members ");         //id name age
-    Tlmember.setBounds(450,350,200,30);
-    Tlmember.setFont(new Font("Serif",Font.BOLD,23));
-    add(Tlmember);
-    for (int i=0,j=0;i<5;i++,j+=50){
-        JLabel TlmembersName = new JLabel("Name: ");
-        TlmembersName.setFont(new Font("Serif",Font.BOLD,20));
-        TlmembersName.setBounds(50,400+j,80,30);
-        add(TlmembersName);
-        JTextField getTlmembersName = new JTextField(20);
-        fieldList.add(getTlmembersName);
-        getTlmembersName.setBounds(135,400+j,100,30);
-        add(getTlmembersName);
+        JLabel Tlmember = new JLabel("Team Members ");         //id name age
+        Tlmember.setBounds(450,350,200,30);
+        Tlmember.setFont(new Font("Serif",Font.BOLD,23));
+        add(Tlmember);
+        for (int i=0,j=0;i<5;i++,j+=50){
+            JLabel TlmembersName = new JLabel("Name: ");
+            TlmembersName.setFont(new Font("Serif",Font.BOLD,20));
+            TlmembersName.setBounds(50,400+j,80,30);
+            add(TlmembersName);
+            JTextField getTlmembersName = new JTextField(20);
+            fieldList.add(getTlmembersName);
+            getTlmembersName.setBounds(135,400+j,100,30);
+            add(getTlmembersName);
 
-        JLabel TlmembersId = new JLabel("ID: ");
-        TlmembersId.setFont(new Font("Serif",Font.BOLD,20));
-        TlmembersId.setBounds(265,400+j,40,30);
-        add(TlmembersId);
-        JTextField getTlmembersId = new JTextField(20);
-        fieldList.add(getTlmembersId);
-        getTlmembersId.setBounds(315,400+j,100,30);
-        add(getTlmembersId);
+            JLabel TlmembersId = new JLabel("ID: ");
+            TlmembersId.setFont(new Font("Serif",Font.BOLD,20));
+            TlmembersId.setBounds(265,400+j,40,30);
+            add(TlmembersId);
+            JTextField getTlmembersId = new JTextField(20);
+            fieldList.add(getTlmembersId);
+            getTlmembersId.setBounds(315,400+j,100,30);
+            add(getTlmembersId);
 
-        JLabel TlmembersAge = new JLabel("Age: ");
-        TlmembersAge.setFont(new Font("Serif",Font.BOLD,20));
-        TlmembersAge.setBounds(445,400+j,50,30);
-        add(TlmembersAge);
-        JTextField getTlmembersAge = new JTextField(20);
-        fieldList.add(getTlmembersAge);
-        getTlmembersAge.setBounds(505,400+j,100,30);
-        add(getTlmembersAge);
+            JLabel TlmembersAge = new JLabel("Age: ");
+            TlmembersAge.setFont(new Font("Serif",Font.BOLD,20));
+            TlmembersAge.setBounds(445,400+j,50,30);
+            add(TlmembersAge);
+            JTextField getTlmembersAge = new JTextField(20);
+            fieldList.add(getTlmembersAge);
+            getTlmembersAge.setBounds(505,400+j,100,30);
+            add(getTlmembersAge);
 
-        JLabel TlmembersUser = new JLabel("Username: ");
-        TlmembersUser.setFont(new Font("Serif",Font.BOLD,20));
-        TlmembersUser.setBounds(635,400+j,110,30);
-        add(TlmembersUser);
-        JTextField getTlmembersUser = new JTextField(20);
-        fieldList.add(getTlmembersUser);
-        getTlmembersUser.setBounds(755,400+j,100,30);
-        add(getTlmembersUser);
+            JLabel TlmembersUser = new JLabel("Username: ");
+            TlmembersUser.setFont(new Font("Serif",Font.BOLD,20));
+            TlmembersUser.setBounds(635,400+j,110,30);
+            add(TlmembersUser);
+            JTextField getTlmembersUser = new JTextField(20);
+            fieldList.add(getTlmembersUser);
+            getTlmembersUser.setBounds(755,400+j,100,30);
+            add(getTlmembersUser);
 
-        JLabel TlmembersPass = new JLabel("Password: ");
-        TlmembersPass.setFont(new Font("Serif",Font.BOLD,20));
-        TlmembersPass.setBounds(885,400+j,110,30);
-        add(TlmembersPass);
-        JPasswordField getTlmembersPass = new JPasswordField(20);
-        fieldList.add(getTlmembersPass);
-        getTlmembersPass.setBounds(1005,400+j,100,30);
-        add(getTlmembersPass);
+            JLabel TlmembersPass = new JLabel("Password: ");
+            TlmembersPass.setFont(new Font("Serif",Font.BOLD,20));
+            TlmembersPass.setBounds(885,400+j,110,30);
+            add(TlmembersPass);
+            JPasswordField getTlmembersPass = new JPasswordField(20);
+            fieldList.add(getTlmembersPass);
+            getTlmembersPass.setBounds(1005,400+j,100,30);
+            add(getTlmembersPass);
+        }
+        LeaderSubmit.setBounds(505,700,100,40);
+        add(LeaderSubmit);
     }
-    LeaderSubmit.setBounds(505,700,100,40);
-    add(LeaderSubmit);
-}
+    JComboBox TraineeCombo;
+    JTextField name = new JTextField(20);
+    JTextField age = new JTextField(20);
+    JTextField FacultyName = new JTextField(20);
+    JTextField academicYear = new JTextField(20);
+    JTextField GPA = new JTextField(20);
+    JButton EditSubmit = new JButton("Submit");
+    ArrayList<Trainee> TraineeList = Files.readTrainee();
+    public void F11(){
+        ArrayList<String> data = new ArrayList();
+        for(int i =0;i<TraineeList.size();i++){
+            data.add(TraineeList.get(i).getId()+ "  " +TraineeList.get(i).getName());
+        }
+        JLabel info = new JLabel("Enter the fields you would like to edit: ");
+        info.setFont(new Font("Serif",1,20));
+        info.setBounds(50,50,400,50);
+        add(info);
 
+
+        TraineeCombo = new JComboBox(data.toArray());
+        JLabel ComboBox = new JLabel("Trainee: ");
+        ComboBox.setFont(new Font("Serif",1,20));
+        ComboBox.setBounds(50,150,100,30);
+        TraineeCombo.setFont(new Font("Serif",0,20));
+        TraineeCombo.setBounds(200,150,150,30);
+        add(ComboBox);
+        add(TraineeCombo);
+
+
+
+        JLabel Tname = new JLabel("Name: ");
+        Tname.setFont(new Font("Serif",Font.BOLD,20));
+        Tname.setBounds(50,200,80,30);
+        add(Tname);
+
+        name.setBounds(200,200,140,30);
+        add(name);
+
+        JLabel Tage = new JLabel("Age: ");
+        Tage.setFont(new Font("Serif",Font.BOLD,20));
+        Tage.setBounds(50,250,80,30);
+        add(Tage);
+
+        age.setBounds(200,250,140,30);
+        add(age);
+
+        JLabel TfacultyName = new JLabel("Faculty Name: ");
+        TfacultyName.setFont(new Font("Serif",Font.BOLD,20));
+        TfacultyName.setBounds(50,300,140,30);
+        add(TfacultyName);
+
+        FacultyName.setBounds(200,300,140,30);
+        add(FacultyName);
+
+        JLabel TacademicYear = new JLabel("Academic Year: ");
+        TacademicYear.setFont(new Font("Serif",Font.BOLD,20));
+        TacademicYear.setBounds(50,350,140,30);
+        add(TacademicYear);
+
+        academicYear.setBounds(200,350,140,30);
+        add(academicYear);
+
+        JLabel Tgpa = new JLabel("GPA: ");
+        Tgpa.setFont(new Font("Serif",Font.BOLD,20));
+        Tgpa.setBounds(50,400,80,30);
+        add(Tgpa);
+
+        GPA.setBounds(200,400,140,30);
+        add(GPA);
+
+        EditSubmit.setBounds(350,600,100,50);
+        add(EditSubmit);
+    }
+    public void Role(){
+        Trainee.setBounds(100, 100, 200, 50);
+        Trainee.setFont(new Font("Serif", Font.BOLD, 20));
+        add(Trainee);
+
+        TeamLeader.setBounds(310, 100, 200, 50);
+        TeamLeader.setFont(new Font("Serif", Font.BOLD, 20));
+        add(TeamLeader);
+
+        TeamMember.setBounds(520, 100, 200, 50);
+        TeamMember.setFont(new Font("Serif", Font.BOLD, 20));
+        add(TeamMember);
+    }
     public class Al implements ActionListener  {
         int state=0;
         int select=0;
         int num = 0;
+        int roleState = 0;
         @Override
         public void actionPerformed(ActionEvent e) {
             //Back Button
+            ///////////////////////////////////////////////
+            //Save in Manager Object
+            ///////////////////////////////////////////////
             getContentPane().revalidate();
             if (e.getSource() == back) {
                 if (state == 1) {
-                    userin.setText("");passin.setText("");
+                    userin.setText("");
+                    passin.setText("");
                     getContentPane().removeAll();
                     getContentPane().revalidate();
                     add(back);
                     F1();
                 }
                 if (state == 2) {
-                    userin.setText("");passin.setText("");
+                    userin.setText("");
+                    passin.setText("");
                     getContentPane().removeAll();
                     getContentPane().revalidate();
                     add(back);
                     F2();
                     state--;
                 }
-                if(state==3){                                   ///////////////Need to be seen again///////////////////////
+                if (state == 3) {                                   ///////////////Need to be seen again///////////////////////
                     getContentPane().removeAll();
                     getContentPane().revalidate();
                     add(back);
                     F8();
-                    state=2;
+                    state = 2;
                 }
             }
             if (e.getSource() == login) {
@@ -648,39 +734,32 @@ public void F10(){
                 F2();
                 state = 1;
             }
-            if(e.getSource() == Add){
-                setSize(801,801);
-                setSize(800,800);
+            if (e.getSource() == Add) {
+                setSize(801, 801);
+                setSize(800, 800);
                 getContentPane().removeAll();
                 getContentPane().revalidate();
-                Trainee.setBounds(100,100,200,50);
-                Trainee.setFont(new Font("Serif",Font.BOLD,20));
-                add(Trainee);
-
-                TeamLeader.setBounds(310,100,200,50);
-                TeamLeader.setFont(new Font("Serif",Font.BOLD,20));
-                add(TeamLeader);
-
-                TeamMember.setBounds(520,100,200,50);
-                TeamMember.setFont(new Font("Serif",Font.BOLD,20));
-                add(TeamMember);
-
+                Role();
+                roleState = 1;
             }
-            if(e.getSource() == Trainee){
+            if (e.getSource() == Trainee) {
                 getContentPane().removeAll();
                 getContentPane().revalidate();
-                num = 1;
-                add(back);
+                setSize(801, 801);
+                setSize(800, 800);
+                if(roleState == 1) {
+                    num = 1;
+                    add(back);
+                    F9();
+                    state = 3;
+                }
 
-                setSize(801,801);
-                setSize(800,800);
-                F9();
-
-                state=3;
-
-
+                //EDIT
+                else if (roleState == 2){
+                    F11();
+                }
             }
-            if(e.getSource() == TraineeSubmit){
+            if (e.getSource() == TraineeSubmit) {
                 try {
                     ArrayList<Trainee> TraineeList = Files.readTrainee();
                     int id = Integer.parseInt(getTid.getText());
@@ -692,93 +771,111 @@ public void F10(){
                     String password = getTPass.getText();
                     int academicYear = Integer.parseInt(getTacademicYear.getText());
                     boolean check = true;
-                    for(int i = 0;i<TraineeList.size() ; i++){
-                        if(TraineeList.get(i).getId() == id){
-                            showMessageDialog(null,"Id already in use.");
+                    for (int i = 0; i < TraineeList.size(); i++) {
+                        if (TraineeList.get(i).getId() == id) {
+                            showMessageDialog(null, "Id already in use.");
                             getTid.setText("");
                             check = false;
-                        }
-                        else if(TraineeList.get(i).getUsername().equalsIgnoreCase(username)){
-                            showMessageDialog(null,"username already in use.");
+                        } else if (TraineeList.get(i).getUsername().equalsIgnoreCase(username)) {
+                            showMessageDialog(null, "username already in use.");
                             getTUser.setText("");
                             check = false;
                         }
 
                     }
-                    if(check){
-                        TraineeList.add(new Trainee(id,name,age,FacultyName,academicYear,gpa,username,password));
+                    if (check) {
+                        TraineeList.add(new Trainee(id, name, age, FacultyName, academicYear, gpa, username, password));
                         Files.writeTrainee(TraineeList);
-                        showMessageDialog(null,"Trainee Successfully Added.");
+                        showMessageDialog(null, "Trainee Successfully Added.");
                         getContentPane().removeAll();
-                        setSize(801,801);
-                        setSize(800,800);
+                        setSize(801, 801);
+                        setSize(800, 800);
                         F7();
                         getContentPane().revalidate();
                     }
-                }catch(IOException el){}catch(ClassNotFoundException c){}
+                } catch (IOException el) {
+                } catch (ClassNotFoundException c) {
+                }
             }
-            if(e.getSource() == TeamLeader){
-                num = 2;
-                getContentPane().removeAll();
-                setSize(1150,801);
-                F10();
+            if (e.getSource() == TeamLeader) {
+                if(roleState == 1) {
+                    num = 2;
+                    getContentPane().removeAll();
+                    setSize(1150, 801);
+                    F10();
+                }
+
+                //EDIT
+                else if(roleState == 2){
+
+                }
             }
-            if(e.getSource()==LeaderSubmit){
+            if (e.getSource() == LeaderSubmit) {
                 try {
-                    boolean check=true;
+                    boolean check = true;
                     ArrayList<TeamLeader> Leader = Files.readTeamLeader();
-                    if(getTlName.getText().equals("") || getTlid.getText().equals("") || getTlAge.getText().equals("") || getTlUser.getText().equals("") || getTlPass.getText().equals("") ){
-                        showMessageDialog(null,"There is a Missing Field");
-                        check=false;
+                    if (getTlName.getText().equals("") || getTlid.getText().equals("") || getTlAge.getText().equals("") || getTlUser.getText().equals("") || getTlPass.getText().equals("")) {
+                        showMessageDialog(null, "There is a Missing Field");
+                        check = false;
                     }
-                    int LeaderID=Integer.parseInt(getTlid.getText());
-                    String LeaderName=getTlName.getText();
-                    int LeaderAge=Integer.parseInt(getTlAge.getText());
-                    String LeaderUser=getTlUser.getText();
-                    String LeaderPass=getTlPass.getText();
-                    for(int i=0;i<Leader.size();i++){
-                        if(Leader.get(i).getId()==LeaderID){
-                            showMessageDialog(null,"ID already exists");
+                    int LeaderID = Integer.parseInt(getTlid.getText());
+                    String LeaderName = getTlName.getText();
+                    int LeaderAge = Integer.parseInt(getTlAge.getText());
+                    String LeaderUser = getTlUser.getText();
+                    String LeaderPass = getTlPass.getText();
+                    for (int i = 0; i < Leader.size(); i++) {
+                        if (Leader.get(i).getId() == LeaderID) {
+                            showMessageDialog(null, "ID already exists");
                             getTlid.setText("");
-                            check=false;
-                        }
-                        else if(Leader.get(i).getUsername().equalsIgnoreCase(LeaderUser)){
-                            showMessageDialog(null,"Username already exists");
+                            check = false;
+                        } else if (Leader.get(i).getUsername().equalsIgnoreCase(LeaderUser)) {
+                            showMessageDialog(null, "Username already exists");
                             getTlUser.setText("");
-                            check=false;
+                            check = false;
                         }
                     }
-                    ArrayList<TeamMember> listMembers=new ArrayList<>();
-                    for (int i=0;i<25;i+=5){
-                        if(fieldList.get(i).getText().equals("") && fieldList.get(i+1).getText().equals("") && fieldList.get(i+2).getText().equals("") && fieldList.get(i+3).getText().equals("") && fieldList.get(i+4).getText().equals("") && i<5){
+                    ArrayList<TeamMember> listMembers = new ArrayList<>();
+                    for (int i = 0; i < 25; i += 5) {
+                        if (fieldList.get(i).getText().equals("") && fieldList.get(i + 1).getText().equals("") && fieldList.get(i + 2).getText().equals("") && fieldList.get(i + 3).getText().equals("") && fieldList.get(i + 4).getText().equals("") && i < 5) {
                             showMessageDialog(null, "Add at least 1 Team Member");
                             check = false;
                             break;
                         }
-//                        else if(check=true){//String name, int id, int age, String Username, String Password
-                        listMembers.add(new TeamMember(fieldList.get(i).getText(),Integer.parseInt(fieldList.get(i+1).getText()),Integer.parseInt(fieldList.get(i+2).getText()),fieldList.get(i+3).getText(),fieldList.get(i+4).getText()));
-//                        }
+                        else if ((!fieldList.get(i).getText().equals("") && !fieldList.get(i + 1).getText().equals("") && !fieldList.get(i + 2).getText().equals("") && !fieldList.get(i + 3).getText().equals("") && !fieldList.get(i + 4).getText().equals(""))) {
+                            int id = Integer.parseInt(fieldList.get(i + 1).getText());
+                            int age = Integer.parseInt(fieldList.get(i + 2).getText());
+                            listMembers.add(new TeamMember(fieldList.get(i).getText(), id, age, fieldList.get(i + 3).getText(), fieldList.get(i + 4).getText()));
+                        } else {
+                            showMessageDialog(null,"Missing fields.");
+                            check = false;
+                            break;
+                        }
                     }
-                    if(check){//String name, int id, int age, int TeamCapacity, ArrayList<TeamMember> TeamMembers, String Username,String Password
-                        getContentPane().removeAll();
-                        setSize(801,801);
-                        setSize(800,800);
-                        Leader.add(new TeamLeader(LeaderName,LeaderID,LeaderAge,listMembers,LeaderUser,LeaderPass));
+                    if (check) {
+                        Leader.add(new TeamLeader(LeaderName, LeaderID, LeaderAge, listMembers, LeaderUser, LeaderPass));
                         Files.writeTeamLeader(Leader);
-                        showMessageDialog(null ,"Successfully Saved");
+                        showMessageDialog(null, "Successfully Saved");
+                        getContentPane().removeAll();
+                        setSize(800,800);
+                        setSize(801,801);
+                        F7();
                     }
-
-                }
-                catch (IOException ioException) { ioException.printStackTrace(); }
+                }catch (IOException ioException) { ioException.printStackTrace(); }
                 catch (ClassNotFoundException classNotFoundException) { classNotFoundException.printStackTrace(); }
             }
             if(e.getSource() == TeamMember){
-                getContentPane().removeAll();
-                getContentPane().revalidate();
-                setSize(801,801);
-                setSize(800,800);
-                F8();
-                state=3;
+                if(roleState == 1) {
+                    getContentPane().removeAll();
+                    getContentPane().revalidate();
+                    setSize(801, 801);
+                    setSize(800, 800);
+                    F8();
+                    state = 3;
+                }
+                //EDIT
+                else if(roleState == 2){
+
+                }
             }
             if(e.getSource() == SubButton){
                 try {
@@ -932,6 +1029,43 @@ public void F10(){
 
 
 
+            }
+            if(e.getSource() == EditSubmit){
+                String str = (String) TraineeCombo.getSelectedItem();
+                String id = str.substring(0,str.indexOf(" "));
+                Trainee chosen = new Trainee();
+                int index = 0;
+                for(int i = 0;i<TraineeList.size();i++){
+                    if(Integer.parseInt(id) == TraineeList.get(i).getId()){
+                        chosen = TraineeList.get(i);
+                        index = i;
+                        break;
+                    }
+                }
+                String Traineename = (!name.getText().equals(""))?name.getText():chosen.getName();
+                int TraineeAge = (!age.getText().equals(""))? Integer.parseInt(age.getText()):chosen.getAge();
+                int academicyear = (!academicYear.getText().equals(""))?Integer.parseInt(academicYear.getText()):chosen.getAcademicYear();
+                String fn = (!FacultyName.getText().equals(""))? FacultyName.getText():chosen.getFacultyName();
+                double gpa = (!GPA.getText().equals(""))?Double.parseDouble(GPA.getText()):chosen.getGPA();
+                Trainee t = new Trainee(chosen.getId(),Traineename,TraineeAge,fn,academicyear,gpa,chosen.getUsername(),chosen.getPassword());
+                TraineeList.set(index,t);
+                try {
+                    Files.writeTrainee(TraineeList);
+                    showMessageDialog(null,"Successfully Saved.");
+
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
+            }
+            if(e.getSource() == Edit){
+                getContentPane().removeAll();
+                setSize(801, 801);
+                setSize(800, 800);
+                roleState = 2;
+                Role();
+                getContentPane().revalidate();
             }
         }
     }
