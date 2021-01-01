@@ -760,9 +760,9 @@ public void F10(){
 //                        }
                     }
                     if(check){//String name, int id, int age, int TeamCapacity, ArrayList<TeamMember> TeamMembers, String Username,String Password
-                       // getContentPane().removeAll();
-//                        setSize(801,801);
-//                        setSize(800,800);
+                        getContentPane().removeAll();
+                        setSize(801,801);
+                        setSize(800,800);
                         Leader.add(new TeamLeader(LeaderName,LeaderID,LeaderAge,listMembers,LeaderUser,LeaderPass));
                         Files.writeTeamLeader(Leader);
                         showMessageDialog(null ,"Successfully Saved");
