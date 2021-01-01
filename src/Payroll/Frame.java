@@ -1,5 +1,5 @@
 package Payroll;
-//import javafx.scene.input.KeyCode;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -76,6 +76,7 @@ public class Frame extends JFrame implements Files {
         Edit.addActionListener(al);
         SubButton.addActionListener(al);
         TraineeSubmit.addActionListener(al);
+        LeaderSubmit.addActionListener(al);
         /////////////////////
     }
 
@@ -86,7 +87,6 @@ public class Frame extends JFrame implements Files {
         add(sign);
 
     }
-
     public void F2 (){
         setSize(805,805);
         teamleader.setBounds(255,250,250,50);
@@ -99,7 +99,6 @@ public class Frame extends JFrame implements Files {
         add(back);
         //////////////////
     }
-
     public void F3(){
         username.setBounds(250,300,90,40);
         username.setFont(new Font("Serif",20,18));
@@ -116,7 +115,6 @@ public class Frame extends JFrame implements Files {
         submit.setBounds(330,500,90,50);
         add(submit);
     }
-
     public void F4(TeamLeader chosen) {
         JLabel AccountInfo = new JLabel("Account Info ");
         AccountInfo.setBounds(25, 15, 300, 100);
@@ -339,18 +337,7 @@ public class Frame extends JFrame implements Files {
             add(Edit);
             add(Delete);
     }
-//    public void F8(){
-//        //Set bounds for left buttons
-//        Add.setBounds(0,230,150,100);
-//        Add.setFont(new Font("Serif",Font.BOLD,30));
-//        Edit.setBounds(0,330,150,100);
-//        Edit.setFont(new Font("Serif",Font.BOLD,30));
-//        Delete.setBounds(0,430,150,100);
-//        Delete.setFont(new Font("Serif",Font.BOLD,30));
-//        add(Add);
-//        add(Edit);
-//        add(Delete);
-//    }
+
     JLabel TmName = new JLabel("Add Team Member  ");
     JLabel TmemberName = new JLabel("Name: ");
     JTextField getTmemberName = new JTextField(20);
@@ -365,7 +352,6 @@ public class Frame extends JFrame implements Files {
     JLabel TLeaderId = new JLabel("Team Leader ID: ");
     JTextField getTLeaderId = new JTextField(20);
     JButton SubButton = new JButton("Submit");
-
 
 public void F8(){
 
@@ -424,6 +410,7 @@ public void F8(){
     SubButton.setBounds(350,550,100,50);
     add(SubButton);
 }
+
     JTextField getTacademicYear = new JTextField(20);
     JTextField getTgpa = new JTextField(20);
     JPasswordField getTPass = new JPasswordField(20);
@@ -508,21 +495,19 @@ public void F9(){
 }
 
     JButton LeaderSubmit=new JButton("Submit");
-    //LeaderSubmit.setBounds()
-
     JTextField getTlName = new JTextField(20);
     JTextField getTlAge = new JTextField(20);
     JTextField getTlid = new JTextField(20);
     JTextField getTlUser= new JTextField(20);
-    JTextField getTlPass = new JTextField(20);
+    JPasswordField getTlPass = new JPasswordField(20);
 
     //His Team Members
-    //ArrayList<JTextField>getTlmembersName=new ArrayList<>();
-    JTextField getTlmembersName = new JTextField(20);
-    JTextField getTlmembersId = new JTextField(20);
-    JTextField getTlmembersAge = new JTextField(20);
-    JTextField getTlmembersUser = new JTextField(20);
-    JTextField getTlmembersPass = new JTextField(20);
+    ArrayList<JTextField>fieldList=new ArrayList<>();
+//    JTextField getTlmembersName = new JTextField(20);
+//    JTextField getTlmembersId = new JTextField(20);
+//    JTextField getTlmembersAge = new JTextField(20);
+//    JTextField getTlmembersUser = new JTextField(20);
+//    JTextField getTlmembersPass = new JTextField(20);
 public void F10(){
     JLabel TeamLeader = new JLabel("Add Team Leader  ");
     TeamLeader.setBounds(400,30,430,100);
@@ -569,7 +554,6 @@ public void F10(){
     getTlPass.setBounds(460,300,100,30);
     add(getTlPass);
 
-
     JLabel Tlmember = new JLabel("Team Members ");         //id name age
     Tlmember.setBounds(450,350,200,30);
     Tlmember.setFont(new Font("Serif",Font.BOLD,23));
@@ -579,7 +563,8 @@ public void F10(){
         TlmembersName.setFont(new Font("Serif",Font.BOLD,20));
         TlmembersName.setBounds(50,400+j,80,30);
         add(TlmembersName);
-
+        JTextField getTlmembersName = new JTextField(20);
+        fieldList.add(getTlmembersName);
         getTlmembersName.setBounds(135,400+j,100,30);
         add(getTlmembersName);
 
@@ -587,7 +572,8 @@ public void F10(){
         TlmembersId.setFont(new Font("Serif",Font.BOLD,20));
         TlmembersId.setBounds(265,400+j,40,30);
         add(TlmembersId);
-
+        JTextField getTlmembersId = new JTextField(20);
+        fieldList.add(getTlmembersId);
         getTlmembersId.setBounds(315,400+j,100,30);
         add(getTlmembersId);
 
@@ -595,7 +581,8 @@ public void F10(){
         TlmembersAge.setFont(new Font("Serif",Font.BOLD,20));
         TlmembersAge.setBounds(445,400+j,50,30);
         add(TlmembersAge);
-
+        JTextField getTlmembersAge = new JTextField(20);
+        fieldList.add(getTlmembersAge);
         getTlmembersAge.setBounds(505,400+j,100,30);
         add(getTlmembersAge);
 
@@ -603,7 +590,8 @@ public void F10(){
         TlmembersUser.setFont(new Font("Serif",Font.BOLD,20));
         TlmembersUser.setBounds(635,400+j,110,30);
         add(TlmembersUser);
-
+        JTextField getTlmembersUser = new JTextField(20);
+        fieldList.add(getTlmembersUser);
         getTlmembersUser.setBounds(755,400+j,100,30);
         add(getTlmembersUser);
 
@@ -611,11 +599,13 @@ public void F10(){
         TlmembersPass.setFont(new Font("Serif",Font.BOLD,20));
         TlmembersPass.setBounds(885,400+j,110,30);
         add(TlmembersPass);
-
+        JPasswordField getTlmembersPass = new JPasswordField(20);
+        fieldList.add(getTlmembersPass);
         getTlmembersPass.setBounds(1005,400+j,100,30);
         add(getTlmembersPass);
     }
-
+    LeaderSubmit.setBounds(505,700,100,40);
+    add(LeaderSubmit);
 }
 
     public class Al implements ActionListener  {
@@ -649,9 +639,7 @@ public void F10(){
                     F8();
                     state=2;
                 }
-
             }
-
             if (e.getSource() == login) {
                 setSize(801, 801);
                 setSize(800, 800);
@@ -678,7 +666,6 @@ public void F10(){
                 add(TeamMember);
 
             }
-
             if(e.getSource() == Trainee){
                 getContentPane().removeAll();
                 getContentPane().revalidate();
@@ -736,20 +723,62 @@ public void F10(){
                 setSize(1150,801);
                 F10();
             }
+            if(e.getSource()==LeaderSubmit){
+                try {
+                    boolean check=true;
+                    ArrayList<TeamLeader> Leader = Files.readTeamLeader();
+                    if(getTlName.getText().equals("") || getTlid.getText().equals("") || getTlAge.getText().equals("") || getTlUser.getText().equals("") || getTlPass.getText().equals("") ){
+                        showMessageDialog(null,"There is a Missing Field");
+                        check=false;
+                    }
+                    int LeaderID=Integer.parseInt(getTlid.getText());
+                    String LeaderName=getTlName.getText();
+                    int LeaderAge=Integer.parseInt(getTlAge.getText());
+                    String LeaderUser=getTlUser.getText();
+                    String LeaderPass=getTlPass.getText();
+                    for(int i=0;i<Leader.size();i++){
+                        if(Leader.get(i).getId()==LeaderID){
+                            showMessageDialog(null,"ID already exists");
+                            getTlid.setText("");
+                            check=false;
+                        }
+                        else if(Leader.get(i).getUsername().equalsIgnoreCase(LeaderUser)){
+                            showMessageDialog(null,"Username already exists");
+                            getTlUser.setText("");
+                            check=false;
+                        }
+                    }
+                    ArrayList<TeamMember> listMembers=new ArrayList<>();
+                    for (int i=0;i<25;i+=5){
+                        if(fieldList.get(i).getText().equals("") && fieldList.get(i+1).getText().equals("") && fieldList.get(i+2).getText().equals("") && fieldList.get(i+3).getText().equals("") && fieldList.get(i+4).getText().equals("") && i<5){
+                            showMessageDialog(null, "Add at least 1 Team Member");
+                            check = false;
+                            break;
+                        }
+//                        else if(check=true){//String name, int id, int age, String Username, String Password
+                        listMembers.add(new TeamMember(fieldList.get(i).getText(),Integer.parseInt(fieldList.get(i+1).getText()),Integer.parseInt(fieldList.get(i+2).getText()),fieldList.get(i+3).getText(),fieldList.get(i+4).getText()));
+//                        }
+                    }
+                    if(check){//String name, int id, int age, int TeamCapacity, ArrayList<TeamMember> TeamMembers, String Username,String Password
+                       // getContentPane().removeAll();
+//                        setSize(801,801);
+//                        setSize(800,800);
+                        Leader.add(new TeamLeader(LeaderName,LeaderID,LeaderAge,listMembers,LeaderUser,LeaderPass));
+                        Files.writeTeamLeader(Leader);
+                        showMessageDialog(null ,"Successfully Saved");
+                    }
 
-
+                }
+                catch (IOException ioException) { ioException.printStackTrace(); }
+                catch (ClassNotFoundException classNotFoundException) { classNotFoundException.printStackTrace(); }
+            }
             if(e.getSource() == TeamMember){
                 getContentPane().removeAll();
                 getContentPane().revalidate();
-
                 setSize(801,801);
                 setSize(800,800);
                 F8();
-
                 state=3;
-
-
-
             }
             if(e.getSource() == SubButton){
                 try {
@@ -817,8 +846,6 @@ public void F10(){
                 state = 2;
                 select = 1;
             }
-
-
             if (e.getSource() == manager) {
                 setSize(801, 801);
                 setSize(800, 800);
@@ -828,7 +855,6 @@ public void F10(){
                 state = 2;
                 select = 2;
             }
-
             if (e.getSource() == trainee) {
                 setSize(801, 801);
                 setSize(800, 800);

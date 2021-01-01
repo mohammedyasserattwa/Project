@@ -94,25 +94,18 @@ public class Company implements Serializable, Files{
 //    member.add(new TeamMember("Hanien",800,20,"hanien","hanien"));
 //    member.add(new TeamMember("Hanien2",801,21,"hanien2","hanien2"));
 //    ArrayList<TeamMember> member2=new ArrayList();
-//    member.add(new TeamMember("Hanien3",802,22,"atef","atef"));
-//    member.add(new TeamMember("Hanien4",803,23,"spiderman","thor"));
+//    member2.add(new TeamMember("Hanien3",802,22,"atef","atef"));
+//    member2.add(new TeamMember("Hanien4",803,23,"spiderman","thor"));
 //    ArrayList<TeamLeader> leader=new ArrayList();
-//    leader.add(new TeamLeader("Farah",455,20,member.size(),member,"lara","laraa"));
-//    leader.add(new TeamLeader("Farah2",456,21,member2.size(),member2,"farah","farahhh"));
+//    leader.add(new TeamLeader("Farah",455,20,member,"lara","laraa"));
+//    leader.add(new TeamLeader("Farah2",456,21,member2,"farah","farahhh"));
 //    Files.writeTeamLeader(leader);
 //    Manager m=new Manager(TraineeList,leader,"ahmed","bassem");
 //    ArrayList<Manager> ManagerList = new ArrayList();
 //    ManagerList.add(m);
 //    Files.writeManager(ManagerList);
-//    Scanner scanner = new Scanner(System.in);
-//    System.out.println("Enter Username: ");
-//    String Username = scanner.nextLine();
-//    System.out.println("Enter Password: ");
-//    String Password = scanner.nextLine();
-//    ArrayList<Manager> ManagerYasser = new ArrayList();
-//    Manager Chosen=new Manager();
 
-//        //~//
+//        //~///////////////////////////////
 //
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.println("Enter Username: ");

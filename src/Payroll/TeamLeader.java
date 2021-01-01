@@ -11,20 +11,18 @@ import java.util.*;
  */
 public class TeamLeader extends Employees{
     //--------------Data Members-------------//
-    private int TeamCapacity;
+    private int TeamCapacity=5;
     private ArrayList<TeamMember> TeamMembers;
     //-------------Constructors------------//
     public TeamLeader(){
-        TeamCapacity = 0;
         TeamMembers = new ArrayList(0);
         super.setPosition("Team Leader");
         super.setPayRate(40);
         super.setTaxRate(0.10);
         super.setWorkingHours(50);
     }
-    public TeamLeader(String name, int id, int age, int TeamCapacity, ArrayList<TeamMember> TeamMembers, String Username,String Password){
+    public TeamLeader(String name, int id, int age, ArrayList<TeamMember> TeamMembers, String Username,String Password){
         super(id, name, age,Username,Password);
-        this.TeamCapacity = TeamCapacity;
         this.TeamMembers = TeamMembers;
         super.setPosition("Team Leader");
         super.setPayRate(40);
