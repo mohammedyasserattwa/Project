@@ -40,8 +40,7 @@ public class Frame extends JFrame implements Files {
     JPasswordField passin=new JPasswordField(10);
     ////////////////////////////
 
-    public Frame()
-    {
+    public Frame() throws IOException, ClassNotFoundException {
         ///////////////////////////////////////////////////////////
         setTitle("COMPANY");
         setSize(800,800);
@@ -77,6 +76,7 @@ public class Frame extends JFrame implements Files {
         SubButton.addActionListener(al);
         TraineeSubmit.addActionListener(al);
         LeaderSubmit.addActionListener(al);
+        EditSubmit.addActionListener(al);
         /////////////////////
     }
 
@@ -503,11 +503,6 @@ public void F9(){
 
     //His Team Members
     ArrayList<JTextField>fieldList=new ArrayList<>();
-//    JTextField getTlmembersName = new JTextField(20);
-//    JTextField getTlmembersId = new JTextField(20);
-//    JTextField getTlmembersAge = new JTextField(20);
-//    JTextField getTlmembersUser = new JTextField(20);
-//    JTextField getTlmembersPass = new JTextField(20);
 public void F10(){
     JLabel TeamLeader = new JLabel("Add Team Leader  ");
     TeamLeader.setBounds(400,30,430,100);
@@ -607,37 +602,128 @@ public void F10(){
     LeaderSubmit.setBounds(505,700,100,40);
     add(LeaderSubmit);
 }
+JComboBox TraineeCombo;
+JTextField name = new JTextField(20);
+JTextField age = new JTextField(20);
+JTextField FacultyName = new JTextField(20);
+JTextField academicYear = new JTextField(20);
+JTextField GPA = new JTextField(20);
+JButton EditSubmit = new JButton("Submit");
+ArrayList<Trainee> TraineeList = Files.readTrainee();
+public void F11(){
+    ArrayList<String> data = new ArrayList();
+        for(int i =0;i<TraineeList.size();i++){
+            data.add(TraineeList.get(i).getId()+ "  " +TraineeList.get(i).getName());
+        }
+    JLabel info = new JLabel("Enter the fields you would like to edit: ");
+    info.setFont(new Font("Serif",1,20));
+    info.setBounds(50,50,400,50);
+    add(info);
 
+
+    TraineeCombo = new JComboBox(data.toArray());
+    JLabel ComboBox = new JLabel("Trainee: ");
+    ComboBox.setFont(new Font("Serif",1,20));
+    ComboBox.setBounds(50,150,100,30);
+    TraineeCombo.setFont(new Font("Serif",0,20));
+    TraineeCombo.setBounds(200,150,150,30);
+    add(ComboBox);
+    add(TraineeCombo);
+
+
+
+    JLabel Tname = new JLabel("Name: ");
+    Tname.setFont(new Font("Serif",Font.BOLD,20));
+    Tname.setBounds(50,200,80,30);
+    add(Tname);
+
+    name.setBounds(200,200,140,30);
+    add(name);
+
+    JLabel Tage = new JLabel("Age: ");
+    Tage.setFont(new Font("Serif",Font.BOLD,20));
+    Tage.setBounds(50,250,80,30);
+    add(Tage);
+
+    age.setBounds(200,250,140,30);
+    add(age);
+
+    JLabel TfacultyName = new JLabel("Faculty Name: ");
+    TfacultyName.setFont(new Font("Serif",Font.BOLD,20));
+    TfacultyName.setBounds(50,300,140,30);
+    add(TfacultyName);
+
+    FacultyName.setBounds(200,300,140,30);
+    add(FacultyName);
+
+    JLabel TacademicYear = new JLabel("Academic Year: ");
+    TacademicYear.setFont(new Font("Serif",Font.BOLD,20));
+    TacademicYear.setBounds(50,350,140,30);
+    add(TacademicYear);
+
+    academicYear.setBounds(200,350,140,30);
+    add(academicYear);
+
+    JLabel Tgpa = new JLabel("GPA: ");
+    Tgpa.setFont(new Font("Serif",Font.BOLD,20));
+    Tgpa.setBounds(50,400,80,30);
+    add(Tgpa);
+
+    GPA.setBounds(200,400,140,30);
+    add(GPA);
+
+    EditSubmit.setBounds(350,600,100,50);
+    add(EditSubmit);
+}
+public void Role(){
+    Trainee.setBounds(100, 100, 200, 50);
+    Trainee.setFont(new Font("Serif", Font.BOLD, 20));
+    add(Trainee);
+
+    TeamLeader.setBounds(310, 100, 200, 50);
+    TeamLeader.setFont(new Font("Serif", Font.BOLD, 20));
+    add(TeamLeader);
+
+    TeamMember.setBounds(520, 100, 200, 50);
+    TeamMember.setFont(new Font("Serif", Font.BOLD, 20));
+    add(TeamMember);
+}
     public class Al implements ActionListener  {
         int state=0;
         int select=0;
         int num = 0;
+        int roleState = 0;
         @Override
         public void actionPerformed(ActionEvent e) {
             //Back Button
+            ///////////////////////////////////////////////
+            //Save in Manager Object
+            ///////////////////////////////////////////////
             getContentPane().revalidate();
             if (e.getSource() == back) {
                 if (state == 1) {
-                    userin.setText("");passin.setText("");
+                    userin.setText("");
+                    passin.setText("");
                     getContentPane().removeAll();
                     getContentPane().revalidate();
                     add(back);
                     F1();
                 }
                 if (state == 2) {
-                    userin.setText("");passin.setText("");
+                    userin.setText("");
+                    passin.setText("");
                     getContentPane().removeAll();
                     getContentPane().revalidate();
                     add(back);
                     F2();
                     state--;
                 }
-                if(state==3){                                   ///////////////Need to be seen again///////////////////////
+                if (state == 3) {                                   ///////////////Need to be seen again///////////////////////
                     getContentPane().removeAll();
                     getContentPane().revalidate();
                     add(back);
                     F8();
-                    state=2;
+                    state = 2;
                 }
             }
             if (e.getSource() == login) {
@@ -648,39 +734,32 @@ public void F10(){
                 F2();
                 state = 1;
             }
-            if(e.getSource() == Add){
-                setSize(801,801);
-                setSize(800,800);
+            if (e.getSource() == Add) {
+                setSize(801, 801);
+                setSize(800, 800);
                 getContentPane().removeAll();
                 getContentPane().revalidate();
-                Trainee.setBounds(100,100,200,50);
-                Trainee.setFont(new Font("Serif",Font.BOLD,20));
-                add(Trainee);
-
-                TeamLeader.setBounds(310,100,200,50);
-                TeamLeader.setFont(new Font("Serif",Font.BOLD,20));
-                add(TeamLeader);
-
-                TeamMember.setBounds(520,100,200,50);
-                TeamMember.setFont(new Font("Serif",Font.BOLD,20));
-                add(TeamMember);
-
+                Role();
+                roleState = 1;
             }
-            if(e.getSource() == Trainee){
+            if (e.getSource() == Trainee) {
                 getContentPane().removeAll();
                 getContentPane().revalidate();
-                num = 1;
-                add(back);
+                setSize(801, 801);
+                setSize(800, 800);
+                if(roleState == 1) {
+                    num = 1;
+                    add(back);
+                    F9();
+                    state = 3;
+                }
 
-                setSize(801,801);
-                setSize(800,800);
-                F9();
-
-                state=3;
-
-
+                //EDIT
+                else if (roleState == 2){
+                    F11();
+                }
             }
-            if(e.getSource() == TraineeSubmit){
+            if (e.getSource() == TraineeSubmit) {
                 try {
                     ArrayList<Trainee> TraineeList = Files.readTrainee();
                     int id = Integer.parseInt(getTid.getText());
@@ -692,93 +771,111 @@ public void F10(){
                     String password = getTPass.getText();
                     int academicYear = Integer.parseInt(getTacademicYear.getText());
                     boolean check = true;
-                    for(int i = 0;i<TraineeList.size() ; i++){
-                        if(TraineeList.get(i).getId() == id){
-                            showMessageDialog(null,"Id already in use.");
+                    for (int i = 0; i < TraineeList.size(); i++) {
+                        if (TraineeList.get(i).getId() == id) {
+                            showMessageDialog(null, "Id already in use.");
                             getTid.setText("");
                             check = false;
-                        }
-                        else if(TraineeList.get(i).getUsername().equalsIgnoreCase(username)){
-                            showMessageDialog(null,"username already in use.");
+                        } else if (TraineeList.get(i).getUsername().equalsIgnoreCase(username)) {
+                            showMessageDialog(null, "username already in use.");
                             getTUser.setText("");
                             check = false;
                         }
 
                     }
-                    if(check){
-                        TraineeList.add(new Trainee(id,name,age,FacultyName,academicYear,gpa,username,password));
+                    if (check) {
+                        TraineeList.add(new Trainee(id, name, age, FacultyName, academicYear, gpa, username, password));
                         Files.writeTrainee(TraineeList);
-                        showMessageDialog(null,"Trainee Successfully Added.");
+                        showMessageDialog(null, "Trainee Successfully Added.");
                         getContentPane().removeAll();
-                        setSize(801,801);
-                        setSize(800,800);
+                        setSize(801, 801);
+                        setSize(800, 800);
                         F7();
                         getContentPane().revalidate();
                     }
-                }catch(IOException el){}catch(ClassNotFoundException c){}
+                } catch (IOException el) {
+                } catch (ClassNotFoundException c) {
+                }
             }
-            if(e.getSource() == TeamLeader){
-                num = 2;
-                getContentPane().removeAll();
-                setSize(1150,801);
-                F10();
+            if (e.getSource() == TeamLeader) {
+                if(roleState == 1) {
+                    num = 2;
+                    getContentPane().removeAll();
+                    setSize(1150, 801);
+                    F10();
+                }
+
+                //EDIT
+                else if(roleState == 2){
+
+                }
             }
-            if(e.getSource()==LeaderSubmit){
+            if (e.getSource() == LeaderSubmit) {
                 try {
-                    boolean check=true;
+                    boolean check = true;
                     ArrayList<TeamLeader> Leader = Files.readTeamLeader();
-                    if(getTlName.getText().equals("") || getTlid.getText().equals("") || getTlAge.getText().equals("") || getTlUser.getText().equals("") || getTlPass.getText().equals("") ){
-                        showMessageDialog(null,"There is a Missing Field");
-                        check=false;
+                    if (getTlName.getText().equals("") || getTlid.getText().equals("") || getTlAge.getText().equals("") || getTlUser.getText().equals("") || getTlPass.getText().equals("")) {
+                        showMessageDialog(null, "There is a Missing Field");
+                        check = false;
                     }
-                    int LeaderID=Integer.parseInt(getTlid.getText());
-                    String LeaderName=getTlName.getText();
-                    int LeaderAge=Integer.parseInt(getTlAge.getText());
-                    String LeaderUser=getTlUser.getText();
-                    String LeaderPass=getTlPass.getText();
-                    for(int i=0;i<Leader.size();i++){
-                        if(Leader.get(i).getId()==LeaderID){
-                            showMessageDialog(null,"ID already exists");
+                    int LeaderID = Integer.parseInt(getTlid.getText());
+                    String LeaderName = getTlName.getText();
+                    int LeaderAge = Integer.parseInt(getTlAge.getText());
+                    String LeaderUser = getTlUser.getText();
+                    String LeaderPass = getTlPass.getText();
+                    for (int i = 0; i < Leader.size(); i++) {
+                        if (Leader.get(i).getId() == LeaderID) {
+                            showMessageDialog(null, "ID already exists");
                             getTlid.setText("");
-                            check=false;
-                        }
-                        else if(Leader.get(i).getUsername().equalsIgnoreCase(LeaderUser)){
-                            showMessageDialog(null,"Username already exists");
+                            check = false;
+                        } else if (Leader.get(i).getUsername().equalsIgnoreCase(LeaderUser)) {
+                            showMessageDialog(null, "Username already exists");
                             getTlUser.setText("");
-                            check=false;
+                            check = false;
                         }
                     }
-                    ArrayList<TeamMember> listMembers=new ArrayList<>();
-                    for (int i=0;i<25;i+=5){
-                        if(fieldList.get(i).getText().equals("") && fieldList.get(i+1).getText().equals("") && fieldList.get(i+2).getText().equals("") && fieldList.get(i+3).getText().equals("") && fieldList.get(i+4).getText().equals("") && i<5){
+                    ArrayList<TeamMember> listMembers = new ArrayList<>();
+                    for (int i = 0; i < 25; i += 5) {
+                        if (fieldList.get(i).getText().equals("") && fieldList.get(i + 1).getText().equals("") && fieldList.get(i + 2).getText().equals("") && fieldList.get(i + 3).getText().equals("") && fieldList.get(i + 4).getText().equals("") && i < 5) {
                             showMessageDialog(null, "Add at least 1 Team Member");
                             check = false;
                             break;
                         }
-//                        else if(check=true){//String name, int id, int age, String Username, String Password
-                        listMembers.add(new TeamMember(fieldList.get(i).getText(),Integer.parseInt(fieldList.get(i+1).getText()),Integer.parseInt(fieldList.get(i+2).getText()),fieldList.get(i+3).getText(),fieldList.get(i+4).getText()));
-//                        }
+                        else if ((!fieldList.get(i).getText().equals("") && !fieldList.get(i + 1).getText().equals("") && !fieldList.get(i + 2).getText().equals("") && !fieldList.get(i + 3).getText().equals("") && !fieldList.get(i + 4).getText().equals(""))) {
+                            int id = Integer.parseInt(fieldList.get(i + 1).getText());
+                            int age = Integer.parseInt(fieldList.get(i + 2).getText());
+                            listMembers.add(new TeamMember(fieldList.get(i).getText(), id, age, fieldList.get(i + 3).getText(), fieldList.get(i + 4).getText()));
+                        } else {
+                            showMessageDialog(null,"Missing fields.");
+                            check = false;
+                            break;
+                        }
                     }
-                    if(check){//String name, int id, int age, int TeamCapacity, ArrayList<TeamMember> TeamMembers, String Username,String Password
-                       // getContentPane().removeAll();
-//                        setSize(801,801);
-//                        setSize(800,800);
-                        Leader.add(new TeamLeader(LeaderName,LeaderID,LeaderAge,listMembers,LeaderUser,LeaderPass));
-                        Files.writeTeamLeader(Leader);
-                        showMessageDialog(null ,"Successfully Saved");
-                    }
-
+                if (check) {
+                    Leader.add(new TeamLeader(LeaderName, LeaderID, LeaderAge, listMembers, LeaderUser, LeaderPass));
+                    Files.writeTeamLeader(Leader);
+                    showMessageDialog(null, "Successfully Saved");
+                    getContentPane().removeAll();
+                    setSize(800,800);
+                    setSize(801,801);
+                    F7();
                 }
-                catch (IOException ioException) { ioException.printStackTrace(); }
+        }catch (IOException ioException) { ioException.printStackTrace(); }
                 catch (ClassNotFoundException classNotFoundException) { classNotFoundException.printStackTrace(); }
             }
             if(e.getSource() == TeamMember){
-                getContentPane().removeAll();
-                getContentPane().revalidate();
-                setSize(801,801);
-                setSize(800,800);
-                F8();
-                state=3;
+                if(roleState == 1) {
+                    getContentPane().removeAll();
+                    getContentPane().revalidate();
+                    setSize(801, 801);
+                    setSize(800, 800);
+                    F8();
+                    state = 3;
+                }
+                //EDIT
+                else if(roleState == 2){
+
+                }
             }
             if(e.getSource() == SubButton){
                 try {
@@ -932,6 +1029,43 @@ public void F10(){
 
 
 
+            }
+            if(e.getSource() == EditSubmit){
+                String str = (String) TraineeCombo.getSelectedItem();
+                String id = str.substring(0,str.indexOf(" "));
+                Trainee chosen = new Trainee();
+                int index = 0;
+               for(int i = 0;i<TraineeList.size();i++){
+                   if(Integer.parseInt(id) == TraineeList.get(i).getId()){
+                       chosen = TraineeList.get(i);
+                       index = i;
+                       break;
+                   }
+               }
+               String Traineename = (!name.getText().equals(""))?name.getText():chosen.getName();
+               int TraineeAge = (!age.getText().equals(""))? Integer.parseInt(age.getText()):chosen.getAge();
+               int academicyear = (!academicYear.getText().equals(""))?Integer.parseInt(academicYear.getText()):chosen.getAcademicYear();
+               String fn = (!FacultyName.getText().equals(""))? FacultyName.getText():chosen.getFacultyName();
+               double gpa = (!GPA.getText().equals(""))?Double.parseDouble(GPA.getText()):chosen.getGPA();
+              Trainee t = new Trainee(chosen.getId(),Traineename,TraineeAge,fn,academicyear,gpa,chosen.getUsername(),chosen.getPassword());
+              TraineeList.set(index,t);
+                try {
+                    Files.writeTrainee(TraineeList);
+                    showMessageDialog(null,"Successfully Saved.");
+
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
+            }
+            if(e.getSource() == Edit){
+                getContentPane().removeAll();
+                setSize(801, 801);
+                setSize(800, 800);
+                roleState = 2;
+                Role();
+                getContentPane().revalidate();
             }
         }
     }
