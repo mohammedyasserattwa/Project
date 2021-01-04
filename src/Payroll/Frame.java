@@ -20,7 +20,6 @@ public class Frame extends JFrame implements Files {
     JButton submit = new JButton("Submit");
     JButton back = new JButton("<--");
 
-
     //Manager
     JButton Trainee = new JButton("Trainee");
     JButton TeamLeader = new JButton("Team Leader");
@@ -934,7 +933,7 @@ public class Frame extends JFrame implements Files {
                 }
             }
 
-            ///////////Adding/////////////////
+            ////////////Adding////////////////
             if (e.getSource() == Add) {
                 setSize(801, 801);
                 setSize(800, 800);
@@ -963,7 +962,6 @@ public class Frame extends JFrame implements Files {
                             getTUser.setText("");
                             check = false;
                         }
-
                     }
                     if (check) {
                         TraineeList.add(new Trainee(id, name, age, FacultyName, academicYear, gpa, username, password));
@@ -1044,7 +1042,7 @@ public class Frame extends JFrame implements Files {
                     boolean check = false, check2 = true;
                     for (int i = 0; i < teamLeaders.size(); i++) {
                         if ((teamLeaders.get(i).getId() + "").equals(getTLeaderId.getText())) {
-                            if (teamLeaders.get(i).getTeamCapacity() != 5) {
+                            if (teamLeaders.get(i).getTeamCapacity() <= 5) {
                                 String name = getTmemberName.getText();
                                 int age = Integer.parseInt(getTmemberAge.getText());
                                 int id = Integer.parseInt(getTmemberId.getText());
@@ -1064,7 +1062,7 @@ public class Frame extends JFrame implements Files {
                                     teamLeaders.get(i).getTeamMembers().add(new TeamMember(name, id, age, getTmemberUser.getText(), getTmemberPass.getText()));//String name, int id, int age, String Username, String Password
 
                                     Files.writeTeamLeader(teamLeaders);
-                                    showMessageDialog(null, "TeamLeader Successfully saved");
+                                    showMessageDialog(null, "Team Member Successfully saved in this TeamLeader");
                                     getContentPane().removeAll();
                                     setSize(801, 801);
                                     setSize(800, 800);
@@ -1137,7 +1135,7 @@ public class Frame extends JFrame implements Files {
                 }
             }
 
-            ///////////Delete/////////////////
+            /////////////Delete////////////////
             if (e.getSource() == Delete) {
                 setSize(801, 801);
                 setSize(800, 800);
@@ -1165,12 +1163,8 @@ public class Frame extends JFrame implements Files {
                         }
                     }
                     Files.writeTrainee(delete);
-
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                } catch (ClassNotFoundException classNotFoundException) {
-                    classNotFoundException.printStackTrace();
-                }
+                } catch (IOException ioException) {ioException.printStackTrace();}
+                catch (ClassNotFoundException classNotFoundException) {classNotFoundException.printStackTrace();}
             }
             if (e.getSource() == viewTraineeData) {
                 setSize(801, 801);
