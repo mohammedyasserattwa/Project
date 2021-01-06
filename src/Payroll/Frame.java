@@ -1433,20 +1433,32 @@ public class Frame extends JFrame implements Files {
                 try {
                     deleteTeamLeader = Files.readTeamLeader();
                     if (deleteTeamMemberID.getText().equals("") ) {
-                        showMessageDialog(null, "Wrong ID...");
+                        showMessageDialog(null, "Missing ID...");
                     }
+                    boolean idcheck = false;
                     for (int i = 0; i < deleteTeamLeader.size(); i++) {
-                        for (int j = 0; j < deleteTeamLeader.get(i).getTeamMembers().size(); j++) {
-                            index = j;
-                            if (Integer.parseInt(deleteTeamMemberID.getText()) == deleteTeamLeader.get(i).getTeamMembers().get(j).getId()) {
-                                deleteTeamLeader.get(i).getTeamMembers().remove(deleteTeamLeader.get(i).getTeamMembers().get(j));
-                                Files.writeTeamLeader(deleteTeamLeader);
-                                showMessageDialog(null, "Successfully deleted");
-                                deleteTeamMemberID.setText("");
-                                break;
+                        if(deleteTeamLeader.get(i).getTeamMembers().size() == 1){
+                            showMessageDialog(null,"Cannot delete, minimum amount of team members found...");
+                        }
+                        else {
+                            for (int j = 0; j<deleteTeamLeader.get(i).getTeamMembers().size(); j++) {
+                                index = j;
+                                if (Integer.parseInt(deleteTeamMemberID.getText()) == deleteTeamLeader.get(i).getTeamMembers().get(j).getId()) {
+                                    deleteTeamLeader.get(i).getTeamMembers().remove(deleteTeamLeader.get(i).getTeamMembers().get(j));
+                                    showMessageDialog(null, "Successfully deleted");
+                                    deleteTeamMemberID.setText("");
+                                    idcheck = true;
+                                    break;
+                                }
                             }
                         }
+                        if(idcheck == true){
+                            break;
+                        }
                     }
+                    if(idcheck == false){
+                        showMessageDialog(null,"Wrong ID...");
+                    }    Files.writeTeamLeader(deleteTeamLeader);
                 }
                 catch (IOException ioException) {ioException.printStackTrace();}
                 catch (ClassNotFoundException classNotFoundException) {classNotFoundException.printStackTrace();}
