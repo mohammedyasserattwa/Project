@@ -2,6 +2,8 @@
 package Payroll;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -80,6 +82,9 @@ public class Frame extends JFrame implements Files {
         EditTeamLeader.addActionListener(al);
         deleteTeamMember.addActionListener(al);
         viewTeamMemberData.addActionListener(al);
+        ReplaceTeamLeader.addActionListener(al);
+        SubmitTeamLeader.addActionListener(al);
+        viewTeamLeaderData.addActionListener(al);
         /////////////////////
     }
 
@@ -368,6 +373,7 @@ public class Frame extends JFrame implements Files {
     JLabel TLeaderId = new JLabel("Team Leader ID: ");
     JTextField getTLeaderId = new JTextField(20);
     JButton SubButton = new JButton("Submit");
+
     public void F8() {
         JLabel TmName = new JLabel("Add Team Member  ");
         TmName.setBounds(150, 30, 460, 100);
@@ -436,6 +442,7 @@ public class Frame extends JFrame implements Files {
     JTextField getTid = new JTextField(20);
     JTextField getTfacultyName = new JTextField(20);
     JButton TraineeSubmit = new JButton("Submit");
+
     public void F9() {
         JLabel TraineeName = new JLabel("Add Trainee  ");
         TraineeName.setBounds(300, 30, 400, 100);
@@ -519,6 +526,7 @@ public class Frame extends JFrame implements Files {
     JPasswordField getTlPass = new JPasswordField(20);
     //His Team Members
     ArrayList<JTextField> fieldList = new ArrayList<>();
+
     public void F10() {
         JLabel TeamLeader = new JLabel("Add Team Leader  ");
         TeamLeader.setBounds(400, 30, 430, 100);
@@ -629,6 +637,7 @@ public class Frame extends JFrame implements Files {
     JButton EditTrainee = new JButton("Submit");
     ArrayList<Trainee> TraineeList = Files.readTrainee();
     ArrayList<String> data = new ArrayList();
+
     public void F11() {
         JLabel EDITtrainee = new JLabel("Edit Trainee ");
         EDITtrainee.setBounds(225, 10, 430, 90);
@@ -702,9 +711,10 @@ public class Frame extends JFrame implements Files {
     JTextField TeamMembername = new JTextField(20);
     JTextField TeamMemberage = new JTextField(20);
     JButton EditTeamMember = new JButton("Submit");
-    ArrayList<TeamLeader>TeamMemberList=Files.readTeamLeader();
+    ArrayList<TeamLeader> TeamMemberList = Files.readTeamLeader();
     ArrayList<String> dataTeamMember = new ArrayList();
-    public void F12(){
+
+    public void F12() {
         JLabel EDITteamMember = new JLabel("Edit Team Member ");
         EDITteamMember.setBounds(195, 10, 550, 90);
         EDITteamMember.setFont(new Font("Serif", Font.BOLD, 50));
@@ -716,7 +726,7 @@ public class Frame extends JFrame implements Files {
         add(infoTeamM);
 
         for (int i = 0; i < TeamMemberList.size(); i++) {
-            for (int j=0;j<TeamMemberList.get(i).getTeamMembers().size();j++) {
+            for (int j = 0; j < TeamMemberList.get(i).getTeamMembers().size(); j++) {
                 dataTeamMember.add(TeamMemberList.get(i).getTeamMembers().get(j).getId() + "  " + TeamMemberList.get(i).getTeamMembers().get(j).getName());
             }
         }
@@ -753,12 +763,13 @@ public class Frame extends JFrame implements Files {
 
     //Edit Team Leader
     JComboBox LeaderCombo;
-    ArrayList<TeamLeader> TeamLeaderList=Files.readTeamLeader();
+    ArrayList<TeamLeader> TeamLeaderList = Files.readTeamLeader();
     ArrayList<String> dataTeamLeader = new ArrayList();
     JTextField EditTeamLeaderName = new JTextField(20);
     JTextField EditTeamLeaderAge = new JTextField(20);
     JButton EditTeamLeader = new JButton("Submit");
-    public void F13(){
+
+    public void F13() {
         JLabel EDITteamLeader = new JLabel("Edit Team Leader ");
         EDITteamLeader.setBounds(195, 10, 550, 90);
         EDITteamLeader.setFont(new Font("Serif", Font.BOLD, 50));
@@ -802,10 +813,11 @@ public class Frame extends JFrame implements Files {
         add(EditTeamLeader);
     }
 
-    //Buttons to delete Trainee by entering his ID
+    //Button to delete Trainee by entering his ID
     JButton viewTraineeData = new JButton("View Data");
     JButton deleteTrainee = new JButton("Delete");
     JTextField deleteID = new JTextField(20);
+
     public void F14() {
         JLabel DELETEtrainee = new JLabel("Delete Trainee ");
         DELETEtrainee.setBounds(225, 30, 430, 100);
@@ -829,12 +841,12 @@ public class Frame extends JFrame implements Files {
         add(deleteTrainee);
     }
 
-
-    //Buttons to delete TeamMember by entering his ID
+    //Button to delete TeamMember by entering his ID
     JButton viewTeamMemberData = new JButton("View Data");
     JButton deleteTeamMember = new JButton("Delete");
     JTextField deleteTeamMemberID = new JTextField(20);
-    public void F15(){
+
+    public void F15() {
         JLabel DELETETeamMember = new JLabel("Delete Team Member ");
         DELETETeamMember.setBounds(185, 10, 550, 90);
         DELETETeamMember.setFont(new Font("Serif", Font.BOLD, 50));
@@ -857,6 +869,104 @@ public class Frame extends JFrame implements Files {
         add(deleteTeamMember);
     }
 
+    //Button to delete TeamLeader by entering his ID
+    JButton viewTeamLeaderData = new JButton("View Data");
+    JButton ReplaceTeamLeader = new JButton("Replace");
+    JTextField deleteTeamLeaderID = new JTextField(20);
+
+    public void F16() {
+        JLabel DELETETeamLeader = new JLabel("Delete & Replace Team Leader  ");
+        DELETETeamLeader.setBounds(200, 30, 520, 100);
+        DELETETeamLeader.setFont(new Font("Serif", Font.BOLD, 30));
+        add(DELETETeamLeader);
+
+        JLabel TeamLeaderID = new JLabel("Team Leader's ID: ");
+        TeamLeaderID.setFont(new Font("Serif", Font.BOLD, 20));
+        TeamLeaderID.setBounds(230, 150, 170, 30);
+        add(TeamLeaderID);
+
+        deleteTeamLeaderID.setBounds(410, 150, 100, 30);
+        add(deleteTeamLeaderID);
+
+        JLabel note = new JLabel("*The current team members will be assigned to the new team leader...");
+        note.setFont(new Font("Serif", Font.BOLD, 15));
+        note.setBounds(200, 650, 500, 20);
+        add(note);
+
+        viewTeamLeaderData.setBounds(250, 680, 150, 50);
+        viewTeamLeaderData.setFont(new Font("Serif", Font.BOLD, 20));
+        add(viewTeamLeaderData);
+
+        ReplaceTeamLeader.setBounds(410, 680, 150, 50);
+        ReplaceTeamLeader.setFont(new Font("Serif", Font.BOLD, 20));
+        add(ReplaceTeamLeader);
+    }
+
+    //Delet function by replacing old TeamLeader with a new TeamLeader
+    JTextField getrepTlName = new JTextField(20);
+    JTextField getrepTlAge = new JTextField(20);
+    JTextField getrepTlid = new JTextField(20);
+    JTextField getrepTlUser = new JTextField(20);
+    JPasswordField getrepTlPass = new JPasswordField(20);
+    JButton SubmitTeamLeader = new JButton("Submit");
+
+    public void replaceTL() {
+        getContentPane().removeAll();
+        getContentPane().revalidate();
+        setSize(801, 801);
+        setSize(800, 800);
+        JLabel replacedTeamLeader = new JLabel("Replace Team Leader  ");
+        replacedTeamLeader.setBounds(215, 30, 520, 100);
+        replacedTeamLeader.setFont(new Font("Serif", Font.BOLD, 30));
+        add(replacedTeamLeader);
+
+        JLabel replacedTlname = new JLabel("Name: ");
+        replacedTlname.setFont(new Font("Serif", Font.BOLD, 20));
+        replacedTlname.setBounds(50, 200, 80, 30);
+        add(replacedTlname);
+
+        getrepTlName.setBounds(195, 200, 100, 30);
+        add(getrepTlName);
+
+        JLabel replacedTlid = new JLabel("ID: ");
+        replacedTlid.setFont(new Font("Serif", Font.BOLD, 20));
+        replacedTlid.setBounds(50, 300, 80, 30);
+        add(replacedTlid);
+
+        getrepTlid.setBounds(195, 300, 100, 30);
+        add(getrepTlid);
+
+        JLabel replacedTlage = new JLabel("Age: ");
+        replacedTlage.setFont(new Font("Serif", Font.BOLD, 20));
+        replacedTlage.setBounds(50, 250, 80, 30);
+        add(replacedTlage);
+
+        getrepTlAge.setBounds(195, 250, 100, 30);
+        add(getrepTlAge);
+
+        JLabel replacedTlUser = new JLabel("Username: ");
+        replacedTlUser.setFont(new Font("Serif", Font.BOLD, 20));
+        replacedTlUser.setBounds(350, 200, 100, 30);
+        add(replacedTlUser);
+
+        getrepTlUser.setBounds(460, 200, 100, 30);
+        add(getrepTlUser);
+
+        JLabel replacedTlPass = new JLabel("Password: ");
+        replacedTlPass.setFont(new Font("Serif", Font.BOLD, 20));
+        replacedTlPass.setBounds(350, 300, 100, 30);
+        add(replacedTlPass);
+
+        getrepTlPass.setBounds(460, 300, 100, 30);
+        add(getrepTlPass);
+
+        SubmitTeamLeader.setBounds(310, 600, 150, 50);
+        SubmitTeamLeader.setFont(new Font("Serif", Font.BOLD, 20));
+        add(SubmitTeamLeader);
+
+
+    }
+
     //Manager choose which one (TeamLeader/TeamMember/Trainee) he wants to ADD EDIT or DELETE
     public void Role() {
         Trainee.setBounds(100, 100, 200, 50);
@@ -872,6 +982,9 @@ public class Frame extends JFrame implements Files {
         add(TeamMember);
     }
 
+    //Deleting TeamLeader
+    TeamLeader chosenTeamLeader = new TeamLeader();
+    int indexTeamLeader=0;
     public class Al implements ActionListener {
         int state = 0;
         int select = 0;
@@ -1053,9 +1166,16 @@ public class Frame extends JFrame implements Files {
                 //EDIT
                 else if (roleState == 2) {
                     getContentPane().removeAll();
-                    setSize(801,801);
-                    setSize(800,800);
+                    setSize(801, 801);
+                    setSize(800, 800);
                     F13();
+                }
+                //DELETE
+                else if (roleState == 3) {
+                    getContentPane().removeAll();
+                    setSize(801, 801);
+                    setSize(800, 800);
+                    F16();
                 }
 
             }
@@ -1072,8 +1192,7 @@ public class Frame extends JFrame implements Files {
                 //EDIT
                 else if (roleState == 2) {
                     F12();
-                }
-                else if(roleState==3){
+                } else if (roleState == 3) {
                     F15();
                 }
             }
@@ -1112,9 +1231,15 @@ public class Frame extends JFrame implements Files {
                         TraineeList.add(new Trainee(id, name, age, FacultyName, academicYear, gpa, username, password));
                         Files.writeTrainee(TraineeList);
                         showMessageDialog(null, "Trainee Successfully Added.");
-                        getTid.setText("");getTName.setText("");getTAge.setText("");getTgpa.setText("");
-                        getTfacultyName.setText("");getTUser.setText("");getTPass.setText("");getTacademicYear.setText("");
-                        data.add(id+" "+name);
+                        getTid.setText("");
+                        getTName.setText("");
+                        getTAge.setText("");
+                        getTgpa.setText("");
+                        getTfacultyName.setText("");
+                        getTUser.setText("");
+                        getTPass.setText("");
+                        getTacademicYear.setText("");
+                        data.add(id + " " + name);
                         getContentPane().removeAll();
                         setSize(801, 801);
                         setSize(800, 800);
@@ -1155,13 +1280,15 @@ public class Frame extends JFrame implements Files {
                             showMessageDialog(null, "Add at least 1 Team Member");
                             check = false;
                             break;
-                        } else if ((!fieldList.get(i).getText().equals("") && !fieldList.get(i + 1).getText().equals("") && !fieldList.get(i + 2).getText().equals("") && !fieldList.get(i + 3).getText().equals("") && !fieldList.get(i + 4).getText().equals(""))) {
+                        }
+                        else if ((!fieldList.get(i).getText().equals("") && !fieldList.get(i + 1).getText().equals("") && !fieldList.get(i + 2).getText().equals("") && !fieldList.get(i + 3).getText().equals("") && !fieldList.get(i + 4).getText().equals(""))) {
                             int id = Integer.parseInt(fieldList.get(i + 1).getText());
                             int age = Integer.parseInt(fieldList.get(i + 2).getText());
                             listMembers.add(new TeamMember(fieldList.get(i).getText(), id, age, fieldList.get(i + 3).getText(), fieldList.get(i + 4).getText()));
-                        } else {
+                        }
+                        else if ((!fieldList.get(i).getText().equals("") || !fieldList.get(i + 1).getText().equals("") || !fieldList.get(i + 2).getText().equals("") || !fieldList.get(i + 3).getText().equals("") || !fieldList.get(i + 4).getText().equals(""))) {
                             showMessageDialog(null, "Missing fields.");
-                            check = false;
+                            check=false;
                             break;
                         }
                     }
@@ -1169,6 +1296,8 @@ public class Frame extends JFrame implements Files {
                         Leader.add(new TeamLeader(LeaderName, LeaderID, LeaderAge, listMembers, LeaderUser, LeaderPass));
                         Files.writeTeamLeader(Leader);
                         showMessageDialog(null, "Successfully Saved");
+                        //ListMembers=dataTeamMember.add()
+                        dataTeamLeader.add(LeaderID+" "+LeaderName);
                         getContentPane().removeAll();
                         setSize(800, 800);
                         setSize(801, 801);
@@ -1208,6 +1337,7 @@ public class Frame extends JFrame implements Files {
 
                                     Files.writeTeamLeader(teamLeaders);
                                     showMessageDialog(null, "Team Member Successfully saved in this TeamLeader");
+                                    dataTeamMember.add(id+" "+name);
                                     getContentPane().removeAll();
                                     setSize(801, 801);
                                     setSize(800, 800);
@@ -1273,10 +1403,13 @@ public class Frame extends JFrame implements Files {
                     Files.writeTrainee(TraineeList);
                     showMessageDialog(null, "Successfully Saved.");
 
-                } catch (IOException ioException) { ioException.printStackTrace();}
-                catch (ClassNotFoundException classNotFoundException) { classNotFoundException.printStackTrace(); }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
             }
-            if(e.getSource()==EditTeamMember) {
+            if (e.getSource() == EditTeamMember) {
                 String str = (String) TeamMemberCombo.getSelectedItem();
                 String id = str.substring(0, str.indexOf(" "));
                 TeamMember chosen = new TeamMember();
@@ -1294,16 +1427,18 @@ public class Frame extends JFrame implements Files {
                 }//String name, int id, int age, String Username, String Password
                 String TeamMemberName = (!TeamMembername.getText().equals("")) ? TeamMembername.getText() : chosen.getName();
                 int TeamMemberAge = (!TeamMemberage.getText().equals("")) ? Integer.parseInt(TeamMemberage.getText()) : chosen.getAge();
-                TeamMember teamMember=new TeamMember(TeamMemberName,chosen.getId(),TeamMemberAge,chosen.getUsername(),chosen.getPassword());
-                TeamMemberList.get(indexL).getTeamMembers().set(indexM,teamMember);
+                TeamMember teamMember = new TeamMember(TeamMemberName, chosen.getId(), TeamMemberAge, chosen.getUsername(), chosen.getPassword());
+                TeamMemberList.get(indexL).getTeamMembers().set(indexM, teamMember);
                 try {
                     Files.writeTeamLeader(TeamMemberList);
                     showMessageDialog(null, "Successfully Saved.");
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
                 }
-                catch (IOException ioException) { ioException.printStackTrace();}
-                catch (ClassNotFoundException classNotFoundException) { classNotFoundException.printStackTrace();}
             }
-            if(e.getSource()==EditTeamLeader) {
+            if (e.getSource() == EditTeamLeader) {
                 String str = (String) LeaderCombo.getSelectedItem();
                 String id = str.substring(0, str.indexOf(" "));
                 TeamLeader chosen = new TeamLeader();
@@ -1318,14 +1453,16 @@ public class Frame extends JFrame implements Files {
                 }//String name, int id, int age, ArrayList<TeamMember> TeamMembers, String Username,String Password
                 String TeamLeaderName = (!EditTeamLeaderName.getText().equals("")) ? EditTeamLeaderName.getText() : chosen.getName();
                 int TeamLeaderAge = (!EditTeamLeaderAge.getText().equals("")) ? Integer.parseInt(EditTeamLeaderAge.getText()) : chosen.getAge();
-                TeamLeader teamLeader=new TeamLeader(TeamLeaderName,chosen.getId(),TeamLeaderAge,chosen.getTeamMembers(),chosen.getUsername(),chosen.getPassword());
-                TeamLeaderList.set(index,teamLeader);
+                TeamLeader teamLeader = new TeamLeader(TeamLeaderName, chosen.getId(), TeamLeaderAge, chosen.getTeamMembers(), chosen.getUsername(), chosen.getPassword());
+                TeamLeaderList.set(index, teamLeader);
                 try {
                     Files.writeTeamLeader(TeamLeaderList);
-                    showMessageDialog(null,"Successfully Saved");
+                    showMessageDialog(null, "Successfully Saved");
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
                 }
-                catch (IOException ioException) { ioException.printStackTrace();}
-                catch (ClassNotFoundException classNotFoundException) { classNotFoundException.printStackTrace();}
             }
 
 
@@ -1343,7 +1480,7 @@ public class Frame extends JFrame implements Files {
                 ArrayList<Trainee> delete = new ArrayList<>();
                 try {
                     delete = Files.readTrainee();
-                    if (deleteID.getText().equals("") ) {
+                    if (deleteID.getText().equals("")) {
                         showMessageDialog(null, "Wrong ID...");
                     }
                     for (int i = 0; i < delete.size(); i++) {
@@ -1356,10 +1493,14 @@ public class Frame extends JFrame implements Files {
                         }
                     }
                     Files.writeTrainee(delete);
-                } catch (IOException ioException) {ioException.printStackTrace();}
-                catch (ClassNotFoundException classNotFoundException) {classNotFoundException.printStackTrace();}
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
             }
             if (e.getSource() == viewTraineeData) {
+                boolean check = true;
                 setSize(801, 801);
                 setSize(800, 800);
                 ArrayList<Trainee> deleteTraineeList = new ArrayList();
@@ -1371,7 +1512,6 @@ public class Frame extends JFrame implements Files {
                     deleteTraineeList = Files.readTrainee();
                     for (int i = 0; i < deleteTraineeList.size(); i++) {
                         getContentPane().revalidate();
-
                         if (Integer.parseInt(deleteID.getText()) == deleteTraineeList.get(i).getId()) {
                             chosen = deleteTraineeList.get(i);
 
@@ -1419,29 +1559,31 @@ public class Frame extends JFrame implements Files {
                             getTraineeacademicYear.setFont(new Font("Serif", Font.BOLD, 20));
                             getTraineeacademicYear.setBounds(210, 400, 120, 30);
                             add(getTraineeacademicYear);
+                            break;
                         }
                     }
-                 }
-                catch (IOException ioException) {ioException.printStackTrace();}
-                catch (ClassNotFoundException classNotFoundException) {classNotFoundException.printStackTrace();}
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
             }
 
             //Delete Team Member
-            if(e.getSource()==deleteTeamMember){
+            if (e.getSource() == deleteTeamMember) {
                 int index;
                 ArrayList<TeamLeader> deleteTeamLeader = new ArrayList<>();
                 try {
                     deleteTeamLeader = Files.readTeamLeader();
-                    if (deleteTeamMemberID.getText().equals("") ) {
+                    if (deleteTeamMemberID.getText().equals("")) {
                         showMessageDialog(null, "Missing ID...");
                     }
                     boolean idcheck = false;
                     for (int i = 0; i < deleteTeamLeader.size(); i++) {
-                        if(deleteTeamLeader.get(i).getTeamMembers().size() == 1){
-                            showMessageDialog(null,"Cannot delete, minimum amount of team members found...");
-                        }
-                        else {
-                            for (int j = 0; j<deleteTeamLeader.get(i).getTeamMembers().size(); j++) {
+                        if (deleteTeamLeader.get(i).getTeamMembers().size() == 1) {
+                            showMessageDialog(null, "Cannot delete, minimum amount of team members found...");
+                        } else {
+                            for (int j = 0; j < deleteTeamLeader.get(i).getTeamMembers().size(); j++) {
                                 index = j;
                                 if (Integer.parseInt(deleteTeamMemberID.getText()) == deleteTeamLeader.get(i).getTeamMembers().get(j).getId()) {
                                     deleteTeamLeader.get(i).getTeamMembers().remove(deleteTeamLeader.get(i).getTeamMembers().get(j));
@@ -1452,18 +1594,21 @@ public class Frame extends JFrame implements Files {
                                 }
                             }
                         }
-                        if(idcheck == true){
+                        if (idcheck == true) {
                             break;
                         }
                     }
-                    if(idcheck == false){
-                        showMessageDialog(null,"Wrong ID...");
-                    }    Files.writeTeamLeader(deleteTeamLeader);
+                    if (idcheck == false) {
+                        showMessageDialog(null, "Wrong ID...");
+                    }
+                    Files.writeTeamLeader(deleteTeamLeader);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
                 }
-                catch (IOException ioException) {ioException.printStackTrace();}
-                catch (ClassNotFoundException classNotFoundException) {classNotFoundException.printStackTrace();}
             }
-            if(e.getSource()==viewTeamMemberData){
+            if (e.getSource() == viewTeamMemberData) {
 
                 setSize(801, 801);
                 setSize(800, 800);
@@ -1475,7 +1620,7 @@ public class Frame extends JFrame implements Files {
                 try {
                     deleteTeamMemberList = Files.readTeamLeader();
                     for (int i = 0; i < deleteTeamMemberList.size(); i++) {
-                        for (int j=0; j < deleteTeamMemberList.get(i).getTeamMembers().size(); j++) {
+                        for (int j = 0; j < deleteTeamMemberList.get(i).getTeamMembers().size(); j++) {
                             getContentPane().revalidate();
 
                             if (Integer.parseInt(deleteTeamMemberID.getText()) == deleteTeamMemberList.get(i).getTeamMembers().get(j).getId()) {
@@ -1510,12 +1655,145 @@ public class Frame extends JFrame implements Files {
                             }
                         }
                     }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
+            }
+
+            //Delete Team Leader
+            if (e.getSource() == ReplaceTeamLeader) {
+                int index;
+                ArrayList<TeamLeader> replaceTeamLeader = new ArrayList<>();
+                try {
+                    replaceTeamLeader = Files.readTeamLeader();
+                    if (deleteTeamLeaderID.getText().equals("")) {
+                        showMessageDialog(null, "Missing ID...");
+                    }
+                    for (int i = 0; i < replaceTeamLeader.size(); i++) {
+                        index = i;
+                        if (Integer.parseInt(deleteTeamLeaderID.getText()) == replaceTeamLeader.get(i).getId()) {
+                            replaceTL();
+                            break;
+                        }
+                    }
+                    Files.writeTeamLeader(replaceTeamLeader);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
+            }
+
+            ArrayList<TeamLeader> deleteTeamLeader = new ArrayList<>();
+            if (e.getSource() == viewTeamLeaderData) {//String name, int id, int age, ArrayList<TeamMember> TeamMembers, String Username,String Password
+                setSize(801,801);
+                setSize(800,800);
+                getContentPane().revalidate();
+                int n=0;
+                //ArrayList<TeamLeader> deleteTeamLeader = new ArrayList<>();
+              //  TeamLeader chosen = new TeamLeader();
+                if (deleteTeamLeaderID.getText().equals("")) {
+                    showMessageDialog(null, "Missing ID...");
+                }
+                try {
+                    deleteTeamLeader = Files.readTeamLeader();
+                    for (int i = 0; i < deleteTeamLeader.size(); i++,n++) {
+                        if (Integer.parseInt(deleteTeamLeaderID.getText()) == deleteTeamLeader.get(i).getId()) {
+                            indexTeamLeader=i;
+                            chosenTeamLeader = deleteTeamLeader.get(i);
+                            JLabel TeamLeaderName = new JLabel("Name: ");
+                            TeamLeaderName.setFont(new Font("Serif", Font.BOLD, 20));
+                            TeamLeaderName.setBounds(50, 200, 100, 30);
+                            add(TeamLeaderName);
+                            JTextField getTeamLeaderName = new JTextField(chosenTeamLeader.getName());
+                            getTeamLeaderName.setFont(new Font("Serif", Font.BOLD, 20));
+                            getTeamLeaderName.setBounds(210, 200, 120, 30);
+                            add(getTeamLeaderName);
+
+                            JLabel TeamLeaderid = new JLabel("ID: ");
+                            TeamLeaderid.setFont(new Font("Serif", Font.BOLD, 20));
+                            TeamLeaderid.setBounds(50, 250, 100, 30);
+                            add(TeamLeaderid);
+                            JTextField getTeamLeaderid = new JTextField(String.valueOf(chosenTeamLeader.getId()));
+                            getTeamLeaderid.setFont(new Font("Serif", Font.BOLD, 20));
+                            getTeamLeaderid.setBounds(210, 250, 120, 30);
+                            add(getTeamLeaderid);
+
+                            JLabel TeamLeaderAge = new JLabel("Age: ");
+                            TeamLeaderAge.setFont(new Font("Serif", Font.BOLD, 20));
+                            TeamLeaderAge.setBounds(50, 300, 100, 30);
+                            add(TeamLeaderAge);
+                            JTextField getTeamLeaderAge = new JTextField(String.valueOf(chosenTeamLeader.getAge()));
+                            getTeamLeaderAge.setFont(new Font("Serif", Font.BOLD, 20));
+                            getTeamLeaderAge.setBounds(210, 300, 120, 30);
+                            add(getTeamLeaderAge);
+
+
+
+                            //Table
+                            JLabel Tlmember = new JLabel("Team Members ");
+                            Tlmember.setBounds(300, 350, 200, 30);
+                            Tlmember.setFont(new Font("Serif", Font.BOLD, 23));
+                            add(Tlmember);
+
+                            for (int x = 0, j = 0,y=0; x < 5; x++, j += 50,y++) {
+                                JLabel TlmembersName = new JLabel("Name: ");
+                                TlmembersName.setFont(new Font("Serif", Font.BOLD, 20));
+                                TlmembersName.setBounds(50, 400 + j, 80, 30);
+                                add(TlmembersName);
+                                JTextField getTlmembersName = new JTextField(20);
+
+
+                                getTlmembersName.setBounds(135, 400 + j, 100, 30);
+                                add(getTlmembersName);
+
+                                JLabel TlmembersId = new JLabel("ID: ");
+                                TlmembersId.setFont(new Font("Serif", Font.BOLD, 20));
+                                TlmembersId.setBounds(265, 400 + j, 40, 30);
+                                add(TlmembersId);
+                                JTextField getTlmembersId = new JTextField(20);
+                                getTlmembersId.setBounds(315, 400 + j, 100, 30);
+                                add(getTlmembersId);
+
+                                JLabel TlmembersAge = new JLabel("Age: ");
+                                TlmembersAge.setFont(new Font("Serif", Font.BOLD, 20));
+                                TlmembersAge.setBounds(445, 400 + j, 50, 30);
+                                add(TlmembersAge);
+                                JTextField getTlmembersAge = new JTextField(20);
+                                getTlmembersAge.setBounds(505, 400 + j, 100, 30);
+                                add(getTlmembersAge);
+
+                                if(y<chosenTeamLeader.getTeamMembers().size()){
+                                    getTlmembersName.setText(chosenTeamLeader.getTeamMembers().get(y).getName());
+                                    getTlmembersId.setText(""+chosenTeamLeader.getTeamMembers().get(y).getId());
+                                    getTlmembersAge.setText(""+chosenTeamLeader.getTeamMembers().get(y).getAge());
+                                }
+                            }
+                        }
+                    }
                 }
                 catch (IOException ioException) { ioException.printStackTrace();}
                 catch (ClassNotFoundException classNotFoundException) { classNotFoundException.printStackTrace();}
             }
+            if(e.getSource()==SubmitTeamLeader){
+                String Name=getrepTlName.getText();
+                String id=getrepTlid.getText();
+                String age=getrepTlAge.getText();
+                String UserName=getrepTlUser.getText();
+                String password=getrepTlPass.getText();
 
-            //Delete Team Leader
+                try {
+                    deleteTeamLeader=Files.readTeamLeader();
+                    TeamLeader teamLeader=new TeamLeader(Name,Integer.parseInt(id),Integer.parseInt(age),chosenTeamLeader.getTeamMembers(),UserName,password);
+                    deleteTeamLeader.set(indexTeamLeader,teamLeader);
+                    Files.writeTeamLeader(deleteTeamLeader);
+                    showMessageDialog(null,"Successfully Saved");
+                }
+                catch (IOException ioException) { ioException.printStackTrace();}
+                catch (ClassNotFoundException classNotFoundException) { classNotFoundException.printStackTrace();}
+            }
         }
     }
 }
