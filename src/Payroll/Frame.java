@@ -2,14 +2,15 @@
 package Payroll;
 
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import static javax.swing.JOptionPane.*;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-//
+
 public class Frame extends JFrame implements Files {
     //Buttons
     Al al = new Al();
@@ -29,6 +30,7 @@ public class Frame extends JFrame implements Files {
     JButton Add = new JButton("Add");
     JButton Delete = new JButton("Delete");
     JButton Edit = new JButton("Edit");
+    JButton view=new JButton("View");
 
 
     JLabel welc = new JLabel("Company Payroll");
@@ -85,6 +87,7 @@ public class Frame extends JFrame implements Files {
         ReplaceTeamLeader.addActionListener(al);
         SubmitTeamLeader.addActionListener(al);
         viewTeamLeaderData.addActionListener(al);
+        view.addActionListener(al);
         /////////////////////
     }
 
@@ -194,7 +197,6 @@ public class Frame extends JFrame implements Files {
             data[i][1] = chosen.getTeamMembers().get(i).getName() + "";
             data[i][2] = chosen.getTeamMembers().get(i).getAge() + "";
         }
-
         JTable jt = new JTable(data, column);
         JScrollPane sp = new JScrollPane(jt);
         JPanel panel = new JPanel();
@@ -354,9 +356,12 @@ public class Frame extends JFrame implements Files {
         Edit.setFont(new Font("Serif", Font.BOLD, 30));
         Delete.setBounds(0, 430, 150, 100);
         Delete.setFont(new Font("Serif", Font.BOLD, 30));
+        view.setBounds(0, 530, 150, 100);
+        view.setFont(new Font("Serif", Font.BOLD, 30));
         add(Add);
         add(Edit);
         add(Delete);
+        add(view);
     }
 
     //Adding a TeamMember to an existing TeamLeader
@@ -967,7 +972,38 @@ public class Frame extends JFrame implements Files {
 
     }
 
-    //Manager choose which one (TeamLeader/TeamMember/Trainee) he wants to ADD EDIT or DELETE
+    //View Trainee data
+    public void F17(){//int id, String name, int age, String facultyName, int academicYear, double GPA,String Username, String Password
+        String column[] = {"ID", "Name", "Age","Faculty Name","Academic Year","GPA","Username","Password"};
+
+        try {
+            ArrayList<Trainee>viewTraineeData=Files.readTrainee();
+            int y=viewTraineeData.size();
+            String data[][] = new String[y][8];
+            for (int i=0;i<viewTraineeData.size();i++){
+                data[i][0]=viewTraineeData.get(i).getId()+"";
+                data[i][1]=viewTraineeData.get(i).getName()+"";
+                data[i][2]=viewTraineeData.get(i).getAge()+"";
+                data[i][3]=viewTraineeData.get(i).getFacultyName()+"";
+                data[i][4]=viewTraineeData.get(i).getAcademicYear()+"";
+                data[i][5]=viewTraineeData.get(i).getGPA()+"";
+                data[i][6]=viewTraineeData.get(i).getUsername()+"";
+                data[i][7]=viewTraineeData.get(i).getPassword()+"";
+            }
+            JTable jt = new JTable(data, column);
+            JScrollPane sp = new JScrollPane(jt);
+//            DefaultTableModel tableModel = (DefaultTableModel) jt.getModel();
+//            tableModel.fireTableDataChanged();
+            JPanel panel = new JPanel();
+            panel.add(sp);
+            panel.setBounds(150, 300, 500, 150);
+            add(panel);
+        }
+        catch (IOException e) { e.printStackTrace();}
+        catch (ClassNotFoundException e) { e.printStackTrace();}
+    }
+
+    //Manager choose which one (TeamLeader/TeamMember/Trainee) he wants to ADD EDIT DELETE or VIEW
     public void Role() {
         Trainee.setBounds(100, 100, 200, 50);
         Trainee.setFont(new Font("Serif", Font.BOLD, 20));
@@ -1154,6 +1190,10 @@ public class Frame extends JFrame implements Files {
                 else if (roleState == 3) {
                     F14();
                 }
+                //View
+                else if(roleState==4){
+                    F17();
+                }
             }
             if (e.getSource() == TeamLeader) {
                 //ADD
@@ -1285,6 +1325,7 @@ public class Frame extends JFrame implements Files {
                             int id = Integer.parseInt(fieldList.get(i + 1).getText());
                             int age = Integer.parseInt(fieldList.get(i + 2).getText());
                             listMembers.add(new TeamMember(fieldList.get(i).getText(), id, age, fieldList.get(i + 3).getText(), fieldList.get(i + 4).getText()));
+                            dataTeamMember.add(id+" "+fieldList.get(i).getText());
                         }
                         else if ((!fieldList.get(i).getText().equals("") || !fieldList.get(i + 1).getText().equals("") || !fieldList.get(i + 2).getText().equals("") || !fieldList.get(i + 3).getText().equals("") || !fieldList.get(i + 4).getText().equals(""))) {
                             showMessageDialog(null, "Missing fields.");
@@ -1296,7 +1337,6 @@ public class Frame extends JFrame implements Files {
                         Leader.add(new TeamLeader(LeaderName, LeaderID, LeaderAge, listMembers, LeaderUser, LeaderPass));
                         Files.writeTeamLeader(Leader);
                         showMessageDialog(null, "Successfully Saved");
-                        //ListMembers=dataTeamMember.add()
                         dataTeamLeader.add(LeaderID+" "+LeaderName);
                         getContentPane().removeAll();
                         setSize(800, 800);
@@ -1580,12 +1620,14 @@ public class Frame extends JFrame implements Files {
                     }
                     boolean idcheck = false;
                     for (int i = 0; i < deleteTeamLeader.size(); i++) {
-                        if (deleteTeamLeader.get(i).getTeamMembers().size() == 1) {
-                            showMessageDialog(null, "Cannot delete, minimum amount of team members found...");
-                        } else {
                             for (int j = 0; j < deleteTeamLeader.get(i).getTeamMembers().size(); j++) {
                                 index = j;
                                 if (Integer.parseInt(deleteTeamMemberID.getText()) == deleteTeamLeader.get(i).getTeamMembers().get(j).getId()) {
+                                    if (deleteTeamLeader.get(i).getTeamMembers().size() == 1) {
+                                        showMessageDialog(null, "Cannot delete, minimum amount of team members found...");
+                                        break;
+                                    }
+                                     showMessageDialog(null,"hi");
                                     deleteTeamLeader.get(i).getTeamMembers().remove(deleteTeamLeader.get(i).getTeamMembers().get(j));
                                     showMessageDialog(null, "Successfully deleted");
                                     deleteTeamMemberID.setText("");
@@ -1593,20 +1635,17 @@ public class Frame extends JFrame implements Files {
                                     break;
                                 }
                             }
+                            if (idcheck == true) {
+                                break;
+                            }
                         }
-                        if (idcheck == true) {
-                            break;
-                        }
-                    }
                     if (idcheck == false) {
                         showMessageDialog(null, "Wrong ID...");
                     }
                     Files.writeTeamLeader(deleteTeamLeader);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                } catch (ClassNotFoundException classNotFoundException) {
-                    classNotFoundException.printStackTrace();
                 }
+                catch (IOException ioException) { ioException.printStackTrace();}
+                catch (ClassNotFoundException classNotFoundException) { classNotFoundException.printStackTrace();}
             }
             if (e.getSource() == viewTeamMemberData) {
 
@@ -1785,15 +1824,44 @@ public class Frame extends JFrame implements Files {
                 String password=getrepTlPass.getText();
 
                 try {
-                    deleteTeamLeader=Files.readTeamLeader();
-                    TeamLeader teamLeader=new TeamLeader(Name,Integer.parseInt(id),Integer.parseInt(age),chosenTeamLeader.getTeamMembers(),UserName,password);
-                    deleteTeamLeader.set(indexTeamLeader,teamLeader);
-                    Files.writeTeamLeader(deleteTeamLeader);
-                    showMessageDialog(null,"Successfully Saved");
+                    deleteTeamLeader = Files.readTeamLeader();
+                    boolean check=true;
+                    for (int i = 0; i < deleteTeamLeader.size(); i++) {
+                        if (deleteTeamLeader.get(i).getId() == Integer.parseInt(id)) {
+                            showMessageDialog(null, "ID already exists");
+                            getTlid.setText("");
+                            check = false;
+                        }
+                        else if (deleteTeamLeader.get(i).getUsername().equalsIgnoreCase(UserName)) {
+                            showMessageDialog(null, "Username already exists");
+                            getTlUser.setText("");
+                            check = false;
+                        }
+                    }
+                    if (getrepTlName.getText().equals("") || getrepTlid.getText().equals("") || getrepTlAge.getText().equals("") || getrepTlUser.getText().equals("") || getrepTlPass.getText().equals("")) {
+                        showMessageDialog(null, "There is a Missing Field");
+                        check = false;
+                    }
+                    if(check) {
+                        TeamLeader teamLeader = new TeamLeader(Name, Integer.parseInt(id), Integer.parseInt(age), chosenTeamLeader.getTeamMembers(), UserName, password);
+                        deleteTeamLeader.set(indexTeamLeader, teamLeader);
+                        Files.writeTeamLeader(deleteTeamLeader);
+                        showMessageDialog(null, "Successfully Saved");
+                    }
                 }
                 catch (IOException ioException) { ioException.printStackTrace();}
                 catch (ClassNotFoundException classNotFoundException) { classNotFoundException.printStackTrace();}
             }
+
+
+            ///////////View///////////////////////
+            if(e.getSource()==view){
+                setSize(801, 801);
+                setSize(800, 800);
+                roleState = 4;
+                Role();
+            }
+
         }
     }
 }

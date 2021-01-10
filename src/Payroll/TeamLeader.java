@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Payroll;
 import java.util.*;
-/**
- *
- * @author Mohammed Yasser
- */
+
 public class TeamLeader extends Employees{
     //--------------Data Members-------------//
     private int TeamCapacity=5;

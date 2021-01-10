@@ -5,10 +5,7 @@
  */
 package Payroll;
 
-/**
- *
- * @author Mohammed Yasser
- */
+
 public class Trainee extends Company{
     //--------------Data Members-------------//
     private String facultyName;
