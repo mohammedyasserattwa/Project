@@ -767,13 +767,13 @@ public class Frame extends JFrame implements Files {
 
     }
 
-    //Edit Team Leader
-    JComboBox LeaderCombo;
-    ArrayList<TeamLeader> TeamLeaderList = Files.readTeamLeader();
-    ArrayList<String> dataTeamLeader = new ArrayList();
-    JTextField EditTeamLeaderName = new JTextField(20);
-    JTextField EditTeamLeaderAge = new JTextField(20);
-    JButton EditTeamLeader = new JButton("Submit");
+   //Edit Team Leader
+   JComboBox LeaderCombo;
+   ArrayList<TeamLeader> TeamLeaderList = Files.readTeamLeader();
+   ArrayList<String> dataTeamLeader = new ArrayList();
+   JTextField EditTeamLeaderName = new JTextField(20);
+   JTextField EditTeamLeaderAge = new JTextField(20);
+   JButton EditTeamLeader = new JButton("Submit");
 
     public void F13() {
         JLabel EDITteamLeader = new JLabel("Edit Team Leader ");
@@ -975,13 +975,17 @@ public class Frame extends JFrame implements Files {
 
     //View Trainee data
     public void F17(){//int id, String name, int age, String facultyName, int academicYear, double GPA,String Username, String Password
-        String column[] = {"ID", "Name", "Age","Faculty Name","Academic Year","GPA","Username","Password"};
+        JLabel VIEWteamLeader = new JLabel("View  Trainees ");
+        VIEWteamLeader.setBounds(200, 50, 550, 90);
+        VIEWteamLeader.setFont(new Font("Serif", Font.BOLD, 50));
+        add(VIEWteamLeader);
 
+        String column[] = {"ID", "Name", "Age","Faculty Name","Academic Year","GPA","Salary","Username","Password"};
         try {
             ArrayList<Trainee>viewTraineeData=Files.readTrainee();
             int y=viewTraineeData.size();
             int height = 27;
-            String data[][] = new String[y][8];
+            String data[][] = new String[y][9];
             for (int i=0;i<viewTraineeData.size();i++){
                 data[i][0]=viewTraineeData.get(i).getId()+"";
                 data[i][1]=viewTraineeData.get(i).getName()+"";
@@ -989,16 +993,16 @@ public class Frame extends JFrame implements Files {
                 data[i][3]=viewTraineeData.get(i).getFacultyName()+"";
                 data[i][4]=viewTraineeData.get(i).getAcademicYear()+"";
                 data[i][5]=viewTraineeData.get(i).getGPA()+"";
-                data[i][6]=viewTraineeData.get(i).getUsername()+"";
-                data[i][7]=viewTraineeData.get(i).getPassword()+"";
+                data[i][6]=viewTraineeData.get(i).getSalary()+"";
+                data[i][7]=viewTraineeData.get(i).getUsername()+"";
+                data[i][8]=viewTraineeData.get(i).getPassword()+"";
                 height += 15;
             }
             JTable jt = new JTable(data, column);
             JScrollPane sp = new JScrollPane(jt);
             jt.setRowHeight(15);
-           // JPanel panel = new JPanel();
         int counter = 0;
-        int[] width = {75,75,75,100,100,75,75,75};
+        int[] width = {75,75,75,100,100,75,75,75,75};
         for(int Width:width){
             TableColumn Column = jt.getColumnModel().getColumn(counter++);
             Column.setMinWidth(Width);
@@ -1006,9 +1010,98 @@ public class Frame extends JFrame implements Files {
             Column.setPreferredWidth(Width);
         }
             jt.setFillsViewportHeight(true);
-sp.setBounds(100,300,650,height);
-        add(sp);
-        setPreferredSize(new Dimension(500,height));
+            sp.setBounds(30,300,725,height);
+            add(sp);
+        }
+        catch (IOException e) { e.printStackTrace();}
+        catch (ClassNotFoundException e) { e.printStackTrace();}
+    }
+
+    //View TeamLeader
+    public void F18(){//String name, int id, int age, ArrayList<TeamMember> TeamMembers, String Username,String Password)
+        JLabel VIEWteamLeader = new JLabel("View Team Leaders ");
+        VIEWteamLeader.setBounds(185, 30, 550, 90);
+        VIEWteamLeader.setFont(new Font("Serif", Font.BOLD, 50));
+        add(VIEWteamLeader);
+
+        String column[] = {"ID", "Name", "Age","Salary","Username","Password"};
+        try {
+            ArrayList<TeamLeader>viewTeamLeaderData=Files.readTeamLeader();
+            int y=viewTeamLeaderData.size();
+            int height = 27;
+            String data[][] = new String[y][6];
+            for (int i=0;i<viewTeamLeaderData.size();i++){
+                data[i][0]=viewTeamLeaderData.get(i).getId()+"";
+                data[i][1]=viewTeamLeaderData.get(i).getName()+"";
+                data[i][2]=viewTeamLeaderData.get(i).getAge()+"";
+                data[i][3]=viewTeamLeaderData.get(i).getSalary()+"";
+                data[i][4]=viewTeamLeaderData.get(i).getUsername()+"";
+                data[i][5]=viewTeamLeaderData.get(i).getPassword()+"";
+                height += 15;
+            }
+            JTable jt = new JTable(data, column);
+            JScrollPane sp = new JScrollPane(jt);
+            jt.setRowHeight(15);
+            int counter = 0;
+            int[] width = {75,75,75,75,75,75};
+            for(int Width:width){
+                TableColumn Column = jt.getColumnModel().getColumn(counter++);
+                Column.setMinWidth(Width);
+                Column.setMaxWidth(Width);
+                Column.setPreferredWidth(Width);
+            }
+            jt.setFillsViewportHeight(true);
+            sp.setBounds(190,300,450,height);
+            add(sp);
+        }
+        catch (IOException e) { e.printStackTrace();}
+        catch (ClassNotFoundException e) { e.printStackTrace();}
+    }
+
+    //View TeamMembers
+    public void F19(){//String name, int id, int age, String Username, String Password
+        JLabel VIEWteamLeader = new JLabel("View Team Members ");
+        VIEWteamLeader.setBounds(175, 30, 550, 90);
+        VIEWteamLeader.setFont(new Font("Serif", Font.BOLD, 50));
+        add(VIEWteamLeader);
+
+        String column[] = {"ID", "Name", "Age","Salary","Username","Password"};
+        try {
+            ArrayList<TeamLeader>viewTeamMembers=Files.readTeamLeader();
+            int y=0;
+            for(int i=0;i<viewTeamMembers.size();i++){
+                y+=viewTeamMembers.get(i).getTeamMembers().size();
+            }
+
+            int height = 27;
+            int counter=0;
+            String data[][] = new String[y][6];
+            for(int j=0;j<viewTeamMembers.size();j++) {
+                for (int i = 0; i < viewTeamMembers.get(j).getTeamMembers().size(); i++) {
+                    data[counter][0] = viewTeamMembers.get(j).getTeamMembers().get(i).getId() + "";
+                    data[counter][1] = viewTeamMembers.get(j).getTeamMembers().get(i).getName() + "";
+                    data[counter][2] = viewTeamMembers.get(j).getTeamMembers().get(i).getAge() + "";
+                    data[counter][3] = viewTeamMembers.get(j).getTeamMembers().get(i).getSalary() + "";
+                    data[counter][4] = viewTeamMembers.get(j).getTeamMembers().get(i).getUsername() + "";
+                    data[counter][5] = viewTeamMembers.get(j).getTeamMembers().get(i).getPassword() + "";
+                    height += 15;
+                    counter++;
+                }
+            }
+            JTable jt = new JTable(data, column);
+            JScrollPane sp = new JScrollPane(jt);
+            jt.setRowHeight(15);
+             counter = 0;
+            int[] width = {75,75,75,75,75,75};
+            for(int Width:width){
+                TableColumn Column = jt.getColumnModel().getColumn(counter++);
+                Column.setMinWidth(Width);
+                Column.setMaxWidth(Width);
+                Column.setPreferredWidth(Width);
+            }
+            jt.setFillsViewportHeight(true);
+            sp.setBounds(175,300,450,height);
+            add(sp);
         }
         catch (IOException e) { e.printStackTrace();}
         catch (ClassNotFoundException e) { e.printStackTrace();}
@@ -1228,6 +1321,13 @@ sp.setBounds(100,300,650,height);
                     setSize(800, 800);
                     F16();
                 }
+                //VIEW
+                else if(roleState==4){
+                    getContentPane().removeAll();
+                    setSize(801, 801);
+                    setSize(800, 800);
+                    F18();
+                }
 
             }
             if (e.getSource() == TeamMember) {
@@ -1243,8 +1343,14 @@ sp.setBounds(100,300,650,height);
                 //EDIT
                 else if (roleState == 2) {
                     F12();
-                } else if (roleState == 3) {
+                }
+                //DELETE
+                else if (roleState == 3) {
                     F15();
+                }
+                //VIEW
+                else if(roleState==4){
+                    F19();
                 }
             }
 
