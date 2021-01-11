@@ -2,6 +2,7 @@
 package Payroll;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import java.awt.*;
@@ -22,8 +23,8 @@ public class Frame extends JFrame implements Files {
     JButton teamleader = new JButton("Team Leader & Team Member");
     JButton manager = new JButton("Manager");
     JButton submit = new JButton("Submit");
-    JButton back = new JButton("<--");
-
+    Icon backIcon = new ImageIcon("C:\\Users\\Mohammed Yasser\\Desktop\\MIU\\ProjectFrames\\BackButton.png");
+    JButton back = new JButton(backIcon);
     //Manager
     JButton Trainee = new JButton("Trainee");
     JButton TeamLeader = new JButton("Team Leader");
@@ -44,13 +45,16 @@ public class Frame extends JFrame implements Files {
 
     public Frame() throws IOException, ClassNotFoundException {
         ///////////////////////////////////////////////////////////
-        setTitle("COMPANY");
+        setTitle("COMPANY PAYROLL");
         setSize(800, 800);
         setLocationRelativeTo(null);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+
         ///////////////////////////////////////////////////////////
+        back.setBorderPainted(false);
+        back.setOpaque(false);
 
         welc.setBounds(300, 100, 150, 150);
         welc.setFont(new Font("Serif", Font.ITALIC, 20));
@@ -98,7 +102,7 @@ public class Frame extends JFrame implements Files {
         add(welc);
         add(login);
         add(sign);
-
+        remove(back);
     }
 
     //Second Frame to choose TeamLeader/TeamMember Manager or Trainee
@@ -110,7 +114,8 @@ public class Frame extends JFrame implements Files {
         add(trainee);
         manager.setBounds(515, 400, 100, 50);
         add(manager);
-        back.setBounds(1, 1, 60, 20);
+        back.setBounds(1, 1, 60, 50);
+        back.setBackground(new Color(255,255,255));
         add(back);
         //////////////////
     }
@@ -131,6 +136,8 @@ public class Frame extends JFrame implements Files {
 
         submit.setBounds(330, 500, 90, 50);
         add(submit);
+
+
     }
 
     //Getting TeamLeader data
@@ -719,7 +726,9 @@ public class Frame extends JFrame implements Files {
     JButton EditTeamMember = new JButton("Submit");
     ArrayList<TeamLeader> TeamMemberList = Files.readTeamLeader();
     ArrayList<String> dataTeamMember = new ArrayList();
-
+    JSpinner Hours = new JSpinner(new SpinnerNumberModel(0,0,360,0.5));
+    JSpinner Tax = new JSpinner(new SpinnerNumberModel(0,0,0.25,0.01));
+    JSpinner Pay = new JSpinner(new SpinnerNumberModel(0,0,0.50,0.01));
     public void F12() {
         JLabel EDITteamMember = new JLabel("Edit Team Member ");
         EDITteamMember.setBounds(195, 10, 550, 90);
@@ -753,14 +762,43 @@ public class Frame extends JFrame implements Files {
 
         TeamMembername.setBounds(240, 200, 150, 30);
         add(TeamMembername);
-
+        Font font  = new Font("Serif", Font.BOLD, 20);
         JLabel TeamMemberAge = new JLabel("Age: ");
-        TeamMemberAge.setFont(new Font("Serif", Font.BOLD, 20));
+        TeamMemberAge.setFont(font);
         TeamMemberAge.setBounds(50, 250, 80, 30);
         add(TeamMemberAge);
 
         TeamMemberage.setBounds(240, 250, 150, 30);
         add(TeamMemberage);
+
+        JLabel WorkingHours = new JLabel("Working Hours: ");
+        WorkingHours.setFont(font);
+        WorkingHours.setBounds(50,300,150,30);
+        add(WorkingHours);
+
+
+        Hours.setBounds(240,300,80,30);
+        add(Hours);
+
+
+
+        JLabel TaxRate = new JLabel("Tax-Rate: ");
+        TaxRate.setFont(font);
+        TaxRate.setBounds(50,350,150,30);
+        add(TaxRate);
+
+
+        Tax.setBounds(240,350,80,30);
+        add(Tax);
+
+        JLabel PayRate = new JLabel("Pay-Rate: ");
+        PayRate.setFont(font);
+        PayRate.setBounds(50,400,150,30);
+        add(PayRate);
+
+
+        Pay.setBounds(240,400,80,30);
+        add(Pay);
 
         EditTeamMember.setBounds(350, 600, 100, 50);
         add(EditTeamMember);
@@ -774,7 +812,9 @@ public class Frame extends JFrame implements Files {
    JTextField EditTeamLeaderName = new JTextField(20);
    JTextField EditTeamLeaderAge = new JTextField(20);
    JButton EditTeamLeader = new JButton("Submit");
-
+    JSpinner TeamLeaderHours = new JSpinner(new SpinnerNumberModel(0,0,360,0.5));
+    JSpinner TeamLeaderTax = new JSpinner(new SpinnerNumberModel(0,0,0.75,0.01));
+    JSpinner TeamLeaderPay = new JSpinner(new SpinnerNumberModel(0,0,0.9,0.01));
     public void F13() {
         JLabel EDITteamLeader = new JLabel("Edit Team Leader ");
         EDITteamLeader.setBounds(195, 10, 550, 90);
@@ -811,6 +851,35 @@ public class Frame extends JFrame implements Files {
         TeamLeaderAge.setFont(new Font("Serif", Font.BOLD, 20));
         TeamLeaderAge.setBounds(50, 250, 80, 30);
         add(TeamLeaderAge);
+        Font font = new Font("Serif", Font.BOLD, 20);
+        JLabel WorkingHours = new JLabel("Working Hours: ");
+        WorkingHours.setFont(font);
+        WorkingHours.setBounds(50,300,150,30);
+        add(WorkingHours);
+
+
+        TeamLeaderHours.setBounds(240,300,80,30);
+        add(TeamLeaderHours);
+
+
+
+        JLabel TaxRate = new JLabel("Tax-Rate: ");
+        TaxRate.setFont(font);
+        TaxRate.setBounds(50,350,150,30);
+        add(TaxRate);
+
+
+        TeamLeaderTax.setBounds(240,350,80,30);
+        add(TeamLeaderTax);
+
+        JLabel PayRate = new JLabel("Pay-Rate: ");
+        PayRate.setFont(font);
+        PayRate.setBounds(50,400,150,30);
+        add(PayRate);
+
+
+        TeamLeaderPay.setBounds(240,400,80,30);
+        add(TeamLeaderPay);
 
         EditTeamLeaderAge.setBounds(240, 250, 150, 30);
         add(EditTeamLeaderAge);
@@ -1024,26 +1093,28 @@ public class Frame extends JFrame implements Files {
         VIEWteamLeader.setFont(new Font("Serif", Font.BOLD, 50));
         add(VIEWteamLeader);
 
-        String column[] = {"ID", "Name", "Age","Salary","Username","Password"};
+        String column[] = {"ID", "Name", "Age","Salary","Grade","Username","Password"};
         try {
             ArrayList<TeamLeader>viewTeamLeaderData=Files.readTeamLeader();
             int y=viewTeamLeaderData.size();
             int height = 27;
-            String data[][] = new String[y][6];
+            String data[][] = new String[y][7];
             for (int i=0;i<viewTeamLeaderData.size();i++){
                 data[i][0]=viewTeamLeaderData.get(i).getId()+"";
                 data[i][1]=viewTeamLeaderData.get(i).getName()+"";
                 data[i][2]=viewTeamLeaderData.get(i).getAge()+"";
                 data[i][3]=viewTeamLeaderData.get(i).getSalary()+"";
-                data[i][4]=viewTeamLeaderData.get(i).getUsername()+"";
-                data[i][5]=viewTeamLeaderData.get(i).getPassword()+"";
+                data[i][4]=viewTeamLeaderData.get(i).getGrade(new TeamLeader()) + "";
+                data[i][5]=viewTeamLeaderData.get(i).getUsername()+"";
+                data[i][6]=viewTeamLeaderData.get(i).getPassword()+"";
                 height += 15;
             }
             JTable jt = new JTable(data, column);
             JScrollPane sp = new JScrollPane(jt);
             jt.setRowHeight(15);
             int counter = 0;
-            int[] width = {75,75,75,75,75,75};
+
+            int[] width = {75,75,75,75,75,75,75};
             for(int Width:width){
                 TableColumn Column = jt.getColumnModel().getColumn(counter++);
                 Column.setMinWidth(Width);
@@ -1051,7 +1122,7 @@ public class Frame extends JFrame implements Files {
                 Column.setPreferredWidth(Width);
             }
             jt.setFillsViewportHeight(true);
-            sp.setBounds(190,300,450,height);
+            sp.setBounds(175,300,525,height);
             add(sp);
         }
         catch (IOException e) { e.printStackTrace();}
@@ -1109,6 +1180,7 @@ public class Frame extends JFrame implements Files {
 
     //Manager choose which one (TeamLeader/TeamMember/Trainee) he wants to ADD EDIT DELETE or VIEW
     public void Role() {
+
         Trainee.setBounds(100, 100, 200, 50);
         Trainee.setFont(new Font("Serif", Font.BOLD, 20));
         add(Trainee);
@@ -1134,7 +1206,10 @@ public class Frame extends JFrame implements Files {
         @Override
         public void actionPerformed(ActionEvent e) {
             getContentPane().revalidate();
-
+            JLabel labelUse = new JLabel();
+            labelUse.setBounds(380,35,100,50);
+            labelUse.setFont(new Font("Serif",1,30));
+            add(labelUse);
             /////////////Back Button/////////////
             if (e.getSource() == back) {
                 if (state == 1) {
@@ -1146,20 +1221,33 @@ public class Frame extends JFrame implements Files {
                     F1();
                 }
                 if (state == 2) {
-                    userin.setText("");
-                    passin.setText("");
-                    getContentPane().removeAll();
-                    getContentPane().revalidate();
-                    add(back);
-                    F2();
-                    state--;
+                    if(JOptionPane.showConfirmDialog(null,"Are you sure?","Sign Out", YES_NO_OPTION) == YES_OPTION){
+                        userin.setText("");
+                        passin.setText("");
+                        getContentPane().removeAll();
+                        getContentPane().revalidate();
+                        add(back);
+                        F2();
+                        state--;
+                    }
+                   else{}
                 }
                 if (state == 3) {                                   ///////////////Need to be seen again///////////////////////
                     getContentPane().removeAll();
-                    getContentPane().revalidate();
+                    revalidate();
+                    repaint();
+                    state--;
                     add(back);
-                    F8();
-                    state = 2;
+                    F7();
+
+                }
+                if(state == 4){
+                    getContentPane().removeAll();
+                    revalidate();
+                    repaint();
+                    state--;
+                    add(back);
+                    F16();
                 }
             }
 
@@ -1280,52 +1368,65 @@ public class Frame extends JFrame implements Files {
                 setSize(801, 801);
                 setSize(800, 800);
                 //Add
+                state = 3;
                 if (roleState == 1) {
                     num = 1;
                     add(back);
                     F9();
-                    state = 3;
+
                 }
                 //EDIT
                 else if (roleState == 2) {
+                    add(back);
                     F11();
                 }
                 //Delete
                 else if (roleState == 3) {
+                    add(back);
                     F14();
                 }
                 //View
                 else if(roleState==4){
+                    add(back);
                     F17();
                 }
             }
             if (e.getSource() == TeamLeader) {
                 //ADD
+                state = 3;
                 if (roleState == 1) {
                     num = 2;
+
                     getContentPane().removeAll();
                     setSize(1150, 801);
+                    add(back);
                     F10();
                 }
                 //EDIT
                 else if (roleState == 2) {
+
                     getContentPane().removeAll();
                     setSize(801, 801);
                     setSize(800, 800);
+                    add(back);
                     F13();
                 }
                 //DELETE
                 else if (roleState == 3) {
+
                     getContentPane().removeAll();
                     setSize(801, 801);
                     setSize(800, 800);
+                    add(back);
                     F16();
                 }
                 //VIEW
                 else if(roleState==4){
+
                     getContentPane().removeAll();
                     setSize(801, 801);
                     setSize(800, 800);
+                    add(back);
                     F18();
                 }
 
@@ -1336,28 +1437,40 @@ public class Frame extends JFrame implements Files {
                 setSize(801, 801);
                 setSize(800, 800);
                 //ADD
+                state = 3;
                 if (roleState == 1) {
+                    add(back);
                     F8();
-                    state = 3;
+
                 }
                 //EDIT
                 else if (roleState == 2) {
+                    add(back);
                     F12();
                 }
                 //DELETE
                 else if (roleState == 3) {
+                    add(back);
                     F15();
                 }
                 //VIEW
                 else if(roleState==4){
+                    add(back);
                     F19();
                 }
             }
 
             ////////////Adding////////////////
             if (e.getSource() == Add) {
+                state = 3;
+                getContentPane().removeAll();
+                revalidate();
                 setSize(801, 801);
                 setSize(800, 800);
+                add(back);
+                F7();
+                labelUse.setText("Add");
+                add(labelUse);
                 Role();
                 roleState = 1;
             }
@@ -1522,8 +1635,16 @@ public class Frame extends JFrame implements Files {
 
             ///////////Edit/////////////////
             if (e.getSource() == Edit) {
+                state = 3;
+                getContentPane().removeAll();
+                revalidate();
                 setSize(801, 801);
                 setSize(800, 800);
+                add(back);
+                F7();
+                labelUse.setText("Edit");
+                add(labelUse);
+                revalidate();
                 roleState = 2;
                 Role();
             }
@@ -1586,6 +1707,16 @@ public class Frame extends JFrame implements Files {
                 int TeamMemberAge = (!TeamMemberage.getText().equals("")) ? Integer.parseInt(TeamMemberage.getText()) : chosen.getAge();
                 TeamMember teamMember = new TeamMember(TeamMemberName, chosen.getId(), TeamMemberAge, chosen.getUsername(), chosen.getPassword());
                 TeamMemberList.get(indexL).getTeamMembers().set(indexM, teamMember);
+                boolean CheckHours = ((Double)Hours.getValue() != 0)? true:false;
+                boolean CheckTax = ((Double)Tax.getValue() != 0)?true:false;
+                boolean CheckPay = ((Double)Pay.getValue() != 0)?true:false;
+                    if(CheckHours == true)
+                        TeamMemberList.get(indexL).getTeamMembers().get(indexM).setWorkingHours((Double)Hours.getValue());
+                    if(CheckPay == true)
+                        TeamMemberList.get(indexL).getTeamMembers().get(indexM).setPayRate((Double)Pay.getValue());
+                    if(CheckTax == true)
+                        TeamMemberList.get(indexL).getTeamMembers().get(indexM).setTaxRate((Double)Tax.getValue());
+
                 try {
                     Files.writeTeamLeader(TeamMemberList);
                     showMessageDialog(null, "Successfully Saved.");
@@ -1612,6 +1743,15 @@ public class Frame extends JFrame implements Files {
                 int TeamLeaderAge = (!EditTeamLeaderAge.getText().equals("")) ? Integer.parseInt(EditTeamLeaderAge.getText()) : chosen.getAge();
                 TeamLeader teamLeader = new TeamLeader(TeamLeaderName, chosen.getId(), TeamLeaderAge, chosen.getTeamMembers(), chosen.getUsername(), chosen.getPassword());
                 TeamLeaderList.set(index, teamLeader);
+                boolean CheckHours = ((Double)TeamLeaderHours.getValue() != 0)? true:false;
+                boolean CheckTax = ((Double)TeamLeaderTax.getValue() != 0)?true:false;
+                boolean CheckPay = ((Double)TeamLeaderPay.getValue() != 0)?true:false;
+                    if(CheckHours == true)
+                        TeamLeaderList.get(index).setWorkingHours((Double)TeamLeaderHours.getValue());
+                    if(CheckTax == true)
+                        TeamLeaderList.get(index).setTaxRate((Double)TeamLeaderTax.getValue());
+                    if(CheckPay == true)
+                        TeamLeaderList.get(index).setPayRate((Double)TeamLeaderPay.getValue());
                 try {
                     Files.writeTeamLeader(TeamLeaderList);
                     showMessageDialog(null, "Successfully Saved");
@@ -1625,8 +1765,16 @@ public class Frame extends JFrame implements Files {
 
             /////////////Delete////////////////
             if (e.getSource() == Delete) {
+                state = 3;
+                getContentPane().removeAll();
+                revalidate();
                 setSize(801, 801);
                 setSize(800, 800);
+                add(back);
+                F7();
+                labelUse.setText("Delete");
+                add(labelUse);
+
                 roleState = 3;
                 Role();
             }
@@ -1820,6 +1968,7 @@ public class Frame extends JFrame implements Files {
 
             //Delete Team Leader
             if (e.getSource() == ReplaceTeamLeader) {
+                state = 4;
                 int index;
                 ArrayList<TeamLeader> replaceTeamLeader = new ArrayList<>();
                 try {
@@ -1831,6 +1980,7 @@ public class Frame extends JFrame implements Files {
                         index = i;
                         if (Integer.parseInt(deleteTeamLeaderID.getText()) == replaceTeamLeader.get(i).getId()) {
                             replaceTL();
+                            add(back);
                             break;
                         }
                     }
@@ -1973,8 +2123,15 @@ public class Frame extends JFrame implements Files {
 
             ///////////View///////////////////////
             if(e.getSource()==view){
+                state = 3;
+                getContentPane().removeAll();
+                revalidate();
                 setSize(801, 801);
                 setSize(800, 800);
+                add(back);
+                F7();
+                labelUse.setText("View");
+                add(labelUse);
                 roleState = 4;
                 Role();
             }

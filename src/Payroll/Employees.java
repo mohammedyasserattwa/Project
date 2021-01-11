@@ -23,15 +23,17 @@ public class Employees extends Company{
     }
     //-------------------Getter/Setter-------------------//
     public char getGrade(TeamLeader tl) {
-        setGrade('A');
-        return Grade;
+        if(payRate >= 0.75 && taxRate >= 0.5)
+            return Grade = 'B';
+        else
+            return Grade = 'A';
+
     }
     public char getGrade(TeamMember tl) {
-        setGrade('B');
-        return Grade;
-    }
-    public void setGrade(char Grade) {
-        this.Grade = Grade;
+        if(payRate >= 0.5 && taxRate >= 0.25)
+            return Grade = 'D';
+        else
+            return Grade = 'C';
     }
     public String getPosition() {
         return position;

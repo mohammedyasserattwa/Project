@@ -75,11 +75,11 @@ public class Company implements Serializable, Files{
        Frame frame=new Frame();
 
         //Data for Employees
-        int id,age,academicYear;
-        double GPA;
-        String name,facultyName;
-        int payRate;
-        double taxRate, WorkingHours;
+//        int id,age,academicYear;
+//        double GPA;
+//        String name,facultyName;
+//        int payRate;
+//        double taxRate, WorkingHours;
       //PROTOTYPE DATA//
 //    ArrayList<Trainee> TraineeList=new ArrayList();
 //    TraineeList.add(new Trainee(496,"Ahmed",19,"CS",2020,2.69,"yasser","mohamed"));
