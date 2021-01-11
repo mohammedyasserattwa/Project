@@ -3,6 +3,7 @@ package Payroll;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -979,6 +980,7 @@ public class Frame extends JFrame implements Files {
         try {
             ArrayList<Trainee>viewTraineeData=Files.readTrainee();
             int y=viewTraineeData.size();
+            int height = 27;
             String data[][] = new String[y][8];
             for (int i=0;i<viewTraineeData.size();i++){
                 data[i][0]=viewTraineeData.get(i).getId()+"";
@@ -989,15 +991,24 @@ public class Frame extends JFrame implements Files {
                 data[i][5]=viewTraineeData.get(i).getGPA()+"";
                 data[i][6]=viewTraineeData.get(i).getUsername()+"";
                 data[i][7]=viewTraineeData.get(i).getPassword()+"";
+                height += 15;
             }
             JTable jt = new JTable(data, column);
             JScrollPane sp = new JScrollPane(jt);
-//            DefaultTableModel tableModel = (DefaultTableModel) jt.getModel();
-//            tableModel.fireTableDataChanged();
-            JPanel panel = new JPanel();
-            panel.add(sp);
-            panel.setBounds(150, 300, 500, 150);
-            add(panel);
+            jt.setRowHeight(15);
+           // JPanel panel = new JPanel();
+        int counter = 0;
+        int[] width = {75,75,75,100,100,75,75,75};
+        for(int Width:width){
+            TableColumn Column = jt.getColumnModel().getColumn(counter++);
+            Column.setMinWidth(Width);
+            Column.setMaxWidth(Width);
+            Column.setPreferredWidth(Width);
+        }
+            jt.setFillsViewportHeight(true);
+sp.setBounds(100,300,650,height);
+        add(sp);
+        setPreferredSize(new Dimension(500,height));
         }
         catch (IOException e) { e.printStackTrace();}
         catch (ClassNotFoundException e) { e.printStackTrace();}
