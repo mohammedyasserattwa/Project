@@ -1,6 +1,7 @@
 
 package Payroll;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 public class Frame extends JFrame implements Files {
     //Buttons
     Al al = new Al();
-
+ML ml = new ML();
     JButton login = new JButton("Login");
     JButton sign = new JButton("Sign Up");
     JButton trainee = new JButton("Trainee");
@@ -41,30 +42,36 @@ public class Frame extends JFrame implements Files {
 
     JTextField userin = new JTextField(10);
     JPasswordField passin = new JPasswordField(10);
-    ////////////////////////////
 
+    Font Labelfont = new Font("Serif",0,18);
+    JButton close = new JButton("x");
+    JButton minimize = new JButton("-");
+    Icon i = new ImageIcon("C:\\Users\\Mohammed Yasser\\Desktop\\MIU\\max.png");
+    JButton maximize = new JButton("■");
+    JLabel draggable = new JLabel();
+    Color Purple = new Color(48,34,91);
+    Color LightPurple = new Color(238,223,237);
+
+    ////////////////////////////
+    int mx;
+    int my;
+JLabel image = new JLabel(new ImageIcon(ImageIO.read(new File("signin.png"))));
     public Frame() throws IOException, ClassNotFoundException {
         ///////////////////////////////////////////////////////////
         setTitle("COMPANY PAYROLL");
-        setSize(800, 800);
+        setSize(800, 500);
         setLocationRelativeTo(null);
         setLayout(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        repaint();
+        revalidate();
+        setUndecorated(true);
         setVisible(true);
-
         ///////////////////////////////////////////////////////////
-        back.setBorderPainted(false);
-        back.setOpaque(false);
-
-        welc.setBounds(300, 100, 150, 150);
-        welc.setFont(new Font("Serif", Font.ITALIC, 20));
-        add(welc);
-
-        login.setBounds(100, 400, 150, 40);
-        add(login);
-
-        sign.setBounds(500, 400, 150, 40);
-        add(sign);
+        Buttons(getWidth());
+        repaint();
+        revalidate();
+        F1();
         /////////////////////
 
         login.addActionListener(al);
@@ -93,21 +100,88 @@ public class Frame extends JFrame implements Files {
         SubmitTeamLeader.addActionListener(al);
         viewTeamLeaderData.addActionListener(al);
         view.addActionListener(al);
+        close.addActionListener(al);
+        minimize.addActionListener(al);
+        maximize.addActionListener(al);
+        draggable.addMouseMotionListener(ml);
+        draggable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                mx = e.getX();
+                my = e.getY();
+            }
+        });
+
         /////////////////////
     }
+public void Buttons(int x){
+    back.setBorderPainted(false);
+    back.setOpaque(false);
+    close.setBounds(x-30,0,30,50);
+    close.setBackground(new Color(255,216,148));
+    close.setFont(new Font("arial bold",1,20));
+    close.setForeground(Purple);
+    close.setBorder(BorderFactory.createEmptyBorder());
+    close.setBorderPainted(false);
+    close.setOpaque(false);
+    add(close);
+    repaint();
+    revalidate();
 
+
+    minimize.setBounds(x-90,0,30,50);
+    minimize.setBackground(new Color(42, 25, 82));
+    minimize.setFont(new Font("arial bold",1,20));
+    minimize.setForeground(Purple);
+    minimize.setBorder(BorderFactory.createEmptyBorder());
+    minimize.setBorderPainted(false);
+    minimize.setOpaque(false);
+    add(minimize);
+    repaint();
+    revalidate();
+    maximize.setBounds(x-60,0,30,50);
+    maximize.setBackground(new Color(255,216,148));
+    maximize.setFont(new Font("arial bold",1,20));
+    maximize.setForeground(Purple);
+    maximize.setBorder(BorderFactory.createEmptyBorder());
+    maximize.setBorderPainted(false);
+    maximize.setOpaque(false);
+    add(maximize);
+    repaint();
+    revalidate();
+    draggable.setBounds(60,0,x-90,50);
+    add(draggable);
+}
     //////Welcome Frame//////////
     public void F1() {
-        setSize(801, 801);
-        add(welc);
+
+        setSize(800, 500);
+        setContentPane(image);
+        Buttons(800);
+        login.setBounds(675,440,100,50);
+        login.setText("LOGIN >");
+        login.setBackground(new Color(255,255,255));
+        login.setForeground(Purple);
+        login.setOpaque(false);
+        login.setFont(new Font("Ariel",1,20));
+        login.setBorder(BorderFactory.createEmptyBorder());
         add(login);
-        add(sign);
         remove(back);
     }
 
     //Second Frame to choose TeamLeader/TeamMember Manager or Trainee
     public void F2() {
+
+
         setSize(805, 805);
+
+        Container Back = new Container();
+        Back.setBackground(LightPurple);
+        setBackground(LightPurple);
+        revalidate();
+        repaint();
+        setContentPane(Back);
+        Buttons(805);
         teamleader.setBounds(255, 250, 250, 50);
         add(teamleader);
         trainee.setBounds(160, 400, 100, 50);
@@ -123,13 +197,13 @@ public class Frame extends JFrame implements Files {
     //Entering the Username and Password
     public void F3() {
         username.setBounds(250, 300, 90, 40);
-        username.setFont(new Font("Serif", 20, 18));
+        username.setFont(Labelfont);
         add(username);
         userin.setBounds(350, 305, 140, 30);
         add(userin);
 
         password.setBounds(250, 360, 90, 40);
-        password.setFont(new Font("Serif", 20, 18));
+        password.setFont(Labelfont);
         add(password);
         passin.setBounds(350, 365, 140, 30);
         add(passin);
@@ -149,51 +223,51 @@ public class Frame extends JFrame implements Files {
 
         JLabel viewname = new JLabel("Name:");
         viewname.setBounds(300, 100, 50, 50);
-        viewname.setFont(new Font("Serif", 20, 18));
+        viewname.setFont(Labelfont);
         add(viewname);
         JLabel TlName = new JLabel(chosen.getName());
-        TlName.setFont(new Font("Serif", 20, 18));
+        TlName.setFont(Labelfont);
         TlName.setBounds(360, 100, 100, 50);
         add(TlName);
 
         JLabel ID = new JLabel("ID:");
         ID.setBounds(300, 125, 50, 50);
-        ID.setFont(new Font("Serif", 20, 18));
+        ID.setFont(Labelfont);
         add(ID);
         JLabel Tlid = new JLabel("" + chosen.getId());
-        Tlid.setFont(new Font("Serif", 20, 18));
+        Tlid.setFont(Labelfont);
         Tlid.setBounds(360, 125, 100, 50);
         add(Tlid);
 
         JLabel age = new JLabel("Age: ");
         age.setBounds(300, 150, 50, 50);
-        age.setFont(new Font("Serif", 20, 18));
+        age.setFont(Labelfont);
         add(age);
         JLabel num = new JLabel("" + chosen.getAge());
         num.setBounds(360, 150, 50, 50);
-        num.setFont(new Font("Serif", 20, 18));
+        num.setFont(Labelfont);
         add(num);
 
         JLabel Tcapacity = new JLabel("Team capacity: ");
         Tcapacity.setBounds(300, 175, 150, 50);
-        Tcapacity.setFont(new Font("Serif", 20, 18));
+        Tcapacity.setFont(Labelfont);
         add(Tcapacity);
         JLabel TeamCapacity = new JLabel("" + chosen.getTeamCapacity());
         TeamCapacity.setBounds(430, 175, 50, 50);
-        TeamCapacity.setFont(new Font("Serif", 20, 18));
+        TeamCapacity.setFont(Labelfont);
         add(TeamCapacity);
 
         JLabel salary = new JLabel("Salary: ");
         salary.setBounds(300, 200, 70, 50);
-        salary.setFont(new Font("Serif", 20, 18));
+        salary.setFont(Labelfont);
         add(salary);
         JLabel result = new JLabel("$" + chosen.getSalary());
         result.setBounds(370, 200, 150, 50);
-        result.setFont(new Font("Serif", 20, 18));
+        result.setFont(Labelfont);
         add(result);
         JLabel team = new JLabel("Your Team Members:  ");
         team.setBounds(180, 250, 300, 50);
-        team.setFont(new Font("Serif", 20, 30));
+        team.setFont(Labelfont  );
         add(team);
 
 
@@ -1193,6 +1267,16 @@ public class Frame extends JFrame implements Files {
         TeamMember.setFont(new Font("Serif", Font.BOLD, 20));
         add(TeamMember);
     }
+    //Mouse Listener
+    public class ML extends MouseMotionAdapter{
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            int coordinateX = e.getXOnScreen();
+            int coordinateY = e.getYOnScreen();
+            setLocation(coordinateX-mx-60,coordinateY-my);
+            revalidate();
+        }
+    }
 
     //Deleting TeamLeader
     TeamLeader chosenTeamLeader = new TeamLeader();
@@ -1457,6 +1541,22 @@ public class Frame extends JFrame implements Files {
                 else if(roleState==4){
                     add(back);
                     F19();
+                }
+            }
+            //Tool Buttons//
+            if(e.getSource() == close){
+                System.exit(0);
+            }
+            //minimize button
+            if(e.getSource() == minimize){
+                setState(ICONIFIED);
+            }
+            //maximize button
+            if(e.getSource() == maximize){
+                if (getExtendedState() == MAXIMIZED_BOTH) {
+                    setExtendedState(NORMAL);
+                } else {
+                    setExtendedState(MAXIMIZED_BOTH);
                 }
             }
 
