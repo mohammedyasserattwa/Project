@@ -1,6 +1,8 @@
 
 package Payroll;
 
+import javafx.scene.effect.Light;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -23,7 +25,7 @@ public class Frame extends JFrame implements Files {
     JButton trainee = new JButton("Trainee");
     JButton teamleader = new JButton("Team Leader & Team Member");
     JButton manager = new JButton("Manager");
-    JButton submit = new JButton("Submit");
+    JButton submit = new JButton("submit");
     Icon backIcon = new ImageIcon("BackButton.png");
     JButton back = new JButton(backIcon);
     //Manager
@@ -170,37 +172,40 @@ public class Frame extends JFrame implements Files {
     }
 
     //Second Frame to choose TeamLeader/TeamMember Manager or Trainee
+    JLabel im = new JLabel(new ImageIcon(ImageIO.read(new File("login.png"))));
     public void F2() {
 
 
         setSize(805, 500);
-
+        setContentPane(im);
         Container Back = new Container();
         Back.setBackground(LightPurple);
-        setBackground(LightPurple);
         revalidate();
         repaint();
-        setContentPane(Back);
+
         JLabel info = new JLabel("Pick your position");
         info.setForeground(new Color(80,77,77));
-        info.setFont(new Font("Myraid Pro",0,40));
-        info.setBounds(75,100,350,100);
+        info.setFont(new Font("Myraid Pro",0,20));
+        info.setBounds(325,90,350,100);
         add(info);
         Buttons(805);
-        teamleader.setBounds(230, 225, 350, 50);
+        teamleader.setBounds(278, 225, 250, 30);
         teamleader.setBackground(new Color(243,240,247));
-        teamleader.setForeground(new Color(80,77,77));
-        teamleader.setFont(new Font("Myraid Pro",0,20));
+        teamleader.setOpaque(false);
+        teamleader.setForeground(Color.WHITE);
+        teamleader.setFont(new Font("Myraid Pro",0,15));
         add(teamleader);
-        trainee.setBounds(160, 350, 150, 50);
+        trainee.setBounds(278, 280, 250, 30);
         trainee.setBackground(new Color(243,240,247));
-        trainee.setFont(new Font("Myraid Pro",0,20));
-        trainee.setForeground(new Color(80,77,77));
+        trainee.setOpaque(false);
+        trainee.setFont(new Font("Myraid Pro",0,15));
+        trainee.setForeground(Color.WHITE);
         add(trainee);
-        manager.setBounds(515, 350, 150, 50);
+        manager.setBounds(278, 335, 250, 30);
         manager.setBackground(new Color(243,240,247));
-        manager.setFont(new Font("Myraid Pro",0,20));
-        manager.setForeground(new Color(80,77,77));
+        manager.setOpaque(false);
+        manager.setFont(new Font("Myraid Pro",0,15));
+        manager.setForeground(Color.WHITE);
         add(manager);
         back.setBounds(1, 1, 60, 50);
         back.setBackground(new Color(255,255,255));
@@ -209,22 +214,31 @@ public class Frame extends JFrame implements Files {
     }
 
     //Entering the Username and Password
+    JLabel image1 = new JLabel(new ImageIcon(ImageIO.read(new File("username.png"))));
     public void F3() {
+        setSize(800,500);
+        setContentPane(image1);
         Buttons(800);
-        username.setBounds(250, 300, 100, 40);
-        username.setFont(new Font("Myraid Pro",0,20));
-        add(username);
-        userin.setBounds(375, 310, 150, 30);
+
+        userin.setBounds(375, 240, 120, 20);
         userin.setFont(new Font("Myraid Pro",0,15));
+        userin.setBackground(LightPurple);
+        userin.setForeground(Purple);
+        userin.setBorder(BorderFactory.createEmptyBorder());
         add(userin);
 
-        password.setBounds(250, 380, 150, 40);
-        password.setFont(new Font("Myraid Pro",0,20));
-        add(password);
-        passin.setBounds(375, 390, 150, 30);
+
+        passin.setBounds(375, 290, 120, 20);
+        passin.setFont(new Font("Myraid Pro",0,15));
+        passin.setBackground(LightPurple);
+        passin.setForeground(Purple);
+        passin.setBorder(BorderFactory.createEmptyBorder());
         add(passin);
 
-        submit.setBounds(345, 500, 90, 50);
+        submit.setBounds(355, 345, 90, 25);
+        submit.setBackground(LightPurple);
+        submit.setForeground(Purple);
+        submit.setFont(new Font("arial",0,15));
         add(submit);
 
 
@@ -232,6 +246,7 @@ public class Frame extends JFrame implements Files {
 
     //Getting TeamLeader data
     public void F4(TeamLeader chosen) {
+        setSize(800,800);
         Buttons(800);
         JLabel AccountInfo = new JLabel("Account Info ");
         AccountInfo.setBounds(25, 15, 300, 100);
@@ -306,6 +321,7 @@ public class Frame extends JFrame implements Files {
 
     //Getting TeamMember data
     public void F5(TeamMember chosen) throws IOException, ClassNotFoundException {
+        setSize(800,800);
         Buttons(800);
         JLabel AccountInfo = new JLabel("Account Info ");
         AccountInfo.setBounds(25, 15, 300, 100);
@@ -372,6 +388,7 @@ public class Frame extends JFrame implements Files {
 
     //Getting Trainee data
     public void F6(Trainee chosen) {
+        setSize(800,800);
         Buttons(800);
         JLabel AccountInfo = new JLabel("Account Info ");
         AccountInfo.setBounds(25, 15, 300, 100);
@@ -450,6 +467,7 @@ public class Frame extends JFrame implements Files {
 
     //3 Buttons to choose whether to ADD EDIT or DELETE
     public void F7() {
+        setSize(800,800);
         Buttons(800);
         //Set bounds for left buttons
         Add.setBounds(150, 150, 150, 100);
@@ -1408,8 +1426,7 @@ public class Frame extends JFrame implements Files {
 
             }
             if (e.getSource() == submit) {
-                setSize(801, 801);
-                setSize(800, 800);
+
                 Company x = new Company();
                 if (select == 1) {
                     try {
@@ -1417,9 +1434,13 @@ public class Frame extends JFrame implements Files {
 
                         if (chosen == null) {
                             showMessageDialog(null, "Incorrect Username or Password.");
-
+                            setSize(800,500);
                         } else {
                             getContentPane().removeAll();
+                            JLabel l = new JLabel();
+                            l.setBackground(LightPurple);
+                            setContentPane(l);
+                            setSize(800,800);
                             add(back);
                             if (chosen instanceof TeamLeader) {
                                 TeamLeader j = (TeamLeader) chosen;
@@ -1448,6 +1469,9 @@ public class Frame extends JFrame implements Files {
 
                         } else {
                             getContentPane().removeAll();
+                            JLabel l = new JLabel();
+                            l.setBackground(LightPurple);
+                            setContentPane(l);
                             add(back);
                             F7();
                         }
@@ -1467,6 +1491,10 @@ public class Frame extends JFrame implements Files {
                             passin.setText("");
                         } else {
                             getContentPane().removeAll();
+                            JLabel l = new JLabel();
+                            l.setBackground(LightPurple);
+                            setContentPane(l);
+                            setSize(800,800);
                             add(back);
                             F6(chosen);
                         }
