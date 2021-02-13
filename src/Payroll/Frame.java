@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Frame extends JFrame implements Files {
     //Buttons
     Al al = new Al();
-ML ml = new ML();
+    ML ml = new ML();
     JButton login = new JButton("Login");
     JButton sign = new JButton("Sign Up");
     JButton trainee = new JButton("Trainee");
@@ -55,7 +55,7 @@ ML ml = new ML();
     ////////////////////////////
     int mx;
     int my;
-JLabel image = new JLabel(new ImageIcon(ImageIO.read(new File("signin.png"))));
+    JLabel image = new JLabel(new ImageIcon(ImageIO.read(new File("signin.png"))));
     public Frame() throws IOException, ClassNotFoundException {
         ///////////////////////////////////////////////////////////
         setTitle("COMPANY PAYROLL");
@@ -114,44 +114,44 @@ JLabel image = new JLabel(new ImageIcon(ImageIO.read(new File("signin.png"))));
 
         /////////////////////
     }
-public void Buttons(int x){
-    back.setBorderPainted(false);
-    back.setOpaque(false);
-    close.setBounds(x-30,0,30,50);
-    close.setBackground(new Color(255,216,148));
-    close.setFont(new Font("arial bold",1,20));
-    close.setForeground(Purple);
-    close.setBorder(BorderFactory.createEmptyBorder());
-    close.setBorderPainted(false);
-    close.setOpaque(false);
-    add(close);
-    repaint();
-    revalidate();
+    public void Buttons(int x){
+        back.setBorderPainted(false);
+        back.setOpaque(false);
+        close.setBounds(x-30,0,30,50);
+        close.setBackground(new Color(255,216,148));
+        close.setFont(new Font("arial bold",1,20));
+        close.setForeground(Purple);
+        close.setBorder(BorderFactory.createEmptyBorder());
+        close.setBorderPainted(false);
+        close.setOpaque(false);
+        add(close);
+        repaint();
+        revalidate();
 
 
-    minimize.setBounds(x-90,0,30,50);
-    minimize.setBackground(new Color(42, 25, 82));
-    minimize.setFont(new Font("arial bold",1,20));
-    minimize.setForeground(Purple);
-    minimize.setBorder(BorderFactory.createEmptyBorder());
-    minimize.setBorderPainted(false);
-    minimize.setOpaque(false);
-    add(minimize);
-    repaint();
-    revalidate();
-    maximize.setBounds(x-60,0,30,50);
-    maximize.setBackground(new Color(255,216,148));
-    maximize.setFont(new Font("arial bold",1,20));
-    maximize.setForeground(Purple);
-    maximize.setBorder(BorderFactory.createEmptyBorder());
-    maximize.setBorderPainted(false);
-    maximize.setOpaque(false);
-    add(maximize);
-    repaint();
-    revalidate();
-    draggable.setBounds(60,0,x-90,50);
-    add(draggable);
-}
+        minimize.setBounds(x-90,0,30,50);
+        minimize.setBackground(new Color(42, 25, 82));
+        minimize.setFont(new Font("arial bold",1,20));
+        minimize.setForeground(Purple);
+        minimize.setBorder(BorderFactory.createEmptyBorder());
+        minimize.setBorderPainted(false);
+        minimize.setOpaque(false);
+        add(minimize);
+        repaint();
+        revalidate();
+        maximize.setBounds(x-60,0,30,50);
+        maximize.setBackground(new Color(255,216,148));
+        maximize.setFont(new Font("arial bold",1,20));
+        maximize.setForeground(Purple);
+        maximize.setBorder(BorderFactory.createEmptyBorder());
+        maximize.setBorderPainted(false);
+        maximize.setOpaque(false);
+        add(maximize);
+        repaint();
+        revalidate();
+        draggable.setBounds(60,0,x-90,50);
+        add(draggable);
+    }
     //////Welcome Frame//////////
     public void F1() {
 
@@ -173,7 +173,7 @@ public void Buttons(int x){
     public void F2() {
 
 
-        setSize(805, 805);
+        setSize(805, 500);
 
         Container Back = new Container();
         Back.setBackground(LightPurple);
@@ -181,12 +181,26 @@ public void Buttons(int x){
         revalidate();
         repaint();
         setContentPane(Back);
+        JLabel info = new JLabel("Pick your position");
+        info.setForeground(new Color(80,77,77));
+        info.setFont(new Font("Myraid Pro",0,40));
+        info.setBounds(75,100,350,100);
+        add(info);
         Buttons(805);
-        teamleader.setBounds(255, 250, 250, 50);
+        teamleader.setBounds(230, 225, 350, 50);
+        teamleader.setBackground(new Color(243,240,247));
+        teamleader.setForeground(new Color(80,77,77));
+        teamleader.setFont(new Font("Myraid Pro",0,20));
         add(teamleader);
-        trainee.setBounds(160, 400, 100, 50);
+        trainee.setBounds(160, 350, 150, 50);
+        trainee.setBackground(new Color(243,240,247));
+        trainee.setFont(new Font("Myraid Pro",0,20));
+        trainee.setForeground(new Color(80,77,77));
         add(trainee);
-        manager.setBounds(515, 400, 100, 50);
+        manager.setBounds(515, 350, 150, 50);
+        manager.setBackground(new Color(243,240,247));
+        manager.setFont(new Font("Myraid Pro",0,20));
+        manager.setForeground(new Color(80,77,77));
         add(manager);
         back.setBounds(1, 1, 60, 50);
         back.setBackground(new Color(255,255,255));
@@ -196,19 +210,21 @@ public void Buttons(int x){
 
     //Entering the Username and Password
     public void F3() {
-        username.setBounds(250, 300, 90, 40);
-        username.setFont(Labelfont);
+        Buttons(800);
+        username.setBounds(250, 300, 100, 40);
+        username.setFont(new Font("Myraid Pro",0,20));
         add(username);
-        userin.setBounds(350, 305, 140, 30);
+        userin.setBounds(375, 310, 150, 30);
+        userin.setFont(new Font("Myraid Pro",0,15));
         add(userin);
 
-        password.setBounds(250, 360, 90, 40);
-        password.setFont(Labelfont);
+        password.setBounds(250, 380, 150, 40);
+        password.setFont(new Font("Myraid Pro",0,20));
         add(password);
-        passin.setBounds(350, 365, 140, 30);
+        passin.setBounds(375, 390, 150, 30);
         add(passin);
 
-        submit.setBounds(330, 500, 90, 50);
+        submit.setBounds(345, 500, 90, 50);
         add(submit);
 
 
@@ -216,6 +232,7 @@ public void Buttons(int x){
 
     //Getting TeamLeader data
     public void F4(TeamLeader chosen) {
+        Buttons(800);
         JLabel AccountInfo = new JLabel("Account Info ");
         AccountInfo.setBounds(25, 15, 300, 100);
         AccountInfo.setFont(new Font("Serif", Font.BOLD, 40));
@@ -289,6 +306,7 @@ public void Buttons(int x){
 
     //Getting TeamMember data
     public void F5(TeamMember chosen) throws IOException, ClassNotFoundException {
+        Buttons(800);
         JLabel AccountInfo = new JLabel("Account Info ");
         AccountInfo.setBounds(25, 15, 300, 100);
         AccountInfo.setFont(new Font("Serif", Font.BOLD, 40));
@@ -354,6 +372,7 @@ public void Buttons(int x){
 
     //Getting Trainee data
     public void F6(Trainee chosen) {
+        Buttons(800);
         JLabel AccountInfo = new JLabel("Account Info ");
         AccountInfo.setBounds(25, 15, 300, 100);
         AccountInfo.setFont(new Font("Serif", Font.BOLD, 40));
@@ -431,14 +450,15 @@ public void Buttons(int x){
 
     //3 Buttons to choose whether to ADD EDIT or DELETE
     public void F7() {
+        Buttons(800);
         //Set bounds for left buttons
-        Add.setBounds(0, 230, 150, 100);
+        Add.setBounds(150, 150, 150, 100);
         Add.setFont(new Font("Serif", Font.BOLD, 30));
-        Edit.setBounds(0, 330, 150, 100);
+        Edit.setBounds(500, 150, 150, 100);
         Edit.setFont(new Font("Serif", Font.BOLD, 30));
-        Delete.setBounds(0, 430, 150, 100);
+        Delete.setBounds(150, 350, 150, 100);
         Delete.setFont(new Font("Serif", Font.BOLD, 30));
-        view.setBounds(0, 530, 150, 100);
+        view.setBounds(500, 350, 150, 100);
         view.setFont(new Font("Serif", Font.BOLD, 30));
         add(Add);
         add(Edit);
@@ -462,6 +482,7 @@ public void Buttons(int x){
     JButton SubButton = new JButton("Submit");
 
     public void F8() {
+        Buttons(800);
         JLabel TmName = new JLabel("Add Team Member  ");
         TmName.setBounds(150, 30, 460, 100);
         TmName.setFont(new Font("Serif", Font.BOLD, 50));
@@ -531,6 +552,7 @@ public void Buttons(int x){
     JButton TraineeSubmit = new JButton("Submit");
 
     public void F9() {
+        Buttons(800);
         JLabel TraineeName = new JLabel("Add Trainee  ");
         TraineeName.setBounds(300, 30, 400, 100);
         TraineeName.setFont(new Font("Serif", Font.BOLD, 50));
@@ -615,6 +637,7 @@ public void Buttons(int x){
     ArrayList<JTextField> fieldList = new ArrayList<>();
 
     public void F10() {
+        Buttons(1150);
         JLabel TeamLeader = new JLabel("Add Team Leader  ");
         TeamLeader.setBounds(400, 30, 430, 100);
         TeamLeader.setFont(new Font("Serif", Font.BOLD, 50));
@@ -726,6 +749,7 @@ public void Buttons(int x){
     ArrayList<String> data = new ArrayList();
 
     public void F11() {
+        Buttons(800);
         JLabel EDITtrainee = new JLabel("Edit Trainee ");
         EDITtrainee.setBounds(225, 10, 430, 90);
         EDITtrainee.setFont(new Font("Serif", Font.BOLD, 50));
@@ -804,6 +828,7 @@ public void Buttons(int x){
     JSpinner Tax = new JSpinner(new SpinnerNumberModel(0,0,0.25,0.01));
     JSpinner Pay = new JSpinner(new SpinnerNumberModel(0,0,0.50,0.01));
     public void F12() {
+        Buttons(800);
         JLabel EDITteamMember = new JLabel("Edit Team Member ");
         EDITteamMember.setBounds(195, 10, 550, 90);
         EDITteamMember.setFont(new Font("Serif", Font.BOLD, 50));
@@ -879,17 +904,18 @@ public void Buttons(int x){
 
     }
 
-   //Edit Team Leader
-   JComboBox LeaderCombo;
-   ArrayList<TeamLeader> TeamLeaderList = Files.readTeamLeader();
-   ArrayList<String> dataTeamLeader = new ArrayList();
-   JTextField EditTeamLeaderName = new JTextField(20);
-   JTextField EditTeamLeaderAge = new JTextField(20);
-   JButton EditTeamLeader = new JButton("Submit");
+    //Edit Team Leader
+    JComboBox LeaderCombo;
+    ArrayList<TeamLeader> TeamLeaderList = Files.readTeamLeader();
+    ArrayList<String> dataTeamLeader = new ArrayList();
+    JTextField EditTeamLeaderName = new JTextField(20);
+    JTextField EditTeamLeaderAge = new JTextField(20);
+    JButton EditTeamLeader = new JButton("Submit");
     JSpinner TeamLeaderHours = new JSpinner(new SpinnerNumberModel(0,0,360,0.5));
     JSpinner TeamLeaderTax = new JSpinner(new SpinnerNumberModel(0,0,0.75,0.01));
     JSpinner TeamLeaderPay = new JSpinner(new SpinnerNumberModel(0,0,0.9,0.01));
     public void F13() {
+        Buttons(800);
         JLabel EDITteamLeader = new JLabel("Edit Team Leader ");
         EDITteamLeader.setBounds(195, 10, 550, 90);
         EDITteamLeader.setFont(new Font("Serif", Font.BOLD, 50));
@@ -968,6 +994,7 @@ public void Buttons(int x){
     JTextField deleteID = new JTextField(20);
 
     public void F14() {
+        Buttons(800);
         JLabel DELETEtrainee = new JLabel("Delete Trainee ");
         DELETEtrainee.setBounds(225, 30, 430, 100);
         DELETEtrainee.setFont(new Font("Serif", Font.BOLD, 50));
@@ -996,6 +1023,7 @@ public void Buttons(int x){
     JTextField deleteTeamMemberID = new JTextField(20);
 
     public void F15() {
+        Buttons(800);
         JLabel DELETETeamMember = new JLabel("Delete Team Member ");
         DELETETeamMember.setBounds(185, 10, 550, 90);
         DELETETeamMember.setFont(new Font("Serif", Font.BOLD, 50));
@@ -1024,6 +1052,7 @@ public void Buttons(int x){
     JTextField deleteTeamLeaderID = new JTextField(20);
 
     public void F16() {
+        Buttons(800);
         JLabel DELETETeamLeader = new JLabel("Delete & Replace Team Leader  ");
         DELETETeamLeader.setBounds(200, 30, 520, 100);
         DELETETeamLeader.setFont(new Font("Serif", Font.BOLD, 30));
@@ -1064,6 +1093,7 @@ public void Buttons(int x){
         getContentPane().revalidate();
         setSize(801, 801);
         setSize(800, 800);
+        Buttons(800);
         JLabel replacedTeamLeader = new JLabel("Replace Team Leader  ");
         replacedTeamLeader.setBounds(215, 30, 520, 100);
         replacedTeamLeader.setFont(new Font("Serif", Font.BOLD, 30));
@@ -1118,6 +1148,7 @@ public void Buttons(int x){
 
     //View Trainee data
     public void F17(){//int id, String name, int age, String facultyName, int academicYear, double GPA,String Username, String Password
+        Buttons(800);
         JLabel VIEWteamLeader = new JLabel("View  Trainees ");
         VIEWteamLeader.setBounds(200, 50, 550, 90);
         VIEWteamLeader.setFont(new Font("Serif", Font.BOLD, 50));
@@ -1144,14 +1175,14 @@ public void Buttons(int x){
             JTable jt = new JTable(data, column);
             JScrollPane sp = new JScrollPane(jt);
             jt.setRowHeight(15);
-        int counter = 0;
-        int[] width = {75,75,75,100,100,75,75,75,75};
-        for(int Width:width){
-            TableColumn Column = jt.getColumnModel().getColumn(counter++);
-            Column.setMinWidth(Width);
-            Column.setMaxWidth(Width);
-            Column.setPreferredWidth(Width);
-        }
+            int counter = 0;
+            int[] width = {75,75,75,100,100,75,75,75,75};
+            for(int Width:width){
+                TableColumn Column = jt.getColumnModel().getColumn(counter++);
+                Column.setMinWidth(Width);
+                Column.setMaxWidth(Width);
+                Column.setPreferredWidth(Width);
+            }
             jt.setFillsViewportHeight(true);
             sp.setBounds(30,300,725,height);
             add(sp);
@@ -1162,6 +1193,7 @@ public void Buttons(int x){
 
     //View TeamLeader
     public void F18(){//String name, int id, int age, ArrayList<TeamMember> TeamMembers, String Username,String Password)
+        Buttons(800);
         JLabel VIEWteamLeader = new JLabel("View Team Leaders ");
         VIEWteamLeader.setBounds(185, 30, 550, 90);
         VIEWteamLeader.setFont(new Font("Serif", Font.BOLD, 50));
@@ -1205,6 +1237,7 @@ public void Buttons(int x){
 
     //View TeamMembers
     public void F19(){//String name, int id, int age, String Username, String Password
+        Buttons(800);
         JLabel VIEWteamLeader = new JLabel("View Team Members ");
         VIEWteamLeader.setBounds(175, 30, 550, 90);
         VIEWteamLeader.setFont(new Font("Serif", Font.BOLD, 50));
@@ -1236,7 +1269,7 @@ public void Buttons(int x){
             JTable jt = new JTable(data, column);
             JScrollPane sp = new JScrollPane(jt);
             jt.setRowHeight(15);
-             counter = 0;
+            counter = 0;
             int[] width = {75,75,75,75,75,75};
             for(int Width:width){
                 TableColumn Column = jt.getColumnModel().getColumn(counter++);
@@ -1254,16 +1287,15 @@ public void Buttons(int x){
 
     //Manager choose which one (TeamLeader/TeamMember/Trainee) he wants to ADD EDIT DELETE or VIEW
     public void Role() {
-
-        Trainee.setBounds(100, 100, 200, 50);
+        Trainee.setBounds(100, 600, 200, 50);
         Trainee.setFont(new Font("Serif", Font.BOLD, 20));
         add(Trainee);
 
-        TeamLeader.setBounds(310, 100, 200, 50);
+        TeamLeader.setBounds(310, 600, 200, 50);
         TeamLeader.setFont(new Font("Serif", Font.BOLD, 20));
         add(TeamLeader);
 
-        TeamMember.setBounds(520, 100, 200, 50);
+        TeamMember.setBounds(520, 600, 200, 50);
         TeamMember.setFont(new Font("Serif", Font.BOLD, 20));
         add(TeamMember);
     }
@@ -1291,7 +1323,7 @@ public void Buttons(int x){
         public void actionPerformed(ActionEvent e) {
             getContentPane().revalidate();
             JLabel labelUse = new JLabel();
-            labelUse.setBounds(380,35,100,50);
+            labelUse.setBounds(380,510,100,50);
             labelUse.setFont(new Font("Serif",1,30));
             add(labelUse);
             /////////////Back Button/////////////
@@ -1314,10 +1346,11 @@ public void Buttons(int x){
                         F2();
                         state--;
                     }
-                   else{}
+                    else{}
                 }
-                if (state == 3) {                                   ///////////////Need to be seen again///////////////////////
+                if (state == 3) {
                     getContentPane().removeAll();
+                    setSize(800,800);
                     revalidate();
                     repaint();
                     state--;
@@ -1569,7 +1602,7 @@ public void Buttons(int x){
                 setSize(800, 800);
                 add(back);
                 F7();
-                labelUse.setText("Add");
+                labelUse.setText("Add...");
                 add(labelUse);
                 Role();
                 roleState = 1;
@@ -1742,7 +1775,7 @@ public void Buttons(int x){
                 setSize(800, 800);
                 add(back);
                 F7();
-                labelUse.setText("Edit");
+                labelUse.setText("Edit...");
                 add(labelUse);
                 revalidate();
                 roleState = 2;
@@ -1810,12 +1843,12 @@ public void Buttons(int x){
                 boolean CheckHours = ((Double)Hours.getValue() != 0)? true:false;
                 boolean CheckTax = ((Double)Tax.getValue() != 0)?true:false;
                 boolean CheckPay = ((Double)Pay.getValue() != 0)?true:false;
-                    if(CheckHours == true)
-                        TeamMemberList.get(indexL).getTeamMembers().get(indexM).setWorkingHours((Double)Hours.getValue());
-                    if(CheckPay == true)
-                        TeamMemberList.get(indexL).getTeamMembers().get(indexM).setPayRate((Double)Pay.getValue());
-                    if(CheckTax == true)
-                        TeamMemberList.get(indexL).getTeamMembers().get(indexM).setTaxRate((Double)Tax.getValue());
+                if(CheckHours == true)
+                    TeamMemberList.get(indexL).getTeamMembers().get(indexM).setWorkingHours((Double)Hours.getValue());
+                if(CheckPay == true)
+                    TeamMemberList.get(indexL).getTeamMembers().get(indexM).setPayRate((Double)Pay.getValue());
+                if(CheckTax == true)
+                    TeamMemberList.get(indexL).getTeamMembers().get(indexM).setTaxRate((Double)Tax.getValue());
 
                 try {
                     Files.writeTeamLeader(TeamMemberList);
@@ -1846,12 +1879,12 @@ public void Buttons(int x){
                 boolean CheckHours = ((Double)TeamLeaderHours.getValue() != 0)? true:false;
                 boolean CheckTax = ((Double)TeamLeaderTax.getValue() != 0)?true:false;
                 boolean CheckPay = ((Double)TeamLeaderPay.getValue() != 0)?true:false;
-                    if(CheckHours == true)
-                        TeamLeaderList.get(index).setWorkingHours((Double)TeamLeaderHours.getValue());
-                    if(CheckTax == true)
-                        TeamLeaderList.get(index).setTaxRate((Double)TeamLeaderTax.getValue());
-                    if(CheckPay == true)
-                        TeamLeaderList.get(index).setPayRate((Double)TeamLeaderPay.getValue());
+                if(CheckHours == true)
+                    TeamLeaderList.get(index).setWorkingHours((Double)TeamLeaderHours.getValue());
+                if(CheckTax == true)
+                    TeamLeaderList.get(index).setTaxRate((Double)TeamLeaderTax.getValue());
+                if(CheckPay == true)
+                    TeamLeaderList.get(index).setPayRate((Double)TeamLeaderPay.getValue());
                 try {
                     Files.writeTeamLeader(TeamLeaderList);
                     showMessageDialog(null, "Successfully Saved");
@@ -1872,7 +1905,7 @@ public void Buttons(int x){
                 setSize(800, 800);
                 add(back);
                 F7();
-                labelUse.setText("Delete");
+                labelUse.setText("Delete...");
                 add(labelUse);
 
                 roleState = 3;
@@ -1985,25 +2018,25 @@ public void Buttons(int x){
                     }
                     boolean idcheck = false;
                     for (int i = 0; i < deleteTeamLeader.size(); i++) {
-                            for (int j = 0; j < deleteTeamLeader.get(i).getTeamMembers().size(); j++) {
-                                index = j;
-                                if (Integer.parseInt(deleteTeamMemberID.getText()) == deleteTeamLeader.get(i).getTeamMembers().get(j).getId()) {
-                                    if (deleteTeamLeader.get(i).getTeamMembers().size() == 1) {
-                                        showMessageDialog(null, "Cannot delete, minimum amount of team members found...");
-                                        break;
-                                    }
-                                     showMessageDialog(null,"hi");
-                                    deleteTeamLeader.get(i).getTeamMembers().remove(deleteTeamLeader.get(i).getTeamMembers().get(j));
-                                    showMessageDialog(null, "Successfully deleted");
-                                    deleteTeamMemberID.setText("");
-                                    idcheck = true;
+                        for (int j = 0; j < deleteTeamLeader.get(i).getTeamMembers().size(); j++) {
+                            index = j;
+                            if (Integer.parseInt(deleteTeamMemberID.getText()) == deleteTeamLeader.get(i).getTeamMembers().get(j).getId()) {
+                                if (deleteTeamLeader.get(i).getTeamMembers().size() == 1) {
+                                    showMessageDialog(null, "Cannot delete, minimum amount of team members found...");
                                     break;
                                 }
-                            }
-                            if (idcheck == true) {
+                                showMessageDialog(null,"hi");
+                                deleteTeamLeader.get(i).getTeamMembers().remove(deleteTeamLeader.get(i).getTeamMembers().get(j));
+                                showMessageDialog(null, "Successfully deleted");
+                                deleteTeamMemberID.setText("");
+                                idcheck = true;
                                 break;
                             }
                         }
+                        if (idcheck == true) {
+                            break;
+                        }
+                    }
                     if (idcheck == false) {
                         showMessageDialog(null, "Wrong ID...");
                     }
@@ -2099,7 +2132,7 @@ public void Buttons(int x){
                 getContentPane().revalidate();
                 int n=0;
                 //ArrayList<TeamLeader> deleteTeamLeader = new ArrayList<>();
-              //  TeamLeader chosen = new TeamLeader();
+                //  TeamLeader chosen = new TeamLeader();
                 if (deleteTeamLeaderID.getText().equals("")) {
                     showMessageDialog(null, "Missing ID...");
                 }
@@ -2230,7 +2263,7 @@ public void Buttons(int x){
                 setSize(800, 800);
                 add(back);
                 F7();
-                labelUse.setText("View");
+                labelUse.setText("View...");
                 add(labelUse);
                 roleState = 4;
                 Role();
