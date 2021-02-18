@@ -6,10 +6,12 @@ import javafx.scene.effect.Light;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.plaf.metal.MetalComboBoxButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import static javax.swing.JOptionPane.*;
 
@@ -53,7 +55,7 @@ public class Frame extends JFrame implements Files {
     JLabel draggable = new JLabel();
     Color Purple = new Color(48,34,91);
     Color LightPurple = new Color(238,223,237);
-
+    Color Pink = new Color(158,123,181);
     ////////////////////////////
     int mx;
     int my;
@@ -168,6 +170,8 @@ public class Frame extends JFrame implements Files {
         login.setFont(new Font("Ariel",1,20));
         login.setBorder(BorderFactory.createEmptyBorder());
         add(login);
+        revalidate();
+        repaint();
         remove(back);
     }
 
@@ -216,10 +220,11 @@ public class Frame extends JFrame implements Files {
     //Entering the Username and Password
     JLabel image1 = new JLabel(new ImageIcon(ImageIO.read(new File("username.png"))));
     public void F3() {
+
         setSize(800,500);
         setContentPane(image1);
         Buttons(800);
-
+        add(back);
         userin.setBounds(375, 240, 120, 20);
         userin.setFont(new Font("Myraid Pro",0,15));
         userin.setBackground(LightPurple);
@@ -467,17 +472,37 @@ public class Frame extends JFrame implements Files {
 
     //3 Buttons to choose whether to ADD EDIT or DELETE
     public void F7() {
-        setSize(800,800);
+        setSize(800,675);
         Buttons(800);
+        setBackground(LightPurple);
+        revalidate();
+        repaint();
         //Set bounds for left buttons
-        Add.setBounds(150, 150, 150, 100);
-        Add.setFont(new Font("Serif", Font.BOLD, 30));
-        Edit.setBounds(500, 150, 150, 100);
-        Edit.setFont(new Font("Serif", Font.BOLD, 30));
-        Delete.setBounds(150, 350, 150, 100);
-        Delete.setFont(new Font("Serif", Font.BOLD, 30));
-        view.setBounds(500, 350, 150, 100);
-        view.setFont(new Font("Serif", Font.BOLD, 30));
+        int height = 80;
+        int width = 250;
+        Color c = new Color(158,123,181);
+        //Color c = new Color(122,73,136);
+
+        Add.setBounds(100, 150, width, height);
+        Add.setFont(new Font("Myraid Pro", Font.BOLD, 30));
+        Add.setForeground(Color.WHITE);
+        Add.setBackground(c);
+        //Add.setOpaque(false);
+        Edit.setBounds(450, 150, width, height);
+        Edit.setFont(new Font("Myraid Pro", Font.BOLD, 30));
+        Edit.setBackground(c);
+        Edit.setForeground(Color.WHITE);
+        //Edit.setOpaque(false);
+        Delete.setBounds(100, 350, width, height);
+        Delete.setFont(new Font("Myraid Pro", Font.BOLD, 30));
+        Delete.setBackground(c);
+        Delete.setForeground(Color.WHITE);
+        //Delete.setOpaque(false);
+        view.setBounds(450, 350, width, height);
+        view.setFont(new Font("Myraid Pro", Font.BOLD, 30));
+        view.setBackground(c);
+        view.setForeground(Color.WHITE);
+        //view.setOpaque(false);
         add(Add);
         add(Edit);
         add(Delete);
@@ -500,61 +525,66 @@ public class Frame extends JFrame implements Files {
     JButton SubButton = new JButton("Submit");
 
     public void F8() {
+        setSize(800,700);
         Buttons(800);
         JLabel TmName = new JLabel("Add Team Member  ");
-        TmName.setBounds(150, 30, 460, 100);
-        TmName.setFont(new Font("Serif", Font.BOLD, 50));
+        TmName.setBounds(220, 50, 460, 100);
+        TmName.setFont(new Font("Myraid Pro", Font.BOLD, 40));
         add(TmName);
 
 
         TmemberName.setFont(new Font("Serif", Font.BOLD, 20));
-        TmemberName.setBounds(50, 200, 80, 30);
+        TmemberName.setBounds((800/2)-165, 200, 80, 30);
         add(TmemberName);
 
-        getTmemberName.setBounds(195, 200, 100, 30);
+        getTmemberName.setBounds(TmemberName.getX()+150, 200, 150, 30);
         add(getTmemberName);
 
 
         Tmemberage.setFont(new Font("Serif", Font.BOLD, 20));
-        Tmemberage.setBounds(50, 250, 80, 30);
+        Tmemberage.setBounds((800/2)-165, 250, 80, 30);
         add(Tmemberage);
 
-        getTmemberAge.setBounds(195, 250, 100, 30);
+        getTmemberAge.setBounds(Tmemberage.getX() + 150, 250, 150, 30);
         add(getTmemberAge);
 
 
         TmemberId.setFont(new Font("Serif", Font.BOLD, 20));
-        TmemberId.setBounds(50, 300, 80, 30);
+        TmemberId.setBounds((800/2)-165, 300, 80, 30);
         add(TmemberId);
 
-        getTmemberId.setBounds(195, 300, 100, 30);
+        getTmemberId.setBounds(TmemberId.getX() + 150, 300, 150, 30);
         add(getTmemberId);
 
 
         TmemberUser.setFont(new Font("Serif", Font.BOLD, 20));
-        TmemberUser.setBounds(50, 350, 100, 30);
+        TmemberUser.setBounds((800/2)-165, 350, 100, 30);
         add(TmemberUser);
 
-        getTmemberUser.setBounds(195, 350, 100, 30);
+        getTmemberUser.setBounds(TmemberUser.getX() + 150, 350, 150, 30);
         add(getTmemberUser);
 
 
         TmemberPass.setFont(new Font("Serif", Font.BOLD, 20));
-        TmemberPass.setBounds(50, 400, 100, 30);
+        TmemberPass.setBounds((800/2)-165, 400, 100, 30);
         add(TmemberPass);
 
-        getTmemberPass.setBounds(195, 400, 100, 30);
+        getTmemberPass.setBounds(TmemberPass.getX() + 150, 400, 150, 30);
         add(getTmemberPass);
 
 
         TLeaderId.setFont(new Font("Serif", Font.BOLD, 20));
-        TLeaderId.setBounds(195, 500, 160, 30);
+        TLeaderId.setBounds((800/2)-165, 450, 160, 30);
         add(TLeaderId);
 
-        getTLeaderId.setBounds(365, 500, 100, 30);
+        getTLeaderId.setBounds(TLeaderId.getX() + 150, 450, 150, 30);
         add(getTLeaderId);
 
-        SubButton.setBounds(350, 550, 100, 50);
+        SubButton.setBounds(((800/2)-50), 550, 100, 50);
+        SubButton.setFont(new Font("Myraid Pro",0,20));
+        SubButton.setBackground(Pink);
+        SubButton.setForeground(Color.WHITE);
+        SubButton.setBorder(BorderFactory.createEmptyBorder());
         add(SubButton);
     }
 
@@ -572,75 +602,81 @@ public class Frame extends JFrame implements Files {
     public void F9() {
         Buttons(800);
         JLabel TraineeName = new JLabel("Add Trainee  ");
-        TraineeName.setBounds(300, 30, 400, 100);
-        TraineeName.setFont(new Font("Serif", Font.BOLD, 50));
+        TraineeName.setBounds((800/2)-110, 30, 300, 100);
+        TraineeName.setFont(new Font("Myraid Pro", Font.BOLD, 40));
         add(TraineeName);
 
+
+        int x = 295;
         JLabel Tname = new JLabel("Name: ");
         Tname.setFont(new Font("Serif", Font.BOLD, 20));
-        Tname.setBounds(50, 200, 80, 30);
+        Tname.setBounds(x, 200, 80, 30);
         add(Tname);
 
-        getTName.setBounds(195, 200, 100, 30);
+        getTName.setBounds(x+145, 200, 100, 30);
         add(getTName);
 
         JLabel Tage = new JLabel("Age: ");
         Tage.setFont(new Font("Serif", Font.BOLD, 20));
-        Tage.setBounds(50, 250, 80, 30);
+        Tage.setBounds(x, 250, 80, 30);
         add(Tage);
 
-        getTAge.setBounds(195, 250, 100, 30);
+        getTAge.setBounds(x+145, 250, 100, 30);
         add(getTAge);
 
         JLabel Tid = new JLabel("ID: ");
         Tid.setFont(new Font("Serif", Font.BOLD, 20));
-        Tid.setBounds(50, 300, 80, 30);
+        Tid.setBounds(x, 300, 100, 30);
         add(Tid);
 
-        getTid.setBounds(195, 300, 100, 30);
+        getTid.setBounds(x+145, 300, 100, 30);
         add(getTid);
 
         JLabel TfacultyName = new JLabel("Faculty Name: ");
         TfacultyName.setFont(new Font("Serif", Font.BOLD, 20));
-        TfacultyName.setBounds(50, 350, 140, 30);
+        TfacultyName.setBounds(x, 350, 140, 30);
         add(TfacultyName);
 
-        getTfacultyName.setBounds(195, 350, 100, 30);
+        getTfacultyName.setBounds(x+145, 350, 100, 30);
         add(getTfacultyName);
 
         JLabel TacademicYear = new JLabel("Academic Year: ");
         TacademicYear.setFont(new Font("Serif", Font.BOLD, 20));
-        TacademicYear.setBounds(50, 400, 150, 30);
+        TacademicYear.setBounds(x, 400, 150, 30);
         add(TacademicYear);
 
-        getTacademicYear.setBounds(195, 400, 100, 30);
+        getTacademicYear.setBounds(x+145, 400, 100, 30);
         add(getTacademicYear);
 
         JLabel Tgpa = new JLabel("GPA: ");
         Tgpa.setFont(new Font("Serif", Font.BOLD, 20));
-        Tgpa.setBounds(50, 450, 140, 30);
+        Tgpa.setBounds(x, 450, 140, 30);
         add(Tgpa);
 
-        getTgpa.setBounds(195, 450, 100, 30);
+        getTgpa.setBounds(x+145, 450, 100, 30);
         add(getTgpa);
 
         JLabel TUser = new JLabel("Username: ");
         TUser.setFont(new Font("Serif", Font.BOLD, 20));
-        TUser.setBounds(50, 500, 100, 30);
+        TUser.setBounds(x, 500, 100, 30);
         add(TUser);
 
-        getTUser.setBounds(195, 500, 100, 30);
+        getTUser.setBounds(x+145, 500, 100, 30);
         add(getTUser);
 
         JLabel TPass = new JLabel("Password: ");
         TPass.setFont(new Font("Serif", Font.BOLD, 20));
-        TPass.setBounds(50, 550, 100, 30);
+        TPass.setBounds(x, 550, 100, 30);
         add(TPass);
 
-        getTPass.setBounds(195, 550, 100, 30);
+        getTPass.setBounds(x+145, 550, 100, 30);
         add(getTPass);
 
-        TraineeSubmit.setBounds(300, 600, 100, 50);
+        TraineeSubmit.setBounds((800/2)-50, 650, 100, 50);
+        TraineeSubmit.setFont(new Font("Myraid Pro",0,20));
+        TraineeSubmit.setBackground(Pink);
+        TraineeSubmit.setForeground(Color.WHITE);
+        TraineeSubmit.setBorder(BorderFactory.createEmptyBorder());
         add(TraineeSubmit);
     }
 
@@ -656,52 +692,53 @@ public class Frame extends JFrame implements Files {
 
     public void F10() {
         Buttons(1150);
-        JLabel TeamLeader = new JLabel("Add Team Leader  ");
-        TeamLeader.setBounds(400, 30, 430, 100);
-        TeamLeader.setFont(new Font("Serif", Font.BOLD, 50));
+        JLabel TeamLeader = new JLabel("Add Team Leader");
+        TeamLeader.setBounds((1150/2)-215, 30, 430, 100);
+        TeamLeader.setFont(new Font("Myraid Pro", Font.BOLD, 50));
         add(TeamLeader);
 
+        int x = 300;
         JLabel Tlname = new JLabel("Name: ");
         Tlname.setFont(new Font("Serif", Font.BOLD, 20));
-        Tlname.setBounds(50, 200, 80, 30);
+        Tlname.setBounds(x, 200, 80, 30);
         add(Tlname);
 
-        getTlName.setBounds(195, 200, 100, 30);
+        getTlName.setBounds(Tlname.getX() + 100, 200, 150, 30);
         add(getTlName);
 
         JLabel Tlage = new JLabel("Age: ");
         Tlage.setFont(new Font("Serif", Font.BOLD, 20));
-        Tlage.setBounds(50, 250, 80, 30);
+        Tlage.setBounds(x, 250, 80, 30);
         add(Tlage);
 
-        getTlAge.setBounds(195, 250, 100, 30);
+        getTlAge.setBounds(Tlage.getX() + 100, 250, 150, 30);
         add(getTlAge);
 
         JLabel Tlid = new JLabel("ID: ");
         Tlid.setFont(new Font("Serif", Font.BOLD, 20));
-        Tlid.setBounds(50, 300, 80, 30);
+        Tlid.setBounds(x, 300, 80, 30);
         add(Tlid);
 
-        getTlid.setBounds(195, 300, 100, 30);
+        getTlid.setBounds(Tlid.getX() + 100, 300, 150, 30);
         add(getTlid);
 
         JLabel TlUser = new JLabel("Username: ");
         TlUser.setFont(new Font("Serif", Font.BOLD, 20));
-        TlUser.setBounds(350, 200, 100, 30);
+        TlUser.setBounds(x+300, 200, 100, 30);
         add(TlUser);
 
-        getTlUser.setBounds(460, 200, 100, 30);
+        getTlUser.setBounds(x+410, 200, 150, 30);
         add(getTlUser);
 
         JLabel TlPass = new JLabel("Password: ");
         TlPass.setFont(new Font("Serif", Font.BOLD, 20));
-        TlPass.setBounds(350, 300, 100, 30);
+        TlPass.setBounds(x+300, 300, 100, 30);
         add(TlPass);
 
-        getTlPass.setBounds(460, 300, 100, 30);
+        getTlPass.setBounds(x+410, 300, 150, 30);
         add(getTlPass);
 
-        JLabel Tlmember = new JLabel("Team Members ");         //id name age
+        JLabel Tlmember = new JLabel("Team Members ");
         Tlmember.setBounds(450, 350, 200, 30);
         Tlmember.setFont(new Font("Serif", Font.BOLD, 23));
         add(Tlmember);
@@ -751,7 +788,11 @@ public class Frame extends JFrame implements Files {
             getTlmembersPass.setBounds(1005, 400 + j, 100, 30);
             add(getTlmembersPass);
         }
-        LeaderSubmit.setBounds(505, 700, 100, 40);
+        LeaderSubmit.setBounds((1150/2)-50, 700, 100, 60);
+        LeaderSubmit.setFont(new Font("Myraid Pro",0,20));
+        LeaderSubmit.setBackground(Pink);
+        LeaderSubmit.setForeground(Color.WHITE);
+        LeaderSubmit.setBorder(BorderFactory.createEmptyBorder());
         add(LeaderSubmit);
     }
 
@@ -768,8 +809,11 @@ public class Frame extends JFrame implements Files {
 
     public void F11() {
         Buttons(800);
+        int y = 250;
+        int x = 240;
+        int tx = x+190;
         JLabel EDITtrainee = new JLabel("Edit Trainee ");
-        EDITtrainee.setBounds(225, 10, 430, 90);
+        EDITtrainee.setBounds((800/2)-125, 10, 430, 90);
         EDITtrainee.setFont(new Font("Serif", Font.BOLD, 50));
         add(EDITtrainee);
 
@@ -778,60 +822,64 @@ public class Frame extends JFrame implements Files {
         }
         JLabel info = new JLabel("Enter the fields you would like to edit: ");
         info.setFont(new Font("Serif", 1, 20));
-        info.setBounds(50, 90, 400, 50);
+        info.setBounds(x, y-50, 400, 50);
         add(info);
 
         TraineeCombo = new JComboBox(data.toArray());
+        TraineeCombo.setBackground(LightPurple);
         JLabel ComboBox = new JLabel("Trainee: ");
         ComboBox.setFont(new Font("Serif", 1, 20));
-        ComboBox.setBounds(50, 150, 100, 30);
+        ComboBox.setBounds(x, y, 100, 30);
         add(ComboBox);
 
         TraineeCombo.setFont(new Font("Serif", 0, 20));
-        TraineeCombo.setBounds(210, 150, 170, 30);
+        TraineeCombo.setBounds(tx, y, 170, 30);
         add(TraineeCombo);
 
         JLabel Tname = new JLabel("Name: ");
         Tname.setFont(new Font("Serif", Font.BOLD, 20));
-        Tname.setBounds(50, 200, 80, 30);
+        Tname.setBounds(x, y+=50, 80, 30);
         add(Tname);
 
-        name.setBounds(210, 200, 150, 30);
+        name.setBounds(tx, y, 150, 30);
         add(name);
 
         JLabel Tage = new JLabel("Age: ");
         Tage.setFont(new Font("Serif", Font.BOLD, 20));
-        Tage.setBounds(50, 250, 80, 30);
+        Tage.setBounds(x, y+=50, 80, 30);
         add(Tage);
 
-        age.setBounds(210, 250, 150, 30);
+        age.setBounds(tx, y, 150, 30);
         add(age);
 
         JLabel TfacultyName = new JLabel("Faculty Name: ");
         TfacultyName.setFont(new Font("Serif", Font.BOLD, 20));
-        TfacultyName.setBounds(50, 300, 140, 30);
+        TfacultyName.setBounds(x, y+=50, 140, 30);
         add(TfacultyName);
 
-        FacultyName.setBounds(210, 300, 150, 30);
+        FacultyName.setBounds(tx, y, 150, 30);
         add(FacultyName);
 
         JLabel TacademicYear = new JLabel("Academic Year: ");
         TacademicYear.setFont(new Font("Serif", Font.BOLD, 20));
-        TacademicYear.setBounds(50, 350, 150, 30);
+        TacademicYear.setBounds(x, y+=50, 150, 30);
         add(TacademicYear);
 
-        academicYear.setBounds(210, 350, 150, 30);
+        academicYear.setBounds(tx, y, 150, 30);
         add(academicYear);
 
         JLabel Tgpa = new JLabel("GPA: ");
         Tgpa.setFont(new Font("Serif", Font.BOLD, 20));
-        Tgpa.setBounds(50, 400, 80, 30);
+        Tgpa.setBounds(x, y+=50, 80, 30);
         add(Tgpa);
 
-        GPA.setBounds(210, 400, 150, 30);
+        GPA.setBounds(tx, y, 150, 30);
         add(GPA);
 
-        EditTrainee.setBounds(350, 600, 100, 50);
+        EditTrainee.setBounds((800/2)-50, y+=100, 100, 50);
+        EditTrainee.setBackground(Pink);
+        EditTrainee.setForeground(Color.WHITE);
+        EditTrainee.setBorder(BorderFactory.createEmptyBorder());
         add(EditTrainee);
     }
 
@@ -848,14 +896,13 @@ public class Frame extends JFrame implements Files {
     public void F12() {
         Buttons(800);
         JLabel EDITteamMember = new JLabel("Edit Team Member ");
-        EDITteamMember.setBounds(195, 10, 550, 90);
+        EDITteamMember.setBounds(195, 50, 550, 90);
         EDITteamMember.setFont(new Font("Serif", Font.BOLD, 50));
         add(EDITteamMember);
 
         JLabel infoTeamM = new JLabel("Enter the fields you would like to edit: ");
         infoTeamM.setFont(new Font("Serif", 1, 20));
-        infoTeamM.setBounds(50, 90, 400, 50);
-        add(infoTeamM);
+
 
         for (int i = 0; i < TeamMemberList.size(); i++) {
             for (int j = 0; j < TeamMemberList.get(i).getTeamMembers().size(); j++) {
@@ -863,61 +910,72 @@ public class Frame extends JFrame implements Files {
             }
         }
         TeamMemberCombo = new JComboBox(dataTeamMember.toArray());
+        int y = 250;
+        int x = 240;
+        infoTeamM.setBounds(x, y-50, 400, 50);
+        add(infoTeamM);
         JLabel ComboBox = new JLabel("Team Member: ");
         ComboBox.setFont(new Font("Serif", 1, 20));
-        ComboBox.setBounds(50, 150, 180, 30);
+        ComboBox.setBounds(x, y, 180, 30);
+
         add(ComboBox);
 
         TeamMemberCombo.setFont(new Font("Serif", 0, 20));
-        TeamMemberCombo.setBounds(240, 150, 170, 30);
+        TeamMemberCombo.setBounds(x+190, y, 170, 30);
+        TeamMemberCombo.setBackground(LightPurple);
+        TeamMemberCombo.setOpaque(true);
         add(TeamMemberCombo);
 
         JLabel TeamMmemberName = new JLabel("Name: ");
         TeamMmemberName.setFont(new Font("Serif", Font.BOLD, 20));
-        TeamMmemberName.setBounds(50, 200, 80, 30);
+        TeamMmemberName.setBounds(x, y+50, 80, 30);
         add(TeamMmemberName);
 
-        TeamMembername.setBounds(240, 200, 150, 30);
+        TeamMembername.setBounds(x+190, y+50, 150, 30);
         add(TeamMembername);
         Font font  = new Font("Serif", Font.BOLD, 20);
         JLabel TeamMemberAge = new JLabel("Age: ");
         TeamMemberAge.setFont(font);
-        TeamMemberAge.setBounds(50, 250, 80, 30);
+        TeamMemberAge.setBounds(x, y+100, 80, 30);
         add(TeamMemberAge);
 
-        TeamMemberage.setBounds(240, 250, 150, 30);
+        TeamMemberage.setBounds(x+190, y+100, 150, 30);
         add(TeamMemberage);
 
         JLabel WorkingHours = new JLabel("Working Hours: ");
         WorkingHours.setFont(font);
-        WorkingHours.setBounds(50,300,150,30);
+        WorkingHours.setBounds(x,y+150,150,30);
         add(WorkingHours);
 
 
-        Hours.setBounds(240,300,80,30);
+        Hours.setBounds(x+190,y+150,80,30);
         add(Hours);
 
 
 
         JLabel TaxRate = new JLabel("Tax-Rate: ");
         TaxRate.setFont(font);
-        TaxRate.setBounds(50,350,150,30);
+        TaxRate.setBounds(x,y+200,150,30);
         add(TaxRate);
 
 
-        Tax.setBounds(240,350,80,30);
+        Tax.setBounds(x+190,y+200,80,30);
         add(Tax);
 
         JLabel PayRate = new JLabel("Pay-Rate: ");
         PayRate.setFont(font);
-        PayRate.setBounds(50,400,150,30);
+        PayRate.setBounds(x,y+250,150,30);
         add(PayRate);
 
 
-        Pay.setBounds(240,400,80,30);
+        Pay.setBounds(x+190,y+250,80,30);
         add(Pay);
 
         EditTeamMember.setBounds(350, 600, 100, 50);
+        EditTeamMember.setFont(new Font("Myraid Pro",0,20));
+        EditTeamMember.setBackground(Pink);
+        EditTeamMember.setForeground(Color.WHITE);
+        EditTeamMember.setBorder(BorderFactory.createEmptyBorder());
         add(EditTeamMember);
 
     }
@@ -934,75 +992,84 @@ public class Frame extends JFrame implements Files {
     JSpinner TeamLeaderPay = new JSpinner(new SpinnerNumberModel(0,0,0.9,0.01));
     public void F13() {
         Buttons(800);
+        int y = 250;
+        int x = 240;
         JLabel EDITteamLeader = new JLabel("Edit Team Leader ");
-        EDITteamLeader.setBounds(195, 10, 550, 90);
+        EDITteamLeader.setBounds(195, 50, 550, 90);
         EDITteamLeader.setFont(new Font("Serif", Font.BOLD, 50));
         add(EDITteamLeader);
 
         JLabel infoTeamL = new JLabel("Enter the fields you would like to edit: ");
         infoTeamL.setFont(new Font("Serif", 1, 20));
-        infoTeamL.setBounds(50, 90, 400, 50);
+        infoTeamL.setBounds(x, y-50, 400, 50);
         add(infoTeamL);
 
         for (int i = 0; i < TeamLeaderList.size(); i++) {
             dataTeamLeader.add(TeamLeaderList.get(i).getId() + "  " + TeamLeaderList.get(i).getName());
         }
         LeaderCombo = new JComboBox(dataTeamLeader.toArray());
+        LeaderCombo.setBackground(LightPurple);
         JLabel ComboBox = new JLabel("Team Leader: ");
         ComboBox.setFont(new Font("Serif", 1, 20));
-        ComboBox.setBounds(50, 150, 180, 30);
+        ComboBox.setBounds(x, y, 180, 30);
         add(ComboBox);
 
         LeaderCombo.setFont(new Font("Serif", 0, 20));
-        LeaderCombo.setBounds(240, 150, 170, 30);
+        LeaderCombo.setBounds(x+190, y, 170, 30);
         add(LeaderCombo);
 
         JLabel TleaderName = new JLabel("Name: ");
         TleaderName.setFont(new Font("Serif", Font.BOLD, 20));
-        TleaderName.setBounds(50, 200, 80, 30);
+        TleaderName.setBounds(x, y+50, 80, 30);
         add(TleaderName);
 
-        EditTeamLeaderName.setBounds(240, 200, 150, 30);
+        EditTeamLeaderName.setBounds(x+190, y+50, 150, 30);
         add(EditTeamLeaderName);
 
         JLabel TeamLeaderAge = new JLabel("Age: ");
         TeamLeaderAge.setFont(new Font("Serif", Font.BOLD, 20));
-        TeamLeaderAge.setBounds(50, 250, 80, 30);
+        TeamLeaderAge.setBounds(x, y+100, 80, 30);
         add(TeamLeaderAge);
         Font font = new Font("Serif", Font.BOLD, 20);
+
+        EditTeamLeaderAge.setBounds(x+190, y+100, 150, 30);
+        add(EditTeamLeaderAge);
+
         JLabel WorkingHours = new JLabel("Working Hours: ");
         WorkingHours.setFont(font);
-        WorkingHours.setBounds(50,300,150,30);
+        WorkingHours.setBounds(x,y+150,150,30);
         add(WorkingHours);
 
 
-        TeamLeaderHours.setBounds(240,300,80,30);
+        TeamLeaderHours.setBounds(x+190,y+150,80,30);
         add(TeamLeaderHours);
 
 
 
         JLabel TaxRate = new JLabel("Tax-Rate: ");
         TaxRate.setFont(font);
-        TaxRate.setBounds(50,350,150,30);
+        TaxRate.setBounds(x,y+200,150,30);
         add(TaxRate);
 
 
-        TeamLeaderTax.setBounds(240,350,80,30);
+        TeamLeaderTax.setBounds(x+190,y+200,80,30);
         add(TeamLeaderTax);
 
         JLabel PayRate = new JLabel("Pay-Rate: ");
         PayRate.setFont(font);
-        PayRate.setBounds(50,400,150,30);
+        PayRate.setBounds(x,y+250,150,30);
         add(PayRate);
 
 
-        TeamLeaderPay.setBounds(240,400,80,30);
+        TeamLeaderPay.setBounds(x+190,y+250,80,30);
         add(TeamLeaderPay);
 
-        EditTeamLeaderAge.setBounds(240, 250, 150, 30);
-        add(EditTeamLeaderAge);
 
-        EditTeamLeader.setBounds(350, 600, 100, 50);
+
+        EditTeamLeader.setBounds((800/2)-50, y+350, 100, 50);
+        EditTeamLeader.setBackground(Pink);
+        EditTeamLeader.setForeground(Color.WHITE);
+        EditTeamLeader.setBorder(BorderFactory.createEmptyBorder());
         add(EditTeamLeader);
     }
 
@@ -1017,6 +1084,7 @@ public class Frame extends JFrame implements Files {
         DELETEtrainee.setBounds(225, 30, 430, 100);
         DELETEtrainee.setFont(new Font("Serif", Font.BOLD, 50));
         add(DELETEtrainee);
+
 
         JLabel ID = new JLabel("Trainee's ID: ");
         ID.setFont(new Font("Serif", Font.BOLD, 20));
@@ -1305,17 +1373,28 @@ public class Frame extends JFrame implements Files {
 
     //Manager choose which one (TeamLeader/TeamMember/Trainee) he wants to ADD EDIT DELETE or VIEW
     public void Role() {
-        Trainee.setBounds(100, 600, 200, 50);
-        Trainee.setFont(new Font("Serif", Font.BOLD, 20));
+        JPanel p = new JPanel();
+        p.setBounds(86,475,648,150);
+        Color c = new Color(158,123,181);
+        p.setBackground(c.darker());
+        Trainee.setBounds(100, 550, 200, 50);
+        Trainee.setFont(new Font("Myraid Pro", Font.BOLD, 20));
+        Trainee.setBackground(Color.WHITE);
+        Trainee.setForeground(Color.LIGHT_GRAY.darker().darker());
         add(Trainee);
 
-        TeamLeader.setBounds(310, 600, 200, 50);
-        TeamLeader.setFont(new Font("Serif", Font.BOLD, 20));
+        TeamLeader.setBounds(310, 550, 200, 50);
+        TeamLeader.setFont(new Font("Myraid Pro", Font.BOLD, 20));
+        TeamLeader.setBackground(Color.WHITE);
+        TeamLeader.setForeground(Color.LIGHT_GRAY.darker().darker());
         add(TeamLeader);
 
-        TeamMember.setBounds(520, 600, 200, 50);
-        TeamMember.setFont(new Font("Serif", Font.BOLD, 20));
+        TeamMember.setBounds(520, 550, 200, 50);
+        TeamMember.setFont(new Font("Myraid Pro", Font.BOLD, 20));
+        TeamMember.setBackground(Color.WHITE);
+        TeamMember.setForeground(Color.LIGHT_GRAY.darker().darker());
         add(TeamMember);
+        add(p);
     }
     //Mouse Listener
     public class ML extends MouseMotionAdapter{
@@ -1341,8 +1420,9 @@ public class Frame extends JFrame implements Files {
         public void actionPerformed(ActionEvent e) {
             getContentPane().revalidate();
             JLabel labelUse = new JLabel();
-            labelUse.setBounds(380,510,100,50);
-            labelUse.setFont(new Font("Serif",1,30));
+            labelUse.setBounds(314,475,300,50);
+            labelUse.setFont(new Font("Myraid Pro",1,20));
+            labelUse.setForeground(Color.WHITE);
             add(labelUse);
             /////////////Back Button/////////////
             if (e.getSource() == back) {
@@ -1355,7 +1435,7 @@ public class Frame extends JFrame implements Files {
                     F1();
                 }
                 if (state == 2) {
-                    if(JOptionPane.showConfirmDialog(null,"Are you sure?","Sign Out", YES_NO_OPTION) == YES_OPTION){
+                    if(JOptionPane.showConfirmDialog(null,"Are you sure?","", YES_NO_OPTION) == YES_OPTION){
                         userin.setText("");
                         passin.setText("");
                         getContentPane().removeAll();
@@ -1630,7 +1710,7 @@ public class Frame extends JFrame implements Files {
                 setSize(800, 800);
                 add(back);
                 F7();
-                labelUse.setText("Add...");
+                labelUse.setText("Pick a position to add");
                 add(labelUse);
                 Role();
                 roleState = 1;
@@ -1803,7 +1883,7 @@ public class Frame extends JFrame implements Files {
                 setSize(800, 800);
                 add(back);
                 F7();
-                labelUse.setText("Edit...");
+                labelUse.setText("Pick a position to edit");
                 add(labelUse);
                 revalidate();
                 roleState = 2;
@@ -1933,7 +2013,7 @@ public class Frame extends JFrame implements Files {
                 setSize(800, 800);
                 add(back);
                 F7();
-                labelUse.setText("Delete...");
+                labelUse.setText("Pick a position to delete");
                 add(labelUse);
 
                 roleState = 3;
@@ -2291,7 +2371,7 @@ public class Frame extends JFrame implements Files {
                 setSize(800, 800);
                 add(back);
                 F7();
-                labelUse.setText("View...");
+                labelUse.setText("Pick a position to view");
                 add(labelUse);
                 roleState = 4;
                 Role();
