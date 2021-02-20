@@ -122,19 +122,49 @@ public class Frame extends JFrame implements Files {
     public void Buttons(int x){
         back.setBorderPainted(false);
         back.setOpaque(false);
-        close.setBounds(x-30,0,30,50);
+        close.setBounds(x-50,0,50,50);
         close.setBackground(new Color(255,216,148));
         close.setFont(new Font("arial bold",1,20));
         close.setForeground(Purple);
         close.setBorder(BorderFactory.createEmptyBorder());
         close.setBorderPainted(false);
         close.setOpaque(false);
+        close.addMouseListener(new MouseListener() {
+           @Override
+           public void mouseClicked(MouseEvent e) {
+
+           }
+
+           @Override
+           public void mousePressed(MouseEvent e) {
+
+           }
+
+           @Override
+           public void mouseReleased(MouseEvent e) {
+
+           }
+
+           @Override
+           public void mouseEntered(MouseEvent e) {
+               close.setOpaque(true);
+                close.setBackground(Color.red);
+                close.setForeground(Color.WHITE);
+
+           }
+
+           @Override
+           public void mouseExited(MouseEvent e) {
+               close.setOpaque(false);
+               close.setForeground(Purple);
+           }
+       });
         add(close);
         repaint();
         revalidate();
 
 
-        minimize.setBounds(x-90,0,30,50);
+        minimize.setBounds(x-150,0,50,50);
         minimize.setBackground(new Color(42, 25, 82));
         minimize.setFont(new Font("arial bold",1,20));
         minimize.setForeground(Purple);
@@ -144,7 +174,7 @@ public class Frame extends JFrame implements Files {
         add(minimize);
         repaint();
         revalidate();
-        maximize.setBounds(x-60,0,30,50);
+        maximize.setBounds(x-100,0,50,50);
         maximize.setBackground(new Color(255,216,148));
         maximize.setFont(new Font("arial bold",1,20));
         maximize.setForeground(Purple);
@@ -154,7 +184,7 @@ public class Frame extends JFrame implements Files {
         add(maximize);
         repaint();
         revalidate();
-        draggable.setBounds(60,0,x-90,50);
+        draggable.setBounds(60,0,x-150,50);
         add(draggable);
     }
     //////Welcome Frame//////////
@@ -1984,6 +2014,11 @@ public class Frame extends JFrame implements Files {
                 Column.setPreferredWidth(Width);
             }
             jt.setFillsViewportHeight(true);
+            JTableHeader head = jt.getTableHeader();
+            head.setBorder(BorderFactory.createEmptyBorder());
+            jt.setBorder(BorderFactory.createEmptyBorder());
+            head.setBackground(Pink);
+            head.setForeground(Color.WHITE);
             sp.setBounds(30,250,725,height);
             add(sp);
         }
@@ -2017,6 +2052,11 @@ public class Frame extends JFrame implements Files {
                 height += 15;
             }
             JTable jt = new JTable(data, column);
+            JTableHeader head = jt.getTableHeader();
+            head.setBorder(BorderFactory.createEmptyBorder());
+            jt.setBorder(BorderFactory.createEmptyBorder());
+            head.setBackground(Pink);
+            head.setForeground(Color.WHITE);
             JScrollPane sp = new JScrollPane(jt);
             jt.setRowHeight(15);
             int counter = 0;
@@ -2070,6 +2110,11 @@ public class Frame extends JFrame implements Files {
             }
             JTable jt = new JTable(data, column);
             JScrollPane sp = new JScrollPane(jt);
+            JTableHeader head = jt.getTableHeader();
+            head.setBorder(BorderFactory.createEmptyBorder());
+            jt.setBorder(BorderFactory.createEmptyBorder());
+            head.setBackground(Pink);
+            head.setForeground(Color.WHITE);
             jt.setRowHeight(15);
             counter = 0;
             int[] width = {75,75,75,75,75,75};
@@ -2484,7 +2529,6 @@ public class Frame extends JFrame implements Files {
                         getTUser.setText("");
                         getTPass.setText("");
                         getTacademicYear.setText("");
-                        data.add(id + " " + name);
                         getContentPane().removeAll();
                         setSize(801, 801);
                         setSize(800, 800);
@@ -2542,7 +2586,6 @@ public class Frame extends JFrame implements Files {
                         Leader.add(new TeamLeader(LeaderName, LeaderID, LeaderAge, listMembers, LeaderUser, LeaderPass));
                         Files.writeTeamLeader(Leader);
                         showMessageDialog(null, "Successfully Saved");
-                        dataTeamLeader.add(LeaderID+" "+LeaderName);
                         getContentPane().removeAll();
                         setSize(800, 800);
                         setSize(801, 801);
@@ -2582,7 +2625,6 @@ public class Frame extends JFrame implements Files {
 
                                     Files.writeTeamLeader(teamLeaders);
                                     showMessageDialog(null, "Team Member Successfully saved in this TeamLeader");
-                                    dataTeamMember.add(id+" "+name);
                                     getContentPane().removeAll();
                                     setSize(801, 801);
                                     setSize(800, 800);
