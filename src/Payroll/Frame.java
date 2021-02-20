@@ -2,12 +2,13 @@
 package Payroll;
 
 import javafx.scene.effect.Light;
+import javafx.scene.layout.Border;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.plaf.metal.MetalComboBoxButton;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.*;
@@ -251,232 +252,907 @@ public class Frame extends JFrame implements Files {
 
     //Getting TeamLeader data
     public void F4(TeamLeader chosen) {
-        setSize(800,800);
-        Buttons(800);
-        JLabel AccountInfo = new JLabel("Account Info ");
-        AccountInfo.setBounds(25, 15, 300, 100);
-        AccountInfo.setFont(new Font("Serif", Font.BOLD, 40));
-        add(AccountInfo);
+        JPanel drag = new JPanel();
 
+        JButton signout  = new JButton("Sign Out");
+        JButton Acc = new JButton();
+        JButton Team = new JButton("My Team");
+        getContentPane().removeAll();
+        setSize(800,500);
+        Container c= new Container();
+        c.setBackground(Color.WHITE);
+        setContentPane(c);
+        setBackground(LightPurple);
+        revalidate();
+        repaint();
+
+        Buttons(805);
+
+        drag.setBounds(0,0,50,500);
+        drag.setBackground(Pink);
+
+
+        add(drag);
+        drag.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                super.mouseDragged(e);
+                revalidate();
+                repaint();
+                remove(drag);
+
+                if(e.getX() > 50) {
+                    if (e.getX() <= 150) {
+                        drag.setSize(e.getX(), 500);
+                    }
+                }
+                else if(drag.getWidth() <55){
+                    drag.setSize(50, 500);
+                }
+                if(drag.getWidth() > 140){
+                    drag.setSize(150,500);
+                }
+                if(e.getX() <= 75){
+                    remove(Acc);
+                    remove(Team);
+                    remove(signout);
+
+                }else{
+                    Acc.setBounds(0,150,150,50);
+                    Acc.setFont(new Font("Myraid pro",0,15));
+                    Acc.setForeground(Color.WHITE);
+                    Acc.setText("My Account");
+                    Acc.setBackground(new Color(255,255,255));
+                    Acc.setOpaque(false);
+                    Acc.setBorder(BorderFactory.createEmptyBorder());
+                    add(Acc);
+                    revalidate();
+                    repaint();
+                    Team.setBounds(0,200,150,50);
+                    Team.setFont(new Font("Myraid pro",0,15));
+                    Team.setForeground(Color.WHITE );
+                    Team.setBackground(new Color(255,255,255));
+                    Team.setOpaque(false);
+                    Team.setBorder(BorderFactory.createEmptyBorder());
+                    add(Team);
+                    revalidate();
+                    repaint();
+                    signout.setBounds(0,400,150,50);
+                    signout.setFont(new Font("Myraid pro",0,15));
+                    signout.setForeground(Color.white);
+                    signout.setBackground(Color.WHITE);
+                    signout.setOpaque(false);
+                    signout.setBorder(BorderFactory.createEmptyBorder());
+                    add(signout);
+                    revalidate();
+                    repaint();
+
+
+                }
+                add(drag);
+                revalidate();
+                repaint();
+            }
+        });
+        JLabel AccountInfo = new JLabel("Account Information ");
         JLabel viewname = new JLabel("Name:");
-        viewname.setBounds(300, 100, 50, 50);
-        viewname.setFont(Labelfont);
-        add(viewname);
         JLabel TlName = new JLabel(chosen.getName());
-        TlName.setFont(Labelfont);
-        TlName.setBounds(360, 100, 100, 50);
-        add(TlName);
-
         JLabel ID = new JLabel("ID:");
-        ID.setBounds(300, 125, 50, 50);
-        ID.setFont(Labelfont);
-        add(ID);
         JLabel Tlid = new JLabel("" + chosen.getId());
-        Tlid.setFont(Labelfont);
-        Tlid.setBounds(360, 125, 100, 50);
-        add(Tlid);
-
         JLabel age = new JLabel("Age: ");
-        age.setBounds(300, 150, 50, 50);
-        age.setFont(Labelfont);
-        add(age);
         JLabel num = new JLabel("" + chosen.getAge());
-        num.setBounds(360, 150, 50, 50);
-        num.setFont(Labelfont);
-        add(num);
-
-        JLabel Tcapacity = new JLabel("Team capacity: ");
-        Tcapacity.setBounds(300, 175, 150, 50);
-        Tcapacity.setFont(Labelfont);
-        add(Tcapacity);
-        JLabel TeamCapacity = new JLabel("" + chosen.getTeamCapacity());
-        TeamCapacity.setBounds(430, 175, 50, 50);
-        TeamCapacity.setFont(Labelfont);
-        add(TeamCapacity);
-
         JLabel salary = new JLabel("Salary: ");
-        salary.setBounds(300, 200, 70, 50);
-        salary.setFont(Labelfont);
-        add(salary);
         JLabel result = new JLabel("$" + chosen.getSalary());
-        result.setBounds(370, 200, 150, 50);
-        result.setFont(Labelfont);
-        add(result);
-        JLabel team = new JLabel("Your Team Members:  ");
-        team.setBounds(180, 250, 300, 50);
-        team.setFont(Labelfont  );
-        add(team);
-
-
-        String column[] = {"ID", "Name", "Age"};
-        String data[][] = new String[5][3];
-
-        for (int i = 0; i < chosen.getTeamMembers().size(); i++) {
-            data[i][0] = chosen.getTeamMembers().get(i).getId() + "";
-            data[i][1] = chosen.getTeamMembers().get(i).getName() + "";
-            data[i][2] = chosen.getTeamMembers().get(i).getAge() + "";
-        }
-        JTable jt = new JTable(data, column);
-        JScrollPane sp = new JScrollPane(jt);
         JPanel panel = new JPanel();
-        panel.add(sp);
-        panel.setBounds(150, 300, 500, 107);
-        add(panel);
+        JLabel myTeam = new JLabel("My Team");
+        JLabel teamCapacity = new JLabel(" Your Team Capacity: " + chosen.getTeamCapacity());
+        JLabel Welcome = new JLabel("<html><h1 style = \"font-family:muli black;font-size:100;\"><strong>Welcome, </strong></html>");
+        JLabel ChLabel = new JLabel("<html></h1><h1 style = \"font-family:muli black;font-size:100;\">"+ chosen.getName() +"</h1></html>");
+        ChLabel.setBounds(175,250,500,100);
+        add(ChLabel);
+        Welcome.setBounds(175,100,500,200);
+//        Welcome.setFont(new Font("arial black",1,50));
+        add(Welcome);
+        JLabel label2 = new JLabel("You can find your account info by dragging the left drawer");
+        label2.setBounds(175,350,550,50);
+        label2.setFont(new Font("Myraid Pro",0,20));
+        add(label2);
+        JLabel p = new JLabel();
+        JLabel somedeep = new JLabel("Your account info in");
+        somedeep.setForeground(Color.white);
+        JLabel anotherdeep = new JLabel("addition to the salary");
+        anotherdeep.setForeground(Color.white);
+        JLabel deep = new JLabel("that is calculated by");
+        deep.setForeground(Color.white);
+        JLabel deepLast = new JLabel("your manager.");
+        deepLast.setForeground(Color.white);
+        JLabel infoLogo = new JLabel(new ImageIcon("info.PNG"));
+        JLabel infoLogo1 = new JLabel(new ImageIcon("info.PNG"));
+
+        revalidate();
+        repaint();
+        infoLogo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                somedeep.setText("Your account info in");
+                anotherdeep.setText("addition to the salary");
+                deep.setText("that is calculated by");
+                deepLast.setText("your manager.");
+                p.setBounds(infoLogo.getX(),infoLogo.getY()-25,200,200);
+                p.setIcon(new ImageIcon("blur.PNG"));
+                somedeep.setBounds(p.getX() + 50,p.getY()-30,300,150);
+                anotherdeep.setBounds(somedeep.getX(),somedeep.getY()+20,300,150);
+                deep.setBounds(anotherdeep.getX(),anotherdeep.getY()+20,300,150);
+                deepLast.setBounds(deep.getX(),deep.getY()+20,300,150);
+                add(deep);
+                add(deepLast);
+                add(somedeep);
+                add(anotherdeep);
+                add(p);
+                revalidate();
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                remove(p);
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                revalidate();
+                repaint();
+            }
+        });
+        infoLogo1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                p.setBounds(infoLogo1.getX(),infoLogo1.getY()-150,200,200);
+                p.setIcon(new ImageIcon("blur.PNG"));
+                somedeep.setText("Your team members");
+                anotherdeep.setText("that you are leading and");
+                deep.setText("the capacity of your");
+                deepLast.setText("team.");
+                somedeep.setBounds(p.getX() + 50,p.getY()-30,300,150);
+                anotherdeep.setBounds(somedeep.getX(),somedeep.getY()+20,300,150);
+                deep.setBounds(anotherdeep.getX(),anotherdeep.getY()+20,300,150);
+                deepLast.setBounds(deep.getX(),deep.getY()+20,300,150);
+                add(deep);
+                add(deepLast);
+                add(somedeep);
+                add(anotherdeep);
+                add(p);
+                revalidate();
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                remove(p);
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                revalidate();
+                repaint();
+            }
+        });
+        //buttons
+        Acc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(Welcome);
+                remove(infoLogo);
+                remove(infoLogo1);
+                remove(ChLabel);
+                remove(label2);
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                remove(panel);
+                remove(myTeam);
+                remove(teamCapacity);
+                revalidate();
+                repaint();
+                AccountInfo.setBounds(200, 100, 400, 100);
+                AccountInfo.setFont(new Font("Myraid Pro", 0, 34));
+                AccountInfo.setForeground(new Color(86,87,89));
+                add(AccountInfo);
+
+                infoLogo.setBounds(500,140,25,25);
+                add(infoLogo);
+
+                viewname.setBounds(250, 200, 50, 50);
+                viewname.setFont(new Font("Myraid Pro", 0, 15));
+                viewname.setForeground(new Color(86,87,89));
+                add(viewname);
+
+
+                TlName.setFont(new Font("Myraid Pro", 0, 15));
+                TlName.setBounds(450, 200, 100, 50);
+                TlName.setForeground(new Color(86,87,89));
+                add(TlName);
+
+
+                ID.setBounds(250, 250, 50, 50);
+                ID.setFont(new Font("Myraid Pro", 0, 15));
+                ID.setForeground(new Color(86,87,89));
+                add(ID);
+
+                Tlid.setFont(new Font("Myraid Pro", 0, 15));
+                Tlid.setBounds(450, 250, 100, 50);
+                Tlid.setForeground(new Color(86,87,89));
+                add(Tlid);
+
+
+                age.setBounds(250, 300, 50, 50);
+                age.setFont(new Font("Myraid Pro", 0, 15));
+                age.setForeground(new Color(86,87,89));
+                add(age);
+
+                num.setBounds(450, 300, 50, 50);
+                num.setFont(new Font("Myraid Pro", 0, 15));
+                num.setForeground(new Color(86,87,89));
+                add(num);
+
+
+                salary.setBounds(250, 350, 70, 50);
+                salary.setFont(new Font("Myraid Pro", 0, 15));
+                salary.setForeground(new Color(86,87,89));
+                add(salary);
+
+                result.setBounds(450, 350, 150, 50);
+                result.setFont(new Font("Myraid Pro", 0, 15));
+                result.setForeground(new Color(86,87,89));
+                add(result);
+                revalidate();
+                repaint();
+            }
+        });
+        Team.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(Welcome);
+                remove(infoLogo);
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                remove(ChLabel);
+                remove(label2);
+                remove(AccountInfo);
+                remove(viewname);
+                remove(TlName);
+                remove(ID);
+                remove(Tlid);
+                remove(age);
+                remove(num);
+                remove(salary);
+                remove(result);
+                revalidate();
+                repaint();
+
+                myTeam.setBounds(200, 100, 200, 100);
+                myTeam.setFont(new Font("Myraid Pro", 0, 40));
+                myTeam.setForeground(new Color(86,87,89));
+                add(myTeam);
+
+
+                teamCapacity.setBounds(400,325,155,50);
+                teamCapacity.setFont(new Font("Myraid Pro", 0,15));
+                teamCapacity.setBackground(Pink);
+                teamCapacity.setOpaque(true);
+                teamCapacity.setForeground(Color.WHITE);
+
+                infoLogo1.setBounds(375,140,25,25);
+
+                add(infoLogo1);
+
+                add(teamCapacity);
+                revalidate();
+                repaint();
+
+                String column[] = {"ID", "Name", "Age"};
+                String data[][] = new String[5][3];
+                for (int i = 0; i < chosen.getTeamMembers().size(); i++) {
+                    data[i][0] = chosen.getTeamMembers().get(i).getId() + "";
+                    data[i][1] = chosen.getTeamMembers().get(i).getName() + "";
+                    data[i][2] = chosen.getTeamMembers().get(i).getAge() + "";
+                }
+                JTable jt = new JTable(data, column);
+                JScrollPane sp = new JScrollPane(jt);
+                JTableHeader head = jt.getTableHeader();
+                head.setBorder(BorderFactory.createEmptyBorder());
+                jt.setBorder(BorderFactory.createEmptyBorder());
+                head.setBackground(Pink);
+                head.setForeground(Color.WHITE);
+                panel.add(sp);
+                panel.setBounds(250, 200, 452, 107);
+                panel.setOpaque(false);
+                add(panel);
+                revalidate();
+                repaint();
+            }
+        });
+        signout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(p);
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                remove(Welcome);
+                remove(infoLogo);
+                remove(infoLogo1);
+                remove(ChLabel);
+                remove(label2);
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                remove(panel);
+                remove(myTeam);
+                remove(teamCapacity);
+                if(JOptionPane.showConfirmDialog(null,"Are you sure?","Sign Out", YES_NO_OPTION) == YES_OPTION){
+                    userin.setText("");
+                    passin.setText("");
+                    getContentPane().removeAll();
+                    getContentPane().revalidate();
+                    F1();
+                }
+            }
+        });
     }
 
     //Getting TeamMember data
     public void F5(TeamMember chosen) throws IOException, ClassNotFoundException {
-        setSize(800,800);
-        Buttons(800);
-        JLabel AccountInfo = new JLabel("Account Info ");
-        AccountInfo.setBounds(25, 15, 300, 100);
-        AccountInfo.setFont(new Font("Serif", Font.BOLD, 40));
-        add(AccountInfo);
+        getContentPane().removeAll();
+        setSize(800,500);
+        Container c= new Container();
+        c.setBackground(LightPurple);
+        setContentPane(c);
+        setBackground(LightPurple);
+        revalidate();
+        repaint();
 
+        Buttons(805);
+        JPanel drag = new JPanel();
+
+        JButton signout  = new JButton("Sign Out");
+        JButton Acc = new JButton();
+        drag.setBounds(0,0,50,500);
+        drag.setBackground(Pink);
+        JLabel top = new JLabel(new ImageIcon("logo.PNG"));
+        top.setBackground(LightPurple);
+        top.setBounds(0,drag.getY(),drag.getWidth(),50);
+        add(top);
+
+        add(drag);
+        drag.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                super.mouseDragged(e);
+                revalidate();
+                repaint();
+                remove(drag);
+
+                if(e.getX() > 50) {
+                    if (e.getX() <= 150) {
+                        drag.setSize(e.getX(), 500);
+                    }
+                }
+                else if(drag.getWidth() <55){
+                    drag.setSize(50, 500);
+                }
+                if(drag.getWidth() > 140){
+                    drag.setSize(150,500);
+                }
+                if(e.getX() <= 100){
+                    remove(Acc);
+                    remove(signout);
+
+                }else{
+                    Acc.setBounds(0,150,150,50);
+                    Acc.setFont(new Font("Myraid pro",0,15));
+                    Acc.setForeground(Color.WHITE);
+                    Acc.setText("My Account");
+                    Acc.setBackground(new Color(255,255,255));
+                    Acc.setOpaque(false);
+                    Acc.setBorder(BorderFactory.createEmptyBorder());
+                    add(Acc);
+                    revalidate();
+                    repaint();
+                    signout.setBounds(0,400,150,50);
+                    signout.setFont(new Font("Myraid pro",0,15));
+                    signout.setForeground(Color.white);
+                    signout.setBackground(Color.WHITE);
+                    signout.setOpaque(false);
+                    signout.setBorder(BorderFactory.createEmptyBorder());
+                    add(signout);
+                    revalidate();
+                    repaint();
+
+
+                }
+                add(drag);
+                revalidate();
+                repaint();
+            }
+        });
+        JLabel AccountInfo = new JLabel("Account Information ");
         JLabel viewname = new JLabel("Name:");
-        viewname.setBounds(300, 100, 50, 50);
-        viewname.setFont(new Font("Serif", 20, 18));
-        add(viewname);
         JLabel TlName = new JLabel(chosen.getName());
-        TlName.setFont(new Font("Serif", 20, 18));
-        TlName.setBounds(360, 100, 100, 50);
-        add(TlName);
-
         JLabel ID = new JLabel("ID:");
-        ID.setBounds(300, 125, 50, 50);
-        ID.setFont(new Font("Serif", 20, 18));
-        add(ID);
         JLabel Tlid = new JLabel("" + chosen.getId());
-        Tlid.setFont(new Font("Serif", 20, 18));
-        Tlid.setBounds(360, 125, 100, 50);
-        add(Tlid);
-
         JLabel age = new JLabel("Age: ");
-        age.setBounds(300, 150, 50, 50);
-        age.setFont(new Font("Serif", 20, 18));
-        add(age);
         JLabel num = new JLabel("" + chosen.getAge());
-        num.setBounds(360, 150, 50, 50);
-        num.setFont(new Font("Serif", 20, 18));
-        add(num);
+        JLabel salary = new JLabel("Salary: ");
+        JLabel result = new JLabel("$" + chosen.getSalary());
 
-        JLabel TeamLeader = new JLabel("TeamLeader: ");
-        TeamLeader.setBounds(300, 175, 150, 50);
-        TeamLeader.setFont(new Font("Serif", 20, 18));
-        add(TeamLeader);
+        JPanel panel = new JPanel();
+//        JLabel empty = new JLabel(new ImageIcon("empty.PNG"));
+//        empty.setBounds(350,175,150,150);
+//        JLabel emptyText = new JLabel("Blank space \n Drag the slider for more embarrassing stuff");
+//        emptyText.setBounds(250,275,400,100);
+//        emptyText.setForeground(Color.LIGHT_GRAY);
+//        emptyText.setFont(new Font("Myraid pro",0,15));
+//        add(emptyText);
+//        add(empty);
+        //"Welcome, " + chosen.getName()
+        JLabel Welcome = new JLabel("<html><h1 style = \"font-family:muli black;font-size:100;\"><strong>Welcome, </strong></html>");
+        JLabel ChLabel = new JLabel("<html></h1><h1 style = \"font-family:muli black;font-size:100;\">"+ chosen.getName() +"</h1></html>");
+        ChLabel.setBounds(175,250,500,100);
+        add(ChLabel);
+        Welcome.setBounds(175,100,500,200);
+//        Welcome.setFont(new Font("arial black",1,50));
+        add(Welcome);
+        JLabel label2 = new JLabel("You can find your account info by dragging the left drawer");
+        label2.setBounds(175,350,550,50);
+        label2.setFont(new Font("Myraid Pro",0,20));
+        add(label2);
+       // label2.setBounds();
+        JLabel p = new JLabel();
+        JLabel somedeep = new JLabel("Your account info in");
+        somedeep.setForeground(Color.white);
+        JLabel anotherdeep = new JLabel("addition to the salary");
+        anotherdeep.setForeground(Color.white);
+        JLabel deep = new JLabel("that is calculated by");
+        deep.setForeground(Color.white);
+        JLabel deepLast = new JLabel("your manager.");
+        deepLast.setForeground(Color.white);
+        JLabel infoLogo = new JLabel(new ImageIcon("info.PNG"));
 
-        ArrayList<TeamLeader> teamleaders = Files.readTeamLeader();
-        TeamLeader selected = new TeamLeader();
-        for (int i = 0; i < teamleaders.size(); i++) {
-            for (int j = 0; j < teamleaders.get(i).getTeamMembers().size(); j++) {
-                if (chosen.getId() == teamleaders.get(i).getTeamMembers().get(j).getId()) {
-                    selected = teamleaders.get(i);
+        revalidate();
+        repaint();
+        infoLogo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                somedeep.setText("Your account info in");
+                anotherdeep.setText("addition to the salary");
+                deep.setText("that is calculated by");
+                deepLast.setText("your manager.");
+                p.setBounds(infoLogo.getX(),infoLogo.getY()-25,200,200);
+                p.setIcon(new ImageIcon("blur.PNG"));
+                somedeep.setBounds(p.getX() + 50,p.getY()-30,300,150);
+                anotherdeep.setBounds(somedeep.getX(),somedeep.getY()+20,300,150);
+                deep.setBounds(anotherdeep.getX(),anotherdeep.getY()+20,300,150);
+                deepLast.setBounds(deep.getX(),deep.getY()+20,300,150);
+                add(deep);
+                add(deepLast);
+                add(somedeep);
+                add(anotherdeep);
+                add(p);
+                revalidate();
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                remove(p);
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                revalidate();
+                repaint();
+            }
+        });
+        //buttons
+        Acc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               // remove(empty);
+                remove(Welcome);
+                remove(ChLabel);
+                remove(label2);
+                remove(infoLogo);
+                //remove(emptyText);
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                remove(panel);
+                revalidate();
+                repaint();
+                AccountInfo.setBounds(200, 100, 400, 100);
+                AccountInfo.setFont(new Font("Myraid Pro", 0, 34));
+                AccountInfo.setForeground(new Color(86,87,89));
+                add(AccountInfo);
+
+                infoLogo.setBounds(500,140,25,25);
+                add(infoLogo);
+
+                viewname.setBounds(250, 200, 50, 50);
+                viewname.setFont(new Font("Myraid Pro", 0, 15));
+                viewname.setForeground(new Color(86,87,89));
+                add(viewname);
+
+
+                TlName.setFont(new Font("Myraid Pro", 0, 15));
+                TlName.setBounds(450, 200, 100, 50);
+                TlName.setForeground(new Color(86,87,89));
+                add(TlName);
+
+
+                ID.setBounds(250, 250, 50, 50);
+                ID.setFont(new Font("Myraid Pro", 0, 15));
+                ID.setForeground(new Color(86,87,89));
+                add(ID);
+
+                Tlid.setFont(new Font("Myraid Pro", 0, 15));
+                Tlid.setBounds(450, 250, 100, 50);
+                Tlid.setForeground(new Color(86,87,89));
+                add(Tlid);
+
+
+                age.setBounds(250, 300, 50, 50);
+                age.setFont(new Font("Myraid Pro", 0, 15));
+                age.setForeground(new Color(86,87,89));
+                add(age);
+
+                num.setBounds(450, 300, 50, 50);
+                num.setFont(new Font("Myraid Pro", 0, 15));
+                num.setForeground(new Color(86,87,89));
+                add(num);
+
+
+                salary.setBounds(250, 350, 70, 50);
+                salary.setFont(new Font("Myraid Pro", 0, 15));
+                salary.setForeground(new Color(86,87,89));
+                add(salary);
+
+                result.setBounds(450, 350, 150, 50);
+                result.setFont(new Font("Myraid Pro", 0, 15));
+                result.setForeground(new Color(86,87,89));
+                add(result);
+
+                JLabel TeamLeader = new JLabel("Team Leader: ");
+                TeamLeader.setBounds(250, 400, 150, 50);
+                TeamLeader.setFont(new Font("Myraid Pro", 0, 15));
+                TeamLeader.setForeground(new Color(86,87,89));
+                add(TeamLeader);
+                ArrayList<TeamLeader> teamleaders = null;
+                try {
+                    teamleaders = Files.readTeamLeader();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
+                TeamLeader selected = new TeamLeader();
+                for (int i = 0; i < teamleaders.size(); i++) {
+                    for (int j = 0; j < teamleaders.get(i).getTeamMembers().size(); j++) {
+                        if (chosen.getId() == teamleaders.get(i).getTeamMembers().get(j).getId()) {
+                            selected = teamleaders.get(i);
+                        }
+                    }
+                }
+                JLabel tname = new JLabel(selected.getName());
+                tname.setBounds(450, 400, 150, 50);
+                tname.setFont(new Font("Myraid Pro", 0, 15));
+                tname.setForeground(new Color(86,87,89));
+                add(tname);
+                revalidate();
+                repaint();
+            }
+        });
+        signout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(JOptionPane.showConfirmDialog(null,"Are you sure?","Sign Out", YES_NO_OPTION) == YES_OPTION){
+                    userin.setText("");
+                    passin.setText("");
+
+                    F1();
                 }
             }
-        }
-        JLabel tname = new JLabel(selected.getName());
-        tname.setBounds(400, 175, 150, 50);
-        tname.setFont(new Font("Serif", 20, 18));
-        add(tname);
-
-        JLabel result = new JLabel("$" + chosen.getSalary());
-        result.setBounds(370, 200, 150, 50);
-        result.setFont(new Font("Serif", 20, 18));
-        add(result);
-
-        JLabel salary = new JLabel("Salary: ");
-        salary.setBounds(300, 200, 70, 50);
-        salary.setFont(new Font("Serif", 20, 18));
-        add(salary);
-
+        });
     }
 
     //Getting Trainee data
     public void F6(Trainee chosen) {
-        setSize(800,800);
-        Buttons(800);
-        JLabel AccountInfo = new JLabel("Account Info ");
-        AccountInfo.setBounds(25, 15, 300, 100);
-        AccountInfo.setFont(new Font("Serif", Font.BOLD, 40));
-        add(AccountInfo);
+        getContentPane().removeAll();
+        setSize(800,500);
+        Container c= new Container();
+        c.setBackground(Color.WHITE);
+        setContentPane(c);
+        setBackground(LightPurple);
+        revalidate();
+        repaint();
 
+        Buttons(805);
+        JPanel drag = new JPanel();
+
+        JButton signout  = new JButton("Sign Out");
+        JButton Acc = new JButton();
+        JButton Team = new JButton("My Team");
+        drag.setBounds(0,0,50,500);
+        drag.setBackground(Pink);
+
+
+        add(drag);
+        drag.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                super.mouseDragged(e);
+                revalidate();
+                repaint();
+                remove(drag);
+
+                if(e.getX() > 50) {
+                    if (e.getX() <= 150) {
+                        drag.setSize(e.getX(), 500);
+                    }
+                }
+
+                else if(drag.getWidth() <55){
+                    drag.setSize(50, 500);
+                }
+                if(drag.getWidth() > 140){
+                    drag.setSize(150,500);
+                }
+                if(e.getX() <= 75){
+                    remove(Acc);
+                    remove(Team);
+                    remove(signout);
+
+                }else{
+                    Acc.setBounds(0,150,150,50);
+                    Acc.setFont(new Font("Myraid pro",0,15));
+                    Acc.setForeground(Color.WHITE);
+                    Acc.setText("My Account");
+                    Acc.setBackground(new Color(255,255,255));
+                    Acc.setOpaque(false);
+                    Acc.setBorder(BorderFactory.createEmptyBorder());
+                    add(Acc);
+                    revalidate();
+                    repaint();
+                    signout.setBounds(0,400,150,50);
+                    signout.setFont(new Font("Myraid pro",0,15));
+                    signout.setForeground(Color.white);
+                    signout.setBackground(Color.WHITE);
+                    signout.setOpaque(false);
+                    signout.setBorder(BorderFactory.createEmptyBorder());
+                    add(signout);
+                    revalidate();
+                    repaint();
+
+
+                }
+                add(drag);
+                revalidate();
+                repaint();
+            }
+        });
+        JLabel AccountInfo = new JLabel("Account Information ");
         JLabel viewname = new JLabel("Name:");
-        viewname.setBounds(300, 100, 50, 50);
-        viewname.setFont(new Font("Serif", 20, 18));
-        add(viewname);
         JLabel TlName = new JLabel(chosen.getName());
-        TlName.setFont(new Font("Serif", 20, 18));
-        TlName.setBounds(360, 100, 100, 50);
-        add(TlName);
-
         JLabel ID = new JLabel("ID:");
-        ID.setBounds(300, 125, 50, 50);
-        ID.setFont(new Font("Serif", 20, 18));
-        add(ID);
         JLabel Tlid = new JLabel("" + chosen.getId());
-        Tlid.setFont(new Font("Serif", 20, 18));
-        Tlid.setBounds(360, 125, 100, 50);
-        add(Tlid);
-
         JLabel age = new JLabel("Age: ");
-        age.setBounds(300, 150, 50, 50);
-        age.setFont(new Font("Serif", 20, 18));
-        add(age);
         JLabel num = new JLabel("" + chosen.getAge());
-        num.setBounds(360, 150, 50, 50);
-        num.setFont(new Font("Serif", 20, 18));
-        add(num);
-
-        JLabel TeamLeader = new JLabel("Faculty Name: ");
-        TeamLeader.setBounds(300, 175, 150, 50);
-        TeamLeader.setFont(new Font("Serif", 20, 18));
-        add(TeamLeader);
-
-        JLabel tname = new JLabel(chosen.getFacultyName());
-        tname.setBounds(425, 175, 150, 50);
-        tname.setFont(new Font("Serif", 20, 18));
-        add(tname);
-
-        JLabel NewLabel = new JLabel("Academic Year: ");
-        NewLabel.setBounds(300, 200, 150, 50);
-        NewLabel.setFont(new Font("Serif", 20, 18));
-        add(NewLabel);
-//400,200,150,50
-        JLabel label1 = new JLabel(chosen.getAcademicYear() + "");
-        label1.setBounds(425, 200, 150, 50);
-        label1.setFont(new Font("Serif", 20, 18));
-        add(label1);
-
-        JLabel gpa = new JLabel("GPA: ");
-        gpa.setBounds(300, 225, 50, 50);
-        gpa.setFont(new Font("Serif", 20, 18));
-        add(gpa);
-
-        JLabel res = new JLabel(chosen.getGPA() + "");
-        res.setBounds(350, 225, 50, 50);
-        res.setFont(new Font("Serif", 20, 18));
-        add(res);
-
-
         JLabel salary = new JLabel("Salary: ");
-        salary.setBounds(300, 250, 70, 50);
-        salary.setFont(new Font("Serif", 20, 18));
-        add(salary);
-
         JLabel result = new JLabel("$" + chosen.getSalary());
-        result.setBounds(370, 250, 150, 50);
-        result.setFont(new Font("Serif", 20, 18));
-        add(result);
 
+        JLabel Welcome = new JLabel("<html><h1 style = \"font-family:muli black;font-size:100;\"><strong>Welcome, </strong></html>");
+        JLabel ChLabel = new JLabel("<html></h1><h1 style = \"font-family:muli black;font-size:100;\">"+ chosen.getName() +"</h1></html>");
+        ChLabel.setBounds(175,250,500,100);
+        add(ChLabel);
+        Welcome.setBounds(175,100,500,200);
+//        Welcome.setFont(new Font("arial black",1,50));
+        add(Welcome);
+        JLabel label2 = new JLabel("You can find your account info by dragging the left drawer");
+        label2.setBounds(175,350,550,50);
+        label2.setFont(new Font("Myraid Pro",0,20));
+        add(label2);
+        JLabel p = new JLabel();
+        JLabel somedeep = new JLabel("Your account info in");
+        somedeep.setForeground(Color.white);
+        JLabel anotherdeep = new JLabel("addition to the salary");
+        anotherdeep.setForeground(Color.white);
+        JLabel deep = new JLabel("that is calculated by");
+        deep.setForeground(Color.white);
+        JLabel deepLast = new JLabel("your manager.");
+        deepLast.setForeground(Color.white);
+        JLabel infoLogo = new JLabel(new ImageIcon("info.PNG"));
+
+        revalidate();
+        repaint();
+        infoLogo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                somedeep.setText("Your account info in");
+                anotherdeep.setText("addition to the salary");
+                deep.setText("that is calculated by");
+                deepLast.setText("your manager.");
+                p.setBounds(infoLogo.getX(),infoLogo.getY()-25,200,200);
+                p.setIcon(new ImageIcon("blur.PNG"));
+                somedeep.setBounds(p.getX() + 50,p.getY()-30,300,150);
+                anotherdeep.setBounds(somedeep.getX(),somedeep.getY()+20,300,150);
+                deep.setBounds(anotherdeep.getX(),anotherdeep.getY()+20,300,150);
+                deepLast.setBounds(deep.getX(),deep.getY()+20,300,150);
+                add(deep);
+                add(deepLast);
+                add(somedeep);
+                add(anotherdeep);
+                add(p);
+                revalidate();
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                remove(p);
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                revalidate();
+                repaint();
+            }
+        });
+        //buttons
+        Acc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(Welcome);
+                remove(infoLogo);
+                remove(ChLabel);
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                remove(label2);
+                revalidate();
+                repaint();
+                AccountInfo.setBounds(200, 10, 400, 100);
+                AccountInfo.setFont(new Font("Myraid Pro", 0, 34));
+                AccountInfo.setForeground(new Color(86,87,89));
+                add(AccountInfo);
+
+                infoLogo.setBounds(500,50,25,25);
+                add(infoLogo);
+
+                viewname.setBounds(250, 100, 50, 50);
+                viewname.setFont(new Font("Myraid Pro", 0, 15));
+                viewname.setForeground(new Color(86,87,89));
+                add(viewname);
+
+
+                TlName.setFont(new Font("Myraid Pro", 0, 15));
+                TlName.setBounds(450, 100, 100, 50);
+                TlName.setForeground(new Color(86,87,89));
+                add(TlName);
+
+
+                ID.setBounds(250, 150, 50, 50);
+                ID.setFont(new Font("Myraid Pro", 0, 15));
+                ID.setForeground(new Color(86,87,89));
+                add(ID);
+
+                Tlid.setFont(new Font("Myraid Pro", 0, 15));
+                Tlid.setBounds(450, 150, 100, 50);
+                Tlid.setForeground(new Color(86,87,89));
+                add(Tlid);
+
+
+                age.setBounds(250, 200, 50, 50);
+                age.setFont(new Font("Myraid Pro", 0, 15));
+                age.setForeground(new Color(86,87,89));
+                add(age);
+
+                num.setBounds(450, 200, 50, 50);
+                num.setFont(new Font("Myraid Pro", 0, 15));
+                num.setForeground(new Color(86,87,89));
+                add(num);
+
+
+                salary.setBounds(250, 250, 70, 50);
+                salary.setFont(new Font("Myraid Pro", 0, 15));
+                salary.setForeground(new Color(86,87,89));
+                add(salary);
+
+                result.setBounds(450, 250, 150, 50);
+                result.setFont(new Font("Myraid Pro", 0, 15));
+                result.setForeground(new Color(86,87,89));
+                add(result);
+
+                JLabel faculty = new JLabel("Faculty name:");
+                faculty.setBounds(250,300,150,50);
+                faculty.setFont(new Font("Myraid Pro", 0,15));
+                faculty.setForeground(new Color(86,87,89));
+                add(faculty);
+
+                JLabel fname = new JLabel(chosen.getFacultyName());
+                fname.setBounds(450,300,150,50);
+                fname.setFont(new Font("Myraid Pro",0,15));
+                fname.setForeground(new Color(86,87,89));
+                add(fname);
+
+                JLabel gpa = new JLabel("GPA:");
+                gpa.setBounds(250,350,150,50);
+                gpa.setFont(new Font("Myraid Pro",0,15));
+                gpa.setForeground(new Color(86,87,89));
+                add(gpa);
+
+                JLabel gnum = new JLabel(chosen.getGPA()+"");
+                gnum.setBounds(450,350,150,50);
+                gnum.setFont(new Font("Myraid Pro",0,15));
+                gnum.setForeground(new Color(86,87,89));
+                add(gnum);
+
+                JLabel academic = new JLabel("Academic year:");
+                academic.setBounds(250,400,150,50);
+                academic.setFont(new Font("Myraid Pro",0,15));
+                academic.setForeground(new Color(86,87,89));
+                add(academic);
+
+                JLabel aname = new JLabel(chosen.getAcademicYear()+"");
+                aname.setBounds(450,400,150,50);
+                aname.setFont(new Font("Myraid Pro",0,15));
+                aname.setForeground(new Color(86,87,89));
+                add(aname);
+
+                revalidate();
+                repaint();
+            }
+        });
+        signout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(JOptionPane.showConfirmDialog(null,"Are you sure?","Sign Out", YES_NO_OPTION) == YES_OPTION){
+                    userin.setText("");
+                    passin.setText("");
+
+                    F1();
+                }
+            }
+        });
     }
 
     //3 Buttons to choose whether to ADD EDIT or DELETE
     public void F7() {
+
         setSize(800,675);
         Buttons(800);
         setBackground(LightPurple);
         revalidate();
         repaint();
+        add(back);
         //Set bounds for left buttons
         int height = 80;
         int width = 250;
@@ -807,7 +1483,7 @@ public class Frame extends JFrame implements Files {
     ArrayList<Trainee> TraineeList = Files.readTrainee();
     ArrayList<String> data = new ArrayList();
 
-    public void F11() {
+    public void F11() throws IOException, ClassNotFoundException {
         Buttons(800);
         int y = 250;
         int x = 240;
@@ -816,7 +1492,7 @@ public class Frame extends JFrame implements Files {
         EDITtrainee.setBounds((800/2)-125, 10, 430, 90);
         EDITtrainee.setFont(new Font("Serif", Font.BOLD, 50));
         add(EDITtrainee);
-
+        TraineeList = Files.readTrainee();
         for (int i = 0; i < TraineeList.size(); i++) {
             data.add(TraineeList.get(i).getId() + "  " + TraineeList.get(i).getName());
         }
@@ -893,7 +1569,7 @@ public class Frame extends JFrame implements Files {
     JSpinner Hours = new JSpinner(new SpinnerNumberModel(0,0,360,0.5));
     JSpinner Tax = new JSpinner(new SpinnerNumberModel(0,0,0.25,0.01));
     JSpinner Pay = new JSpinner(new SpinnerNumberModel(0,0,0.50,0.01));
-    public void F12() {
+    public void F12() throws IOException, ClassNotFoundException {
         Buttons(800);
         JLabel EDITteamMember = new JLabel("Edit Team Member ");
         EDITteamMember.setBounds(195, 50, 550, 90);
@@ -903,7 +1579,8 @@ public class Frame extends JFrame implements Files {
         JLabel infoTeamM = new JLabel("Enter the fields you would like to edit: ");
         infoTeamM.setFont(new Font("Serif", 1, 20));
 
-
+        dataTeamMember.clear();
+        TeamMemberList = Files.readTeamLeader();
         for (int i = 0; i < TeamMemberList.size(); i++) {
             for (int j = 0; j < TeamMemberList.get(i).getTeamMembers().size(); j++) {
                 dataTeamMember.add(TeamMemberList.get(i).getTeamMembers().get(j).getId() + "  " + TeamMemberList.get(i).getTeamMembers().get(j).getName());
@@ -990,7 +1667,7 @@ public class Frame extends JFrame implements Files {
     JSpinner TeamLeaderHours = new JSpinner(new SpinnerNumberModel(0,0,360,0.5));
     JSpinner TeamLeaderTax = new JSpinner(new SpinnerNumberModel(0,0,0.75,0.01));
     JSpinner TeamLeaderPay = new JSpinner(new SpinnerNumberModel(0,0,0.9,0.01));
-    public void F13() {
+    public void F13() throws IOException, ClassNotFoundException {
         Buttons(800);
         int y = 250;
         int x = 240;
@@ -1004,6 +1681,8 @@ public class Frame extends JFrame implements Files {
         infoTeamL.setBounds(x, y-50, 400, 50);
         add(infoTeamL);
 
+
+        TeamLeaderList = Files.readTeamLeader();
         for (int i = 0; i < TeamLeaderList.size(); i++) {
             dataTeamLeader.add(TeamLeaderList.get(i).getId() + "  " + TeamLeaderList.get(i).getName());
         }
@@ -1092,14 +1771,21 @@ public class Frame extends JFrame implements Files {
         add(ID);
 
         deleteID.setBounds(380, 150, 100, 30);
+        deleteID.setFont(new Font("serif",0,20));
         add(deleteID);
 
-        viewTraineeData.setBounds(250, 600, 150, 50);
+        viewTraineeData.setBounds(200, 600, 150, 50);
         viewTraineeData.setFont(new Font("Serif", Font.BOLD, 20));
+        viewTraineeData.setForeground(Color.WHITE);
+        viewTraineeData.setBackground(Pink);
+        viewTraineeData.setBorder(BorderFactory.createEmptyBorder());
         add(viewTraineeData);
 
-        deleteTrainee.setBounds(410, 600, 150, 50);
+        deleteTrainee.setBounds(430, 600, 150, 50);
         deleteTrainee.setFont(new Font("Serif", Font.BOLD, 20));
+        deleteTrainee.setForeground(Color.WHITE);
+        deleteTrainee.setBackground(Pink);
+        deleteTrainee.setBorder(BorderFactory.createEmptyBorder());
         add(deleteTrainee);
     }
 
@@ -1110,25 +1796,32 @@ public class Frame extends JFrame implements Files {
 
     public void F15() {
         Buttons(800);
+        setSize(800,600);
         JLabel DELETETeamMember = new JLabel("Delete Team Member ");
-        DELETETeamMember.setBounds(185, 10, 550, 90);
+        DELETETeamMember.setBounds(185, 40, 550, 90);
         DELETETeamMember.setFont(new Font("Serif", Font.BOLD, 50));
         add(DELETETeamMember);
 
         JLabel TeamMemberID = new JLabel("Team Member ID: ");
         TeamMemberID.setFont(new Font("Serif", Font.BOLD, 20));
-        TeamMemberID.setBounds(200, 150, 170, 30);
+        TeamMemberID.setBounds(220, 150, 170, 30);
         add(TeamMemberID);
 
-        deleteTeamMemberID.setBounds(380, 150, 100, 30);
+        deleteTeamMemberID.setBounds(400, 150, 100, 30);
         add(deleteTeamMemberID);
 
-        viewTeamMemberData.setBounds(250, 600, 150, 50);
+        viewTeamMemberData.setBounds(200, 450, 150, 50);
         viewTeamMemberData.setFont(new Font("Serif", Font.BOLD, 20));
+        viewTeamMemberData.setForeground(Color.WHITE);
+        viewTeamMemberData.setBackground(Pink);
+        viewTeamMemberData.setBorder(BorderFactory.createEmptyBorder());
         add(viewTeamMemberData);
 
-        deleteTeamMember.setBounds(410, 600, 150, 50);
+        deleteTeamMember.setBounds(450, 450, 150, 50);
         deleteTeamMember.setFont(new Font("Serif", Font.BOLD, 20));
+        deleteTeamMember.setForeground(Color.WHITE);
+        deleteTeamMember.setBackground(Pink);
+        deleteTeamMember.setBorder(BorderFactory.createEmptyBorder());
         add(deleteTeamMember);
     }
 
@@ -1138,6 +1831,7 @@ public class Frame extends JFrame implements Files {
     JTextField deleteTeamLeaderID = new JTextField(20);
 
     public void F16() {
+        setSize(800,800);
         Buttons(800);
         JLabel DELETETeamLeader = new JLabel("Delete & Replace Team Leader  ");
         DELETETeamLeader.setBounds(200, 30, 520, 100);
@@ -1146,10 +1840,10 @@ public class Frame extends JFrame implements Files {
 
         JLabel TeamLeaderID = new JLabel("Team Leader's ID: ");
         TeamLeaderID.setFont(new Font("Serif", Font.BOLD, 20));
-        TeamLeaderID.setBounds(230, 150, 170, 30);
+        TeamLeaderID.setBounds(250, 150, 170, 30);
         add(TeamLeaderID);
 
-        deleteTeamLeaderID.setBounds(410, 150, 100, 30);
+        deleteTeamLeaderID.setBounds(420, 150, 100, 30);
         add(deleteTeamLeaderID);
 
         JLabel note = new JLabel("*The current team members will be assigned to the new team leader...");
@@ -1159,14 +1853,22 @@ public class Frame extends JFrame implements Files {
 
         viewTeamLeaderData.setBounds(250, 680, 150, 50);
         viewTeamLeaderData.setFont(new Font("Serif", Font.BOLD, 20));
+        viewTeamLeaderData.setBackground(Pink);
+        viewTeamLeaderData.setForeground(Color.WHITE);
+        viewTeamLeaderData.setBorder(BorderFactory.createEmptyBorder());
         add(viewTeamLeaderData);
 
         ReplaceTeamLeader.setBounds(410, 680, 150, 50);
         ReplaceTeamLeader.setFont(new Font("Serif", Font.BOLD, 20));
+        ReplaceTeamLeader.setForeground(Color.WHITE);
+        ReplaceTeamLeader.setBackground(Pink);
+        ReplaceTeamLeader.setBorder(BorderFactory.createEmptyBorder());
         add(ReplaceTeamLeader);
+        revalidate();
+        repaint();
     }
 
-    //Delet function by replacing old TeamLeader with a new TeamLeader
+    //Delete function by replacing old TeamLeader with a new TeamLeader
     JTextField getrepTlName = new JTextField(20);
     JTextField getrepTlAge = new JTextField(20);
     JTextField getrepTlid = new JTextField(20);
@@ -1178,55 +1880,66 @@ public class Frame extends JFrame implements Files {
         getContentPane().removeAll();
         getContentPane().revalidate();
         setSize(801, 801);
-        setSize(800, 800);
+        setSize(800, 600);
         Buttons(800);
         JLabel replacedTeamLeader = new JLabel("Replace Team Leader  ");
-        replacedTeamLeader.setBounds(215, 30, 520, 100);
+        replacedTeamLeader.setBounds((800/2) - 150, 30, 300, 100);
         replacedTeamLeader.setFont(new Font("Serif", Font.BOLD, 30));
         add(replacedTeamLeader);
-
+        int x = 260;
+        int y = 200;
+        int tx =  x + 150;
         JLabel replacedTlname = new JLabel("Name: ");
         replacedTlname.setFont(new Font("Serif", Font.BOLD, 20));
-        replacedTlname.setBounds(50, 200, 80, 30);
+        replacedTlname.setBounds(x, y, 80, 30);
         add(replacedTlname);
 
-        getrepTlName.setBounds(195, 200, 100, 30);
+        getrepTlName.setBounds(tx, y, 100, 30);
+        getrepTlName.setText("");
         add(getrepTlName);
 
         JLabel replacedTlid = new JLabel("ID: ");
         replacedTlid.setFont(new Font("Serif", Font.BOLD, 20));
-        replacedTlid.setBounds(50, 300, 80, 30);
+        replacedTlid.setBounds(x, y+=50, 80, 30);
         add(replacedTlid);
 
-        getrepTlid.setBounds(195, 300, 100, 30);
+        getrepTlid.setBounds(tx, y, 100, 30);
+        getrepTlid.setText("");
         add(getrepTlid);
 
         JLabel replacedTlage = new JLabel("Age: ");
         replacedTlage.setFont(new Font("Serif", Font.BOLD, 20));
-        replacedTlage.setBounds(50, 250, 80, 30);
+        replacedTlage.setBounds(x, y+=50, 80, 30);
         add(replacedTlage);
 
-        getrepTlAge.setBounds(195, 250, 100, 30);
+        getrepTlAge.setBounds(tx, y, 100, 30);
+        getrepTlAge.setText("");
         add(getrepTlAge);
 
         JLabel replacedTlUser = new JLabel("Username: ");
         replacedTlUser.setFont(new Font("Serif", Font.BOLD, 20));
-        replacedTlUser.setBounds(350, 200, 100, 30);
+        replacedTlUser.setBounds(x, y+=50, 100, 30);
         add(replacedTlUser);
 
-        getrepTlUser.setBounds(460, 200, 100, 30);
+        getrepTlUser.setBounds(tx, y, 100, 30);
+        getrepTlUser.setText("");
         add(getrepTlUser);
 
         JLabel replacedTlPass = new JLabel("Password: ");
         replacedTlPass.setFont(new Font("Serif", Font.BOLD, 20));
-        replacedTlPass.setBounds(350, 300, 100, 30);
+        replacedTlPass.setBounds(x, y+=50, 100, 30);
         add(replacedTlPass);
 
-        getrepTlPass.setBounds(460, 300, 100, 30);
+        getrepTlPass.setBounds(tx, y, 100, 30);
+        getrepTlPass.setText("");
         add(getrepTlPass);
 
-        SubmitTeamLeader.setBounds(310, 600, 150, 50);
+        SubmitTeamLeader.setBounds((800/2)-75, 500, 150, 50);
         SubmitTeamLeader.setFont(new Font("Serif", Font.BOLD, 20));
+        SubmitTeamLeader.setForeground(Color.WHITE);
+        SubmitTeamLeader.setBackground(Pink);
+        SubmitTeamLeader.setBorder(BorderFactory.createEmptyBorder());
+
         add(SubmitTeamLeader);
 
 
@@ -1234,10 +1947,11 @@ public class Frame extends JFrame implements Files {
 
     //View Trainee data
     public void F17(){//int id, String name, int age, String facultyName, int academicYear, double GPA,String Username, String Password
+        setSize(800,500);
         Buttons(800);
         JLabel VIEWteamLeader = new JLabel("View  Trainees ");
-        VIEWteamLeader.setBounds(200, 50, 550, 90);
-        VIEWteamLeader.setFont(new Font("Serif", Font.BOLD, 50));
+        VIEWteamLeader.setBounds(800/2 - 150, 50, 300, 90);
+        VIEWteamLeader.setFont(new Font("Serif", Font.BOLD, 40));
         add(VIEWteamLeader);
 
         String column[] = {"ID", "Name", "Age","Faculty Name","Academic Year","GPA","Salary","Username","Password"};
@@ -1270,7 +1984,7 @@ public class Frame extends JFrame implements Files {
                 Column.setPreferredWidth(Width);
             }
             jt.setFillsViewportHeight(true);
-            sp.setBounds(30,300,725,height);
+            sp.setBounds(30,250,725,height);
             add(sp);
         }
         catch (IOException e) { e.printStackTrace();}
@@ -1279,6 +1993,7 @@ public class Frame extends JFrame implements Files {
 
     //View TeamLeader
     public void F18(){//String name, int id, int age, ArrayList<TeamMember> TeamMembers, String Username,String Password)
+        setSize(800,500);
         Buttons(800);
         JLabel VIEWteamLeader = new JLabel("View Team Leaders ");
         VIEWteamLeader.setBounds(185, 30, 550, 90);
@@ -1314,7 +2029,7 @@ public class Frame extends JFrame implements Files {
                 Column.setPreferredWidth(Width);
             }
             jt.setFillsViewportHeight(true);
-            sp.setBounds(175,300,525,height);
+            sp.setBounds(150,250,525,height);
             add(sp);
         }
         catch (IOException e) { e.printStackTrace();}
@@ -1323,6 +2038,7 @@ public class Frame extends JFrame implements Files {
 
     //View TeamMembers
     public void F19(){//String name, int id, int age, String Username, String Password
+        setSize(800,500);
         Buttons(800);
         JLabel VIEWteamLeader = new JLabel("View Team Members ");
         VIEWteamLeader.setBounds(175, 30, 550, 90);
@@ -1364,7 +2080,7 @@ public class Frame extends JFrame implements Files {
                 Column.setPreferredWidth(Width);
             }
             jt.setFillsViewportHeight(true);
-            sp.setBounds(175,300,450,height);
+            sp.setBounds(175,250,450,height);
             add(sp);
         }
         catch (IOException e) { e.printStackTrace();}
@@ -1603,7 +2319,13 @@ public class Frame extends JFrame implements Files {
                 //EDIT
                 else if (roleState == 2) {
                     add(back);
-                    F11();
+                    try {
+                        F11();
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    } catch (ClassNotFoundException classNotFoundException) {
+                        classNotFoundException.printStackTrace();
+                    }
                 }
                 //Delete
                 else if (roleState == 3) {
@@ -1634,7 +2356,13 @@ public class Frame extends JFrame implements Files {
                     setSize(801, 801);
                     setSize(800, 800);
                     add(back);
-                    F13();
+                    try {
+                        F13();
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    } catch (ClassNotFoundException classNotFoundException) {
+                        classNotFoundException.printStackTrace();
+                    }
                 }
                 //DELETE
                 else if (roleState == 3) {
@@ -1671,7 +2399,13 @@ public class Frame extends JFrame implements Files {
                 //EDIT
                 else if (roleState == 2) {
                     add(back);
-                    F12();
+                    try {
+                        F12();
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    } catch (ClassNotFoundException classNotFoundException) {
+                        classNotFoundException.printStackTrace();
+                    }
                 }
                 //DELETE
                 else if (roleState == 3) {
@@ -1921,6 +2655,15 @@ public class Frame extends JFrame implements Files {
                 try {
                     Files.writeTrainee(TraineeList);
                     showMessageDialog(null, "Successfully Saved.");
+                    TraineeCombo.removeAllItems();
+                    data.clear();
+                    name.setText("");
+                    age.setText("");
+                    academicYear.setText("");
+                    FacultyName.setText("");
+                    GPA.setText("");
+                    getContentPane().removeAll();
+                    F7();
 
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
@@ -1961,6 +2704,19 @@ public class Frame extends JFrame implements Files {
                 try {
                     Files.writeTeamLeader(TeamMemberList);
                     showMessageDialog(null, "Successfully Saved.");
+                    for(int i= 0;i< TeamMemberCombo.getItemCount();i++){
+                        TeamMemberCombo.removeItemAt(i);
+                    }
+
+                    TeamMembername.setText("");
+                    TeamMemberage.setText("");
+                    Hours.setValue(0);
+                    Tax.setValue(0);
+                    Pay.setValue(0);
+
+                    getContentPane().removeAll();
+                    F7();
+
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 } catch (ClassNotFoundException classNotFoundException) {
@@ -1996,6 +2752,15 @@ public class Frame extends JFrame implements Files {
                 try {
                     Files.writeTeamLeader(TeamLeaderList);
                     showMessageDialog(null, "Successfully Saved");
+                    LeaderCombo.removeAllItems();
+                    dataTeamLeader.clear();
+                    EditTeamLeaderName.setText("");
+                    EditTeamLeaderAge.setText("");
+                    TeamLeaderHours.setValue(0);
+                    TeamLeaderTax.setValue(0);
+                    TeamLeaderPay.setValue(0);
+                    getContentPane().removeAll();
+                    F7();
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 } catch (ClassNotFoundException classNotFoundException) {
@@ -2035,6 +2800,9 @@ public class Frame extends JFrame implements Files {
                             delete.remove(index);
                             showMessageDialog(null, "Successfully deleted");
                             deleteID.setText("");
+                            getContentPane().removeAll();
+                            state = 2;
+                            F7();
                             break;
                         }
                     }
@@ -2060,50 +2828,52 @@ public class Frame extends JFrame implements Files {
                         getContentPane().revalidate();
                         if (Integer.parseInt(deleteID.getText()) == deleteTraineeList.get(i).getId()) {
                             chosen = deleteTraineeList.get(i);
-
+                            int x = 250;
+                            int y = 250;
+                            int tx = x+140;
                             JLabel TraineeName = new JLabel("Name: ");
                             TraineeName.setFont(new Font("Serif", Font.BOLD, 20));
-                            TraineeName.setBounds(50, 200, 100, 30);
+                            TraineeName.setBounds(x, y, 100, 30);
                             add(TraineeName);
                             JTextField getTraineeName = new JTextField(chosen.getName());
-                            getTraineeName.setFont(new Font("Serif", Font.BOLD, 20));
-                            getTraineeName.setBounds(210, 200, 120, 30);
+                            getTraineeName.setFont(new Font("Serif", 0, 20));
+                            getTraineeName.setBounds(tx, y, 120, 30);
                             add(getTraineeName);
 
                             JLabel Traineeid = new JLabel("ID: ");
                             Traineeid.setFont(new Font("Serif", Font.BOLD, 20));
-                            Traineeid.setBounds(50, 250, 100, 30);
+                            Traineeid.setBounds(x, y+=50, 100, 30);
                             add(Traineeid);
                             JTextField getTraineeid = new JTextField(String.valueOf(chosen.getId()));
-                            getTraineeid.setFont(new Font("Serif", Font.BOLD, 20));
-                            getTraineeid.setBounds(210, 250, 120, 30);
+                            getTraineeid.setFont(new Font("Serif", 0, 20));
+                            getTraineeid.setBounds(tx, y, 120, 30);
                             add(getTraineeid);
 
                             JLabel Traineeage = new JLabel("Age: ");
                             Traineeage.setFont(new Font("Serif", Font.BOLD, 20));
-                            Traineeage.setBounds(50, 300, 100, 30);
+                            Traineeage.setBounds(x, y+=50, 100, 30);
                             add(Traineeage);
                             JTextField getTraineeage = new JTextField(String.valueOf(chosen.getAge()));
-                            getTraineeage.setFont(new Font("Serif", Font.BOLD, 20));
-                            getTraineeage.setBounds(210, 300, 120, 30);
+                            getTraineeage.setFont(new Font("Serif", 0, 20));
+                            getTraineeage.setBounds(tx, y, 120, 30);
                             add(getTraineeage);
 
                             JLabel TraineefacultyName = new JLabel("Faculty Name: ");
                             TraineefacultyName.setFont(new Font("Serif", Font.BOLD, 20));
-                            TraineefacultyName.setBounds(50, 350, 150, 30);
+                            TraineefacultyName.setBounds(x, y+=50, 150, 30);
                             add(TraineefacultyName);
                             JTextField getTraineefacultyName = new JTextField(chosen.getFacultyName());
-                            getTraineefacultyName.setFont(new Font("Serif", Font.BOLD, 20));
-                            getTraineefacultyName.setBounds(210, 350, 120, 30);
+                            getTraineefacultyName.setFont(new Font("Serif", 0, 20));
+                            getTraineefacultyName.setBounds(tx, y, 120, 30);
                             add(getTraineefacultyName);
 
                             JLabel TraineeacademicYear = new JLabel("Academic Year: ");
                             TraineeacademicYear.setFont(new Font("Serif", Font.BOLD, 20));
-                            TraineeacademicYear.setBounds(50, 400, 150, 30);
+                            TraineeacademicYear.setBounds(x, y+=50, 150, 30);
                             add(TraineeacademicYear);
                             JTextField getTraineeacademicYear = new JTextField(String.valueOf(chosen.getAcademicYear()));
-                            getTraineeacademicYear.setFont(new Font("Serif", Font.BOLD, 20));
-                            getTraineeacademicYear.setBounds(210, 400, 120, 30);
+                            getTraineeacademicYear.setFont(new Font("Serif",0, 20));
+                            getTraineeacademicYear.setBounds(tx, y, 120, 30);
                             add(getTraineeacademicYear);
                             break;
                         }
@@ -2131,13 +2901,17 @@ public class Frame extends JFrame implements Files {
                             if (Integer.parseInt(deleteTeamMemberID.getText()) == deleteTeamLeader.get(i).getTeamMembers().get(j).getId()) {
                                 if (deleteTeamLeader.get(i).getTeamMembers().size() == 1) {
                                     showMessageDialog(null, "Cannot delete, minimum amount of team members found...");
+                                    idcheck = true;
                                     break;
                                 }
-                                showMessageDialog(null,"hi");
                                 deleteTeamLeader.get(i).getTeamMembers().remove(deleteTeamLeader.get(i).getTeamMembers().get(j));
                                 showMessageDialog(null, "Successfully deleted");
-                                deleteTeamMemberID.setText("");
                                 idcheck = true;
+                                deleteTeamMemberID.setText("");
+                                getContentPane().removeAll();
+                                state = 2;
+                                F7();
+
                                 break;
                             }
                         }
@@ -2154,9 +2928,8 @@ public class Frame extends JFrame implements Files {
                 catch (ClassNotFoundException classNotFoundException) { classNotFoundException.printStackTrace();}
             }
             if (e.getSource() == viewTeamMemberData) {
-
-                setSize(801, 801);
-                setSize(800, 800);
+                revalidate();
+                repaint();
                 ArrayList<TeamLeader> deleteTeamMemberList = new ArrayList();
                 TeamMember chosen = new TeamMember();
                 if (deleteTeamMemberID.getText().equals("")) {
@@ -2171,31 +2944,34 @@ public class Frame extends JFrame implements Files {
                             if (Integer.parseInt(deleteTeamMemberID.getText()) == deleteTeamMemberList.get(i).getTeamMembers().get(j).getId()) {
                                 chosen = deleteTeamMemberList.get(i).getTeamMembers().get(j);
 
+                                int x = 250;
+                                int y = 250;
+                                int tx = x + 140;
                                 JLabel TeamLeaderName = new JLabel("Name: ");
                                 TeamLeaderName.setFont(new Font("Serif", Font.BOLD, 20));
-                                TeamLeaderName.setBounds(50, 200, 100, 30);
+                                TeamLeaderName.setBounds(x, y, 100, 30);
                                 add(TeamLeaderName);
                                 JTextField getTeamLeaderName = new JTextField(chosen.getName());
                                 getTeamLeaderName.setFont(new Font("Serif", Font.BOLD, 20));
-                                getTeamLeaderName.setBounds(210, 200, 120, 30);
+                                getTeamLeaderName.setBounds(tx, y, 120, 30);
                                 add(getTeamLeaderName);
 
                                 JLabel TeamLeaderid = new JLabel("ID: ");
                                 TeamLeaderid.setFont(new Font("Serif", Font.BOLD, 20));
-                                TeamLeaderid.setBounds(50, 250, 100, 30);
+                                TeamLeaderid.setBounds(x, y+=50, 100, 30);
                                 add(TeamLeaderid);
                                 JTextField getTeamLeaderid = new JTextField(String.valueOf(chosen.getId()));
                                 getTeamLeaderid.setFont(new Font("Serif", Font.BOLD, 20));
-                                getTeamLeaderid.setBounds(210, 250, 120, 30);
+                                getTeamLeaderid.setBounds(tx, y, 120, 30);
                                 add(getTeamLeaderid);
 
                                 JLabel TeamLeaderAge = new JLabel("Age: ");
                                 TeamLeaderAge.setFont(new Font("Serif", Font.BOLD, 20));
-                                TeamLeaderAge.setBounds(50, 300, 100, 30);
+                                TeamLeaderAge.setBounds(x, y+=50, 100, 30);
                                 add(TeamLeaderAge);
                                 JTextField getTeamLeaderage = new JTextField(String.valueOf(chosen.getAge()));
                                 getTeamLeaderage.setFont(new Font("Serif", Font.BOLD, 20));
-                                getTeamLeaderage.setBounds(210, 300, 120, 30);
+                                getTeamLeaderage.setBounds(tx, y, 120, 30);
                                 add(getTeamLeaderage);
                             }
                         }
@@ -2211,15 +2987,18 @@ public class Frame extends JFrame implements Files {
             if (e.getSource() == ReplaceTeamLeader) {
                 state = 4;
                 int index;
+
                 ArrayList<TeamLeader> replaceTeamLeader = new ArrayList<>();
                 try {
                     replaceTeamLeader = Files.readTeamLeader();
                     if (deleteTeamLeaderID.getText().equals("")) {
                         showMessageDialog(null, "Missing ID...");
+                        deleteTeamLeaderID.setText("");
                     }
                     for (int i = 0; i < replaceTeamLeader.size(); i++) {
                         index = i;
                         if (Integer.parseInt(deleteTeamLeaderID.getText()) == replaceTeamLeader.get(i).getId()) {
+                            deleteTeamLeaderID.setText("");
                             replaceTL();
                             add(back);
                             break;
@@ -2281,7 +3060,7 @@ public class Frame extends JFrame implements Files {
 
                             //Table
                             JLabel Tlmember = new JLabel("Team Members ");
-                            Tlmember.setBounds(300, 350, 200, 30);
+                            Tlmember.setBounds(320, 350, 200, 30);
                             Tlmember.setFont(new Font("Serif", Font.BOLD, 23));
                             add(Tlmember);
 
@@ -2298,18 +3077,18 @@ public class Frame extends JFrame implements Files {
 
                                 JLabel TlmembersId = new JLabel("ID: ");
                                 TlmembersId.setFont(new Font("Serif", Font.BOLD, 20));
-                                TlmembersId.setBounds(265, 400 + j, 40, 30);
+                                TlmembersId.setBounds(320, 400 + j, 40, 30);
                                 add(TlmembersId);
                                 JTextField getTlmembersId = new JTextField(20);
-                                getTlmembersId.setBounds(315, 400 + j, 100, 30);
+                                getTlmembersId.setBounds(370, 400 + j, 100, 30);
                                 add(getTlmembersId);
 
                                 JLabel TlmembersAge = new JLabel("Age: ");
                                 TlmembersAge.setFont(new Font("Serif", Font.BOLD, 20));
-                                TlmembersAge.setBounds(445, 400 + j, 50, 30);
+                                TlmembersAge.setBounds(550, 400 + j, 50, 30);
                                 add(TlmembersAge);
                                 JTextField getTlmembersAge = new JTextField(20);
-                                getTlmembersAge.setBounds(505, 400 + j, 100, 30);
+                                getTlmembersAge.setBounds(600 , 400 + j, 100, 30);
                                 add(getTlmembersAge);
 
                                 if(y<chosenTeamLeader.getTeamMembers().size()){
@@ -2355,6 +3134,9 @@ public class Frame extends JFrame implements Files {
                         deleteTeamLeader.set(indexTeamLeader, teamLeader);
                         Files.writeTeamLeader(deleteTeamLeader);
                         showMessageDialog(null, "Successfully Saved");
+                        getContentPane().removeAll();
+                        state = 2;
+                        F7();
                     }
                 }
                 catch (IOException ioException) { ioException.printStackTrace();}
