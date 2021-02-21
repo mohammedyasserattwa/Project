@@ -3,17 +3,17 @@ package Payroll;
 import java.util.*;
 import java.io.*;
 
-public class Company implements Serializable, Files{
+public class User implements Serializable, Files{
     private int id;
     private String name;
     private int age;
-    public Company(){
+    public User(){
         id = 0;
         name = null;
         age = 0;
         //Ahmed Bassem
     }
-    public Company(int id, String name, int age){
+    public User(int id, String name, int age){
         this.id = id;
         this.name = name;
         this.age = age;

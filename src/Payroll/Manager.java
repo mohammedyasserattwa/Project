@@ -3,7 +3,7 @@ package Payroll;
 import java.util.*;
 import java.io.*;
 
-public class Manager implements Serializable{
+public class Manager extends User implements Serializable{
     //~Data Members~//
     private ArrayList<Trainee> Trainees;
     private ArrayList<TeamLeader> TeamLeaders;

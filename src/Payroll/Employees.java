@@ -1,7 +1,7 @@
 
 package Payroll;
 
-public class Employees extends Company{
+public class Employees extends User{
     //--------------Data Members-------------//
     private char Grade;
     private String position;

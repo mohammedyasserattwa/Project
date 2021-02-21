@@ -6,7 +6,7 @@
 package Payroll;
 
 
-public class Trainee extends Company{
+public class Trainee extends User{
     //--------------Data Members-------------//
     private String facultyName;
     private int academicYear;

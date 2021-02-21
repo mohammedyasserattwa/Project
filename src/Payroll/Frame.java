@@ -2268,7 +2268,7 @@ public class Frame extends JFrame implements Files {
             }
             if (e.getSource() == submit) {
 
-                Company x = new Company();
+                User x = new User();
                 if (select == 1) {
                     try {
                         Object chosen = x.checkLogintltm(userin.getText(), passin.getText());
