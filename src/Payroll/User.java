@@ -72,7 +72,7 @@ public class User implements Serializable, Files{
         return null;
     }
     public static void main(String[] args) throws IOException, ClassNotFoundException{
-       Frame frame=new Frame();
+      Frame frame=new Frame();
 
         //Data for Employees
 //        int id,age,academicYear;

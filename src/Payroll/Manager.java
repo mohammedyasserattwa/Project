@@ -76,22 +76,22 @@ public class Manager extends User implements Serializable{
         getTrainees().remove(t);
     }
     //Display method
-    public void displayTrainee(){
-        System.out.println("Trainees: ");
-        for(int i = 0;i<getTrainees().size();i++){
-            System.out.println(getTrainees().get(i).getName() + " " + getTrainees().get(i).getAge() + " " + getTrainees().get(i).getFacultyName() + " " + getTrainees().get(i).getAcademicYear() + " " + getTrainees().get(i).getGPA());
-        }
-    }
-    public void displayTeamLeader(){
-        System.out.println("Team Leader: ");
-        for(int i = 0;i<getTeamLeaders().size();i++){
-            System.out.println(getTeamLeaders().get(i).getId()+ " " +getTeamLeaders().get(i).getName() + " " + getTeamLeaders().get(i).getAge() + getTeamLeaders().get(i).getGrade(getTeamLeaders().get(i)) + " Team members: \n" + getTeamLeaders().get(i).toString());
-        }
-    }
-    public void displayTeamMembers(){
-        System.out.println("Team Members: ");
-        for(int i = 0;i<getTeamLeaders().size();i++){
-            System.out.print(getTeamLeaders().get(i).toString());
-        }
-    }
+//    public void displayTrainee(){
+//        System.out.println("Trainees: ");
+//        for(int i = 0;i<getTrainees().size();i++){
+//            System.out.println(getTrainees().get(i).getName() + " " + getTrainees().get(i).getAge() + " " + getTrainees().get(i).getFacultyName() + " " + getTrainees().get(i).getAcademicYear() + " " + getTrainees().get(i).getGPA());
+//        }
+//    }
+//    public void displayTeamLeader(){
+//        System.out.println("Team Leader: ");
+//        for(int i = 0;i<getTeamLeaders().size();i++){
+//            System.out.println(getTeamLeaders().get(i).getId()+ " " +getTeamLeaders().get(i).getName() + " " + getTeamLeaders().get(i).getAge() + getTeamLeaders().get(i).getGrade(getTeamLeaders().get(i)) + " Team members: \n" + getTeamLeaders().get(i).toString());
+//        }
+//    }
+//    public void displayTeamMembers(){
+//        System.out.println("Team Members: ");
+//        for(int i = 0;i<getTeamLeaders().size();i++){
+//            System.out.print(getTeamLeaders().get(i).toString());
+//        }
+//    }
 }

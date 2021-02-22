@@ -20,9 +20,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Frame extends JFrame implements Files {
-    //Buttons
+    //Action Listener:
     Al al = new Al();
     ML ml = new ML();
+    //-------------------------------------------Buttons-------------------------------------------------------//
     JButton login = new JButton("Login");
     JButton sign = new JButton("Sign Up");
     JButton trainee = new JButton("Trainee");
@@ -31,7 +32,7 @@ public class Frame extends JFrame implements Files {
     JButton submit = new JButton("submit");
     Icon backIcon = new ImageIcon("BackButton.png");
     JButton back = new JButton(backIcon);
-    //Manager
+    //-------------------------------------------Manager-------------------------------------------------------//
     JButton Trainee = new JButton("Trainee");
     JButton TeamLeader = new JButton("Team Leader");
     JButton TeamMember = new JButton("Team Member");
@@ -40,27 +41,33 @@ public class Frame extends JFrame implements Files {
     JButton Edit = new JButton("Edit");
     JButton view=new JButton("View");
 
-
-    JLabel welc = new JLabel("Company Payroll");
+    //username/passwords labels and textfields
     JLabel username = new JLabel("Username:");
     JLabel password = new JLabel("Password:");
-
     JTextField userin = new JTextField(10);
     JPasswordField passin = new JPasswordField(10);
 
-    Font Labelfont = new Font("Serif",0,18);
+    //buttons top right
     JButton close = new JButton("x");
     JButton minimize = new JButton("-");
-    Icon i = new ImageIcon("C:\\Users\\Mohammed Yasser\\Desktop\\MIU\\max.png");
     JButton maximize = new JButton("■");
     JLabel draggable = new JLabel();
+    int mx;
+    int my;
+
+    //Colors used in the project
     Color Purple = new Color(48,34,91);
     Color LightPurple = new Color(238,223,237);
     Color Pink = new Color(158,123,181);
     ////////////////////////////
-    int mx;
-    int my;
+    //-------------------------------------------------Images------------------------------------------------------------//
+    //Frame 1
     JLabel image = new JLabel(new ImageIcon(ImageIO.read(new File("signin.png"))));
+    //Frame 2
+    JLabel im = new JLabel(new ImageIcon(ImageIO.read(new File("login.png"))));
+    //Frame 3
+    JLabel image1 = new JLabel(new ImageIcon(ImageIO.read(new File("username.png"))));
+    //------------------------------------------------Constructor---------------------------------------------------//
     public Frame() throws IOException, ClassNotFoundException {
         ///////////////////////////////////////////////////////////
         setTitle("COMPANY PAYROLL");
@@ -119,6 +126,7 @@ public class Frame extends JFrame implements Files {
 
         /////////////////////
     }
+    //------------------------------------------Top-Right Buttons---------------------------------------------//
     public void Buttons(int x){
         back.setBorderPainted(false);
         back.setOpaque(false);
@@ -187,12 +195,16 @@ public class Frame extends JFrame implements Files {
         draggable.setBounds(60,0,x-150,50);
         add(draggable);
     }
-    //////Welcome Frame//////////
+    //////////////////////////////////////////////////////////////////////FRAMES//////////////////////////////////////////////////////////////////////////////
+    ////////Welcome Frame//////////
     public void F1() {
 
         setSize(800, 500);
+        //set the image to be the background
         setContentPane(image);
         Buttons(800);
+
+        //login button
         login.setBounds(675,440,100,50);
         login.setText("LOGIN >");
         login.setBackground(new Color(255,255,255));
@@ -201,16 +213,15 @@ public class Frame extends JFrame implements Files {
         login.setFont(new Font("Ariel",1,20));
         login.setBorder(BorderFactory.createEmptyBorder());
         add(login);
+
         revalidate();
         repaint();
         remove(back);
     }
 
     //Second Frame to choose TeamLeader/TeamMember Manager or Trainee
-    JLabel im = new JLabel(new ImageIcon(ImageIO.read(new File("login.png"))));
     public void F2() {
-
-
+        //image setup
         setSize(805, 500);
         setContentPane(im);
         Container Back = new Container();
@@ -218,12 +229,14 @@ public class Frame extends JFrame implements Files {
         revalidate();
         repaint();
 
+        Buttons(805);
+
         JLabel info = new JLabel("Pick your position");
         info.setForeground(new Color(80,77,77));
         info.setFont(new Font("Myraid Pro",0,20));
         info.setBounds(325,90,350,100);
         add(info);
-        Buttons(805);
+
         teamleader.setBounds(278, 225, 250, 30);
         teamleader.setBackground(new Color(243,240,247));
         teamleader.setOpaque(false);
@@ -249,13 +262,16 @@ public class Frame extends JFrame implements Files {
     }
 
     //Entering the Username and Password
-    JLabel image1 = new JLabel(new ImageIcon(ImageIO.read(new File("username.png"))));
-    public void F3() {
 
+    public void F3() {
+        //image setup
         setSize(800,500);
         setContentPane(image1);
+
         Buttons(800);
+        //Back Button
         add(back);
+
         userin.setBounds(375, 240, 120, 20);
         userin.setFont(new Font("Myraid Pro",0,15));
         userin.setBackground(LightPurple);
@@ -280,29 +296,71 @@ public class Frame extends JFrame implements Files {
 
     }
 
-    //Getting TeamLeader data
+    //TEAMLEADER ACCOUNT INFO
     public void F4(TeamLeader chosen) {
-        JPanel drag = new JPanel();
-
-        JButton signout  = new JButton("Sign Out");
-        JButton Acc = new JButton();
-        JButton Team = new JButton("My Team");
-        getContentPane().removeAll();
-        setSize(800,500);
+        //remove any image in the background from the previous frame
         Container c= new Container();
         c.setBackground(Color.WHITE);
         setContentPane(c);
-        setBackground(LightPurple);
+        setBackground(LightPurple);//set background color
         revalidate();
         repaint();
 
+        getContentPane().removeAll();
+        setSize(800,500);
+
         Buttons(805);
 
-        drag.setBounds(0,0,50,500);
+        JPanel drag = new JPanel();
+        drag.setBounds(0,0,50,500);//set the panel to default value -> 50
         drag.setBackground(Pink);
-
-
         add(drag);
+
+        //Buttons in the left panel
+        JButton signout  = new JButton("Sign Out");
+        JButton Acc = new JButton();
+        JButton Team = new JButton("My Team");
+
+        /////////////////////////////LABELS USED FOR ACCOUNT INFO/////////////////////////////////////////
+        JLabel AccountInfo = new JLabel("Account Information ");
+        JLabel viewname = new JLabel("Name:");
+        JLabel TlName = new JLabel(chosen.getName());
+        JLabel ID = new JLabel("ID:");
+        JLabel Tlid = new JLabel("" + chosen.getId());
+        JLabel age = new JLabel("Age: ");
+        JLabel num = new JLabel("" + chosen.getAge());
+        JLabel salary = new JLabel("Salary: ");
+        JLabel result = new JLabel("$" + chosen.getSalary());
+        JLabel grade = new JLabel("Grade: ");
+        JLabel gr = new JLabel(String.valueOf(chosen.getGrade(new TeamLeader())));
+        JPanel panel = new JPanel();
+        JLabel myTeam = new JLabel("My Team");
+        JLabel teamCapacity = new JLabel(" Your Team Capacity: " + chosen.getTeamCapacity());
+        JLabel Welcome = new JLabel("<html><h1 style = \"font-family:muli black;font-size:100;\"><strong>Welcome, </strong></html>");
+        JLabel ChLabel = new JLabel("<html></h1><h1 style = \"font-family:muli black;font-size:100;\">"+ chosen.getName() +"</h1></html>");
+        ChLabel.setBounds(175,250,500,100);
+        add(ChLabel);
+        Welcome.setBounds(175,100,500,200);
+        add(Welcome);
+        JLabel label2 = new JLabel("You can find your account info by dragging the left drawer");
+        label2.setBounds(175,350,550,50);
+        label2.setFont(new Font("Myraid Pro",0,20));
+        add(label2);
+        JLabel p = new JLabel();
+        JLabel somedeep = new JLabel("Your account info in");
+        somedeep.setForeground(Color.white);
+        JLabel anotherdeep = new JLabel("addition to the salary");
+        anotherdeep.setForeground(Color.white);
+        JLabel deep = new JLabel("that is calculated by");
+        deep.setForeground(Color.white);
+        JLabel deepLast = new JLabel("your manager.");
+        deepLast.setForeground(Color.white);
+        JLabel infoLogo = new JLabel(new ImageIcon("info.PNG"));
+        JLabel infoLogo1 = new JLabel(new ImageIcon("info.PNG"));
+
+        revalidate();
+        repaint();
+        //-----------------------------------------------ACTION LISTENERS-----------------------------------------------------//
         drag.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
@@ -311,18 +369,21 @@ public class Frame extends JFrame implements Files {
                 repaint();
                 remove(drag);
 
+                //set drag width when dragged
                 if(e.getX() > 50) {
                     if (e.getX() <= 150) {
                         drag.setSize(e.getX(), 500);
                     }
                 }
-                else if(drag.getWidth() <55){
+                if(drag.getWidth() <55){
                     drag.setSize(50, 500);
                 }
                 if(drag.getWidth() > 140){
                     drag.setSize(150,500);
                 }
-                if(e.getX() <= 75){
+
+                //add/delete the buttons in the drag panel
+                if(e.getX() <= 100){
                     remove(Acc);
                     remove(Team);
                     remove(signout);
@@ -364,62 +425,37 @@ public class Frame extends JFrame implements Files {
                 repaint();
             }
         });
-        JLabel AccountInfo = new JLabel("Account Information ");
-        JLabel viewname = new JLabel("Name:");
-        JLabel TlName = new JLabel(chosen.getName());
-        JLabel ID = new JLabel("ID:");
-        JLabel Tlid = new JLabel("" + chosen.getId());
-        JLabel age = new JLabel("Age: ");
-        JLabel num = new JLabel("" + chosen.getAge());
-        JLabel salary = new JLabel("Salary: ");
-        JLabel result = new JLabel("$" + chosen.getSalary());
-        JPanel panel = new JPanel();
-        JLabel myTeam = new JLabel("My Team");
-        JLabel teamCapacity = new JLabel(" Your Team Capacity: " + chosen.getTeamCapacity());
-        JLabel Welcome = new JLabel("<html><h1 style = \"font-family:muli black;font-size:100;\"><strong>Welcome, </strong></html>");
-        JLabel ChLabel = new JLabel("<html></h1><h1 style = \"font-family:muli black;font-size:100;\">"+ chosen.getName() +"</h1></html>");
-        ChLabel.setBounds(175,250,500,100);
-        add(ChLabel);
-        Welcome.setBounds(175,100,500,200);
-//        Welcome.setFont(new Font("arial black",1,50));
-        add(Welcome);
-        JLabel label2 = new JLabel("You can find your account info by dragging the left drawer");
-        label2.setBounds(175,350,550,50);
-        label2.setFont(new Font("Myraid Pro",0,20));
-        add(label2);
-        JLabel p = new JLabel();
-        JLabel somedeep = new JLabel("Your account info in");
-        somedeep.setForeground(Color.white);
-        JLabel anotherdeep = new JLabel("addition to the salary");
-        anotherdeep.setForeground(Color.white);
-        JLabel deep = new JLabel("that is calculated by");
-        deep.setForeground(Color.white);
-        JLabel deepLast = new JLabel("your manager.");
-        deepLast.setForeground(Color.white);
-        JLabel infoLogo = new JLabel(new ImageIcon("info.PNG"));
-        JLabel infoLogo1 = new JLabel(new ImageIcon("info.PNG"));
-
-        revalidate();
-        repaint();
+        //MyAccount infoLogo
         infoLogo.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                somedeep.setText("Your account info in");
-                anotherdeep.setText("addition to the salary");
-                deep.setText("that is calculated by");
-                deepLast.setText("your manager.");
+                remove(somedeep);
+                remove(anotherdeep);
+                remove(deep);
+                remove(deepLast);
+                revalidate();
+                repaint();
+                //---------------set the blur background in the info
                 p.setBounds(infoLogo.getX(),infoLogo.getY()-25,200,200);
                 p.setIcon(new ImageIcon("blur.PNG"));
-                somedeep.setBounds(p.getX() + 50,p.getY()-30,300,150);
-                anotherdeep.setBounds(somedeep.getX(),somedeep.getY()+20,300,150);
-                deep.setBounds(anotherdeep.getX(),anotherdeep.getY()+20,300,150);
-                deepLast.setBounds(deep.getX(),deep.getY()+20,300,150);
-                add(deep);
-                add(deepLast);
-                add(somedeep);
-                add(anotherdeep);
+
+                //--------------set the info text
+                    somedeep.setText("Your account info in");
+                    anotherdeep.setText("addition to the salary");
+                    deep.setText("that is calculated by");
+                    deepLast.setText("your manager.");
+                    somedeep.setBounds(p.getX() + 50,p.getY()-30,300,150);
+                    anotherdeep.setBounds(somedeep.getX(),somedeep.getY()+20,300,150);
+                    deep.setBounds(anotherdeep.getX(),anotherdeep.getY()+20,300,150);
+                    deepLast.setBounds(deep.getX(),deep.getY()+20,300,150);
+                    add(deep);
+                    add(deepLast);
+                    add(somedeep);
+                    add(anotherdeep);
+
                 add(p);
+
                 revalidate();
                 repaint();
             }
@@ -436,20 +472,30 @@ public class Frame extends JFrame implements Files {
                 repaint();
             }
         });
+        //MyTeam infoLogo
         infoLogo1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
+                //remove any instance of the previous text to change the text
                 remove(somedeep);
                 remove(anotherdeep);
                 remove(deep);
                 remove(deepLast);
+
+                //blur background
                 p.setBounds(infoLogo1.getX(),infoLogo1.getY()-150,200,200);
                 p.setIcon(new ImageIcon("blur.PNG"));
+
+                //info text
                 somedeep.setText("Your team members");
                 anotherdeep.setText("that you are leading and");
                 deep.setText("the capacity of your");
                 deepLast.setText("team.");
+                somedeep.setForeground(Color.WHITE);
+                deep.setForeground(Color.WHITE);
+                deepLast.setForeground(Color.WHITE);
+                anotherdeep.setForeground(Color.WHITE);
                 somedeep.setBounds(p.getX() + 50,p.getY()-30,300,150);
                 anotherdeep.setBounds(somedeep.getX(),somedeep.getY()+20,300,150);
                 deep.setBounds(anotherdeep.getX(),anotherdeep.getY()+20,300,150);
@@ -476,9 +522,11 @@ public class Frame extends JFrame implements Files {
             }
         });
         //buttons
+        //MyAccount Button
         Acc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //remove everything except the drag panel
                 remove(Welcome);
                 remove(infoLogo);
                 remove(infoLogo1);
@@ -493,6 +541,8 @@ public class Frame extends JFrame implements Files {
                 remove(teamCapacity);
                 revalidate();
                 repaint();
+
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 AccountInfo.setBounds(200, 100, 400, 100);
                 AccountInfo.setFont(new Font("Myraid Pro", 0, 34));
                 AccountInfo.setForeground(new Color(86,87,89));
@@ -543,7 +593,19 @@ public class Frame extends JFrame implements Files {
                 result.setBounds(450, 350, 150, 50);
                 result.setFont(new Font("Myraid Pro", 0, 15));
                 result.setForeground(new Color(86,87,89));
+
+                grade.setBounds(250,400,150,50);
+                grade.setFont(new Font("Myraid Pro",0,15));
+                grade.setForeground(new Color(86,87,89));
+                add(grade);
+
+                gr.setBounds(450,400,150,50);
+                gr.setFont(new Font("Myraid Pro",0,15));
+                gr.setForeground(new Color(86,87,89));
+                add(gr);
+
                 add(result);
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 revalidate();
                 repaint();
             }
@@ -551,6 +613,7 @@ public class Frame extends JFrame implements Files {
         Team.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //removal stage
                 remove(Welcome);
                 remove(infoLogo);
                 remove(somedeep);
@@ -568,9 +631,12 @@ public class Frame extends JFrame implements Files {
                 remove(num);
                 remove(salary);
                 remove(result);
+                remove(grade);
+                remove(gr);
                 revalidate();
                 repaint();
 
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 myTeam.setBounds(200, 100, 200, 100);
                 myTeam.setFont(new Font("Myraid Pro", 0, 40));
                 myTeam.setForeground(new Color(86,87,89));
@@ -591,24 +657,30 @@ public class Frame extends JFrame implements Files {
                 revalidate();
                 repaint();
 
+                //jtable header
                 String column[] = {"ID", "Name", "Age"};
+                //-------------JTable data
                 String data[][] = new String[5][3];
                 for (int i = 0; i < chosen.getTeamMembers().size(); i++) {
                     data[i][0] = chosen.getTeamMembers().get(i).getId() + "";
                     data[i][1] = chosen.getTeamMembers().get(i).getName() + "";
                     data[i][2] = chosen.getTeamMembers().get(i).getAge() + "";
                 }
+                //-------------Initialization
                 JTable jt = new JTable(data, column);
                 JScrollPane sp = new JScrollPane(jt);
+                //Header Background Color
                 JTableHeader head = jt.getTableHeader();
                 head.setBorder(BorderFactory.createEmptyBorder());
                 jt.setBorder(BorderFactory.createEmptyBorder());
                 head.setBackground(Pink);
                 head.setForeground(Color.WHITE);
+                //add the scrollpane to the panel
                 panel.add(sp);
                 panel.setBounds(250, 200, 452, 107);
                 panel.setOpaque(false);
                 add(panel);
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 revalidate();
                 repaint();
             }
@@ -616,23 +688,6 @@ public class Frame extends JFrame implements Files {
         signout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                remove(p);
-                remove(somedeep);
-                remove(anotherdeep);
-                remove(deep);
-                remove(deepLast);
-                remove(Welcome);
-                remove(infoLogo);
-                remove(infoLogo1);
-                remove(ChLabel);
-                remove(label2);
-                remove(somedeep);
-                remove(anotherdeep);
-                remove(deep);
-                remove(deepLast);
-                remove(panel);
-                remove(myTeam);
-                remove(teamCapacity);
                 if(JOptionPane.showConfirmDialog(null,"Are you sure?","Sign Out", YES_NO_OPTION) == YES_OPTION){
                     userin.setText("");
                     passin.setText("");
@@ -644,8 +699,9 @@ public class Frame extends JFrame implements Files {
         });
     }
 
-    //Getting TeamMember data
+    //TEAMMMEMBER ACCOUNT INFO
     public void F5(TeamMember chosen) throws IOException, ClassNotFoundException {
+        //REMOVE ANY IMAGE FROM THE PREVIOUS FRAME
         getContentPane().removeAll();
         setSize(800,500);
         Container c= new Container();
@@ -656,18 +712,56 @@ public class Frame extends JFrame implements Files {
         repaint();
 
         Buttons(805);
+        //DRAG PANEL
         JPanel drag = new JPanel();
-
-        JButton signout  = new JButton("Sign Out");
-        JButton Acc = new JButton();
         drag.setBounds(0,0,50,500);
         drag.setBackground(Pink);
-        JLabel top = new JLabel(new ImageIcon("logo.PNG"));
-        top.setBackground(LightPurple);
-        top.setBounds(0,drag.getY(),drag.getWidth(),50);
-        add(top);
-
         add(drag);
+        //BUTTONS
+        JButton signout  = new JButton("Sign Out");
+        JButton Acc = new JButton();
+
+        //MY ACCOUNT INFO
+        JLabel AccountInfo = new JLabel("Account Information ");
+        JLabel viewname = new JLabel("Name:");
+        JLabel TlName = new JLabel(chosen.getName());
+        JLabel ID = new JLabel("ID:");
+        JLabel Tlid = new JLabel("" + chosen.getId());
+        JLabel age = new JLabel("Age: ");
+        JLabel num = new JLabel("" + chosen.getAge());
+        JLabel salary = new JLabel("Salary: ");
+        JLabel result = new JLabel("$" + chosen.getSalary());
+        JLabel grade = new JLabel("Grade: ");
+        JLabel gr = new JLabel(String.valueOf(chosen.getGrade(new TeamMember())));
+
+        //WELCOME
+        JPanel panel = new JPanel();
+        JLabel Welcome = new JLabel("<html><h1 style = \"font-family:muli black;font-size:100;\"><strong>Welcome, </strong></html>");
+        JLabel ChLabel = new JLabel("<html></h1><h1 style = \"font-family:muli black;font-size:100;\">"+ chosen.getName() +"</h1></html>");
+        ChLabel.setBounds(175,250,500,100);
+        add(ChLabel);
+        Welcome.setBounds(175,100,500,200);
+        add(Welcome);
+        JLabel label2 = new JLabel("You can find your account info by dragging the left drawer");
+        label2.setBounds(175,350,550,50);
+        label2.setFont(new Font("Myraid Pro",0,20));
+        add(label2);
+
+        //INFO ICON
+        JLabel p = new JLabel();
+        JLabel somedeep = new JLabel("Your account info in");
+        somedeep.setForeground(Color.white);
+        JLabel anotherdeep = new JLabel("addition to the salary");
+        anotherdeep.setForeground(Color.white);
+        JLabel deep = new JLabel("that is calculated by");
+        deep.setForeground(Color.white);
+        JLabel deepLast = new JLabel("your manager.");
+        deepLast.setForeground(Color.white);
+        JLabel infoLogo = new JLabel(new ImageIcon("info.PNG"));
+
+        revalidate();
+        repaint();
+
         drag.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
@@ -681,12 +775,13 @@ public class Frame extends JFrame implements Files {
                         drag.setSize(e.getX(), 500);
                     }
                 }
-                else if(drag.getWidth() <55){
+                if(drag.getWidth() <55){
                     drag.setSize(50, 500);
                 }
                 if(drag.getWidth() > 140){
                     drag.setSize(150,500);
                 }
+
                 if(e.getX() <= 100){
                     remove(Acc);
                     remove(signout);
@@ -714,56 +809,12 @@ public class Frame extends JFrame implements Files {
 
 
                 }
+
                 add(drag);
                 revalidate();
                 repaint();
             }
         });
-        JLabel AccountInfo = new JLabel("Account Information ");
-        JLabel viewname = new JLabel("Name:");
-        JLabel TlName = new JLabel(chosen.getName());
-        JLabel ID = new JLabel("ID:");
-        JLabel Tlid = new JLabel("" + chosen.getId());
-        JLabel age = new JLabel("Age: ");
-        JLabel num = new JLabel("" + chosen.getAge());
-        JLabel salary = new JLabel("Salary: ");
-        JLabel result = new JLabel("$" + chosen.getSalary());
-
-        JPanel panel = new JPanel();
-//        JLabel empty = new JLabel(new ImageIcon("empty.PNG"));
-//        empty.setBounds(350,175,150,150);
-//        JLabel emptyText = new JLabel("Blank space \n Drag the slider for more embarrassing stuff");
-//        emptyText.setBounds(250,275,400,100);
-//        emptyText.setForeground(Color.LIGHT_GRAY);
-//        emptyText.setFont(new Font("Myraid pro",0,15));
-//        add(emptyText);
-//        add(empty);
-        //"Welcome, " + chosen.getName()
-        JLabel Welcome = new JLabel("<html><h1 style = \"font-family:muli black;font-size:100;\"><strong>Welcome, </strong></html>");
-        JLabel ChLabel = new JLabel("<html></h1><h1 style = \"font-family:muli black;font-size:100;\">"+ chosen.getName() +"</h1></html>");
-        ChLabel.setBounds(175,250,500,100);
-        add(ChLabel);
-        Welcome.setBounds(175,100,500,200);
-//        Welcome.setFont(new Font("arial black",1,50));
-        add(Welcome);
-        JLabel label2 = new JLabel("You can find your account info by dragging the left drawer");
-        label2.setBounds(175,350,550,50);
-        label2.setFont(new Font("Myraid Pro",0,20));
-        add(label2);
-       // label2.setBounds();
-        JLabel p = new JLabel();
-        JLabel somedeep = new JLabel("Your account info in");
-        somedeep.setForeground(Color.white);
-        JLabel anotherdeep = new JLabel("addition to the salary");
-        anotherdeep.setForeground(Color.white);
-        JLabel deep = new JLabel("that is calculated by");
-        deep.setForeground(Color.white);
-        JLabel deepLast = new JLabel("your manager.");
-        deepLast.setForeground(Color.white);
-        JLabel infoLogo = new JLabel(new ImageIcon("info.PNG"));
-
-        revalidate();
-        repaint();
         infoLogo.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -803,12 +854,10 @@ public class Frame extends JFrame implements Files {
         Acc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // remove(empty);
                 remove(Welcome);
                 remove(ChLabel);
                 remove(label2);
                 remove(infoLogo);
-                //remove(emptyText);
                 remove(somedeep);
                 remove(anotherdeep);
                 remove(deep);
@@ -816,60 +865,61 @@ public class Frame extends JFrame implements Files {
                 remove(panel);
                 revalidate();
                 repaint();
-                AccountInfo.setBounds(200, 100, 400, 100);
+
+                AccountInfo.setBounds(200, 50, 400, 100);
                 AccountInfo.setFont(new Font("Myraid Pro", 0, 34));
                 AccountInfo.setForeground(new Color(86,87,89));
                 add(AccountInfo);
 
-                infoLogo.setBounds(500,140,25,25);
+                infoLogo.setBounds(500,90,25,25);
                 add(infoLogo);
 
-                viewname.setBounds(250, 200, 50, 50);
+                viewname.setBounds(250, 150, 50, 50);
                 viewname.setFont(new Font("Myraid Pro", 0, 15));
                 viewname.setForeground(new Color(86,87,89));
                 add(viewname);
 
 
                 TlName.setFont(new Font("Myraid Pro", 0, 15));
-                TlName.setBounds(450, 200, 100, 50);
+                TlName.setBounds(450, 150, 100, 50);
                 TlName.setForeground(new Color(86,87,89));
                 add(TlName);
 
 
-                ID.setBounds(250, 250, 50, 50);
+                ID.setBounds(250, 200, 50, 50);
                 ID.setFont(new Font("Myraid Pro", 0, 15));
                 ID.setForeground(new Color(86,87,89));
                 add(ID);
 
                 Tlid.setFont(new Font("Myraid Pro", 0, 15));
-                Tlid.setBounds(450, 250, 100, 50);
+                Tlid.setBounds(450, 200, 100, 50);
                 Tlid.setForeground(new Color(86,87,89));
                 add(Tlid);
 
 
-                age.setBounds(250, 300, 50, 50);
+                age.setBounds(250, 250, 50, 50);
                 age.setFont(new Font("Myraid Pro", 0, 15));
                 age.setForeground(new Color(86,87,89));
                 add(age);
 
-                num.setBounds(450, 300, 50, 50);
+                num.setBounds(450, 250, 50, 50);
                 num.setFont(new Font("Myraid Pro", 0, 15));
                 num.setForeground(new Color(86,87,89));
                 add(num);
 
 
-                salary.setBounds(250, 350, 70, 50);
+                salary.setBounds(250, 300, 70, 50);
                 salary.setFont(new Font("Myraid Pro", 0, 15));
                 salary.setForeground(new Color(86,87,89));
                 add(salary);
 
-                result.setBounds(450, 350, 150, 50);
+                result.setBounds(450, 300, 150, 50);
                 result.setFont(new Font("Myraid Pro", 0, 15));
                 result.setForeground(new Color(86,87,89));
                 add(result);
 
                 JLabel TeamLeader = new JLabel("Team Leader: ");
-                TeamLeader.setBounds(250, 400, 150, 50);
+                TeamLeader.setBounds(250, 350, 150, 50);
                 TeamLeader.setFont(new Font("Myraid Pro", 0, 15));
                 TeamLeader.setForeground(new Color(86,87,89));
                 add(TeamLeader);
@@ -890,10 +940,21 @@ public class Frame extends JFrame implements Files {
                     }
                 }
                 JLabel tname = new JLabel(selected.getName());
-                tname.setBounds(450, 400, 150, 50);
+                tname.setBounds(450, 350, 150, 50);
                 tname.setFont(new Font("Myraid Pro", 0, 15));
                 tname.setForeground(new Color(86,87,89));
                 add(tname);
+
+                grade.setBounds(250,400,150,50);
+                grade.setFont(new Font("Myraid Pro",0,15));
+                grade.setForeground(new Color(86,87,89));
+                add(grade);
+
+                gr.setBounds(450,400,150,50);
+                gr.setFont(new Font("Myraid Pro",0,15));
+                gr.setForeground(new Color(86,87,89));
+                add(gr);
+
                 revalidate();
                 repaint();
             }
@@ -911,7 +972,7 @@ public class Frame extends JFrame implements Files {
         });
     }
 
-    //Getting Trainee data
+    //TRAINEE ACCOUNT
     public void F6(Trainee chosen) {
         getContentPane().removeAll();
         setSize(800,500);
@@ -953,7 +1014,7 @@ public class Frame extends JFrame implements Files {
                 if(drag.getWidth() > 140){
                     drag.setSize(150,500);
                 }
-                if(e.getX() <= 75){
+                if(e.getX() <= 100){
                     remove(Acc);
                     remove(Team);
                     remove(signout);
@@ -1176,39 +1237,33 @@ public class Frame extends JFrame implements Files {
 
     //3 Buttons to choose whether to ADD EDIT or DELETE
     public void F7() {
-
         setSize(800,675);
         Buttons(800);
         setBackground(LightPurple);
         revalidate();
         repaint();
         add(back);
-        //Set bounds for left buttons
+        //Colrors & width/height for the buttons
         int height = 80;
         int width = 250;
         Color c = new Color(158,123,181);
-        //Color c = new Color(122,73,136);
 
         Add.setBounds(100, 150, width, height);
         Add.setFont(new Font("Myraid Pro", Font.BOLD, 30));
         Add.setForeground(Color.WHITE);
         Add.setBackground(c);
-        //Add.setOpaque(false);
         Edit.setBounds(450, 150, width, height);
         Edit.setFont(new Font("Myraid Pro", Font.BOLD, 30));
         Edit.setBackground(c);
         Edit.setForeground(Color.WHITE);
-        //Edit.setOpaque(false);
         Delete.setBounds(100, 350, width, height);
         Delete.setFont(new Font("Myraid Pro", Font.BOLD, 30));
         Delete.setBackground(c);
         Delete.setForeground(Color.WHITE);
-        //Delete.setOpaque(false);
         view.setBounds(450, 350, width, height);
         view.setFont(new Font("Myraid Pro", Font.BOLD, 30));
         view.setBackground(c);
         view.setForeground(Color.WHITE);
-        //view.setOpaque(false);
         add(Add);
         add(Edit);
         add(Delete);
@@ -2574,7 +2629,6 @@ public class Frame extends JFrame implements Files {
                             int id = Integer.parseInt(fieldList.get(i + 1).getText());
                             int age = Integer.parseInt(fieldList.get(i + 2).getText());
                             listMembers.add(new TeamMember(fieldList.get(i).getText(), id, age, fieldList.get(i + 3).getText(), fieldList.get(i + 4).getText()));
-                            dataTeamMember.add(id+" "+fieldList.get(i).getText());
                         }
                         else if ((!fieldList.get(i).getText().equals("") || !fieldList.get(i + 1).getText().equals("") || !fieldList.get(i + 2).getText().equals("") || !fieldList.get(i + 3).getText().equals("") || !fieldList.get(i + 4).getText().equals(""))) {
                             showMessageDialog(null, "Missing fields.");
@@ -2686,14 +2740,6 @@ public class Frame extends JFrame implements Files {
                 Trainee t = new Trainee(chosen.getId(), Traineename, TraineeAge, fn, academicyear, gpa, chosen.getUsername(), chosen.getPassword());
                 TraineeList.set(index, t);
 
-                for (int i = 0; i < TraineeList.size(); i++) {
-                    if (Integer.parseInt(id) == TraineeList.get(i).getId()) {
-                        chosen = TraineeList.get(i);
-                        index = i;
-                        break;
-                    }
-                }
-                TraineeList.set(index, t);
                 try {
                     Files.writeTrainee(TraineeList);
                     showMessageDialog(null, "Successfully Saved.");
@@ -2733,9 +2779,10 @@ public class Frame extends JFrame implements Files {
                 int TeamMemberAge = (!TeamMemberage.getText().equals("")) ? Integer.parseInt(TeamMemberage.getText()) : chosen.getAge();
                 TeamMember teamMember = new TeamMember(TeamMemberName, chosen.getId(), TeamMemberAge, chosen.getUsername(), chosen.getPassword());
                 TeamMemberList.get(indexL).getTeamMembers().set(indexM, teamMember);
-                boolean CheckHours = ((Double)Hours.getValue() != 0)? true:false;
-                boolean CheckTax = ((Double)Tax.getValue() != 0)?true:false;
-                boolean CheckPay = ((Double)Pay.getValue() != 0)?true:false;
+                    boolean CheckHours = ((Double) Hours.getValue() != 0.0) ? true : false;
+                    boolean CheckTax = ((Double) Tax.getValue() != 0.0) ? true : false;
+                    boolean CheckPay = ((Double) Pay.getValue() != 0.0) ? true : false;
+
                 if(CheckHours == true)
                     TeamMemberList.get(indexL).getTeamMembers().get(indexM).setWorkingHours((Double)Hours.getValue());
                 if(CheckPay == true)
@@ -2752,9 +2799,9 @@ public class Frame extends JFrame implements Files {
 
                     TeamMembername.setText("");
                     TeamMemberage.setText("");
-                    Hours.setValue(0);
-                    Tax.setValue(0);
-                    Pay.setValue(0);
+                    Hours.setValue(0.0);
+                    Tax.setValue(0.0);
+                    Pay.setValue(0.0);
 
                     getContentPane().removeAll();
                     F7();
@@ -3047,6 +3094,7 @@ public class Frame extends JFrame implements Files {
                         }
                     }
                     Files.writeTeamLeader(replaceTeamLeader);
+                    dataTeamLeader.clear();
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 } catch (ClassNotFoundException classNotFoundException) {
@@ -3175,6 +3223,7 @@ public class Frame extends JFrame implements Files {
                         TeamLeader teamLeader = new TeamLeader(Name, Integer.parseInt(id), Integer.parseInt(age), chosenTeamLeader.getTeamMembers(), UserName, password);
                         deleteTeamLeader.set(indexTeamLeader, teamLeader);
                         Files.writeTeamLeader(deleteTeamLeader);
+                        dataTeamLeader.clear();
                         showMessageDialog(null, "Successfully Saved");
                         getContentPane().removeAll();
                         state = 2;
